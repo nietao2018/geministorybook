@@ -8,8 +8,8 @@
     "sign_in_with_linkedin": "使用 LinkedIn 账号登录",
     "back": "返回",
     "welcome_back": "欢迎回来",
-    "use_email_to_sign_in": "使用电子邮件登录您的 HeadShots.fun 账户",
-    "don't_have_an_account": "还没有账户？",
+    "use_email_to_sign_in": "使用邮箱登录您的 Converters.pro 账号",
+    "don't_have_an_account": "还没有账号？",
     "sign_up": "注册",
     "email": "电子邮件",
     "sign_up_with_email": "使用电子邮件注册",
@@ -56,29 +56,30 @@
       "Styles": "风格",
       "Blog": "博客"
     },
-    "copyright": "版权所有 © 2024。保留所有权利。",
+    "copyright": "版权所有 © 2025。保留所有权利。",
     "built_by": "开发者：",
     "open_source_by": "开源提供："
   },
   "HeroLanding": {
-    "fun_pro_for_every_occasion": "适合每个场合的有趣或专业头像，尽在",
-    "headshots_fun": "HeadShots.fun",
-    "get_unique_portraits": "使用 HeadShots.fun 的顶级 AI 技术，只需 <bold>10 秒</bold> 即可获得独特的专业级肖像。价格是实体摄影的 <bold>二十分之一</bold>。",
-    "get_your_headshots": "获取您的新头像"
+    "make-photo-successful": "让您的视频营销成功！",
+    "fun_pro_for_every_occasion": "在 Converters.pro 实现AI营销视频驱动业务成功",
+    "headshots_fun": "Converters.pro",
+    "get_unique_portraits": "仅需<bold>10秒</bold>即可获得独特的专业级视频。价格仅为传统视频制作的<bold>1/20</bold>。",
+    "get_your_headshots": "获取营销视频"
   },
   "Testimonials": {
     "label": "精选评价",
     "title": "我们的客户正在分享推荐",
     "subtitle": "发现来自全球满意客户的热情反馈。",
     "reviews": {
-      "1": "HeadShots.fun 完全改变了我的工作流程。AI 工具不仅高效，而且使用起来很有趣，使头像创作过程既专业又愉快。",
-      "2": "HeadShots.fun 让我为所有社交媒体活动创建专业头像变得超级简单。",
-      "3": "HeadShots.fun 通过提供与我品牌风格完美匹配的专业质量图像，显著提升了我的品牌工作。",
-      "4": "为我的创业公司创建头像从未如此简单和愉快。HeadShots.fun 在保持轻松有趣的过程中提供了出色的结果。",
-      "5": "我喜欢 HeadShots.fun 如何平衡创意和专业性。AI 工具的灵活性让我能够设计既有趣又完全适合我创意项目的头像。",
-      "6": "HeadShots.fun 的效率和质量都非常出色。我能够在几秒钟内创建出工作室级别的头像，而且这个过程出乎意料地愉快。",
-      "7": "HeadShots.fun 已成为我们营销活动的宝贵工具。AI 生成的头像不仅专业，而且具有独特的趣味元素，使我们的个人资料脱颖而出。",
-      "8": "HeadShots.fun 的质量和速度令人印象深刻。我能够在几秒钟内创建出看起来像是在工作室拍摄的专业头像。"
+      "1": "Converters.pro 完全改变了我的营销工作流程。AI 工具不仅高效，而且使用起来很有趣，使视频创作过程既专业又愉快。",
+      "2": "Converters.pro 让我为所有社交媒体活动创建专业视频变得超级简单。",
+      "3": "Converters.pro 通过提供与我品牌风格完美匹配的专业质量视频，显著提升了我的品牌工作。",
+      "4": "为我的创业公司创建营销视频从未如此简单和愉快。Converters.pro 在保持轻松有趣的过程中提供了出色的结果。",
+      "5": "我喜欢 Converters.pro 如何平衡创意和专业性。AI 工具的灵活性让我能够设计既有趣又完全适合我创意项目的视频。",
+      "6": "Converters.pro 的效率和质量都非常出色。我能够在几秒钟内创建出工作室级别的视频，而且这个过程出乎意料地愉快。",
+      "7": "Converters.pro 已成为我们营销活动的宝贵工具。AI 生成的视频不仅专业，而且具有独特的创意元素，使我们的内容脱颖而出。",
+      "8": "Converters.pro 的质量和速度令人印象深刻。我能够在几秒钟内创建出看起来像是专业制作的营销视频。"
     }
   },
   "InfoLanding": {
@@ -99,15 +100,15 @@
   },
   "Features": {
     "title": "探索我们的功能",
-    "subtitle": "释放您的创造力，使用 AI 驱动的工具，让每张头像都独具特色。",
+    "subtitle": "通过AI驱动的工具释放您的营销潜力，为您的业务创建有影响力的视频。",
     "features": {
       "1": {
-        "title": "轻松创作",
-        "description": "定制您的 AI 生成头像，以适应您独特的风格。我们直观的工具让调整每个细节变得简单。"
+        "title": "智能视频创作",
+        "description": "使用我们的AI平台在几分钟内创建专业营销视频。无需技术技能。"
       },
       "2": {
-        "title": "个性化 AI",
-        "description": "在几秒钟内生成令人惊叹的头像。借助 AI 的力量，您再也不用等待专业质量的图像。"
+        "title": "品牌定制",
+        "description": "轻松使用您的品牌颜色、标志和信息自定义视频，保持一致的品牌形象。"
       },
       "3": {
         "title": "专业品质",
@@ -134,23 +135,23 @@
   },
   "StepsSection": {
     "step": "步骤",
-    "uploadYourSelfies": "上传几张自拍",
-    "uploadYourSelfiesDescription": "选择1-5张您的正面自拍照，展现不同场景下的面貌。",
-    "personalizeYourStyle": "选择喜爱的风格",
-    "personalizeYourStyleDescription": "探索多样风格或自定义描述，打造独一无二的头像。",
-    "instantAIMagic": "AI 瞬间魔法",
-    "instantAIMagicDescription": "先进 AI，数秒内生成专业级头像，随时展现最佳形象。",
-    "quickAndEasyProcess": "只需三步，简单快捷",
-    "createFunAndProHeadshotsIn3SimpleSteps": "三步轻松创建趣味十足的专业头像",
-    "experienceTheFastestAITechnologyAtHeadShotsFunForStunningPersonalizedHeadshotsPerfectForEveryOccasion": "体验 HeadShots.fun 超快的 AI 技术，打造适合各种场合的惊艳个性化头像。"
+    "uploadYourSelfies": "上传素材",
+    "uploadYourSelfiesDescription": "选择1-5个视频素材或图片，展现您的产品或服务。",
+    "personalizeYourStyle": "选择风格模板",
+    "personalizeYourStyleDescription": "探索多样营销视频模板，或自定义描述打造独特风格。",
+    "instantAIMagic": "AI 智能创作",
+    "instantAIMagicDescription": "先进 AI 技术，数秒内生成专业营销视频，随时展现品牌魅力。",
+    "quickAndEasyProcess": "三步轻松完成",
+    "createFunAndProHeadshotsIn3SimpleSteps": "三步轻松创建专业营销视频",
+    "experienceTheFastestAITechnologyAtHeadShotsFunForStunningPersonalizedHeadshotsPerfectForEveryOccasion": "体验 Converters.pro 超快的 AI 技术，打造适合各种场合的个性化营销视频。"
   },
   "CTA": {
-    "title": "让自己焕然一新！",
-    "description": "厌倦了单调乏味的自拍？我们的AI智能照相亭为您带来全新体验！无需专业设备，只需轻点几下，瞬间变身魅力四射！",
+    "title": "让营销更出彩！",
+    "description": "厌倦了传统视频制作的高成本和低效率？我们的AI智能平台为您带来全新体验！无需专业技能，只需简单操作，瞬间创作出专业营销视频！",
     "button": "立即体验",
-    "cool_button": "立即拍摄您的趣味头像！",
-    "cool_title": "AI 魔法，瞬间为您创造专业有趣头像",
-    "cool_description": "几秒钟内创建令人惊叹的趣味的专业肖像，无需摄影师。体验 HeadShots.fun！"
+    "cool_button": "立即创作您的营销视频！",
+    "cool_title": "AI 智能，瞬间为您创造专业营销视频",
+    "cool_description": "几秒钟内创建令人惊叹的专业营销视频，无需专业团队。体验 Converters.pro！"
   },
   "BentoGrid": {
     "customizable_prompts": "自定义提示",
@@ -158,14 +159,14 @@
     "secure_by_design_description": "顶级安全保护您的数据，让您安心无忧。",
     "usually_in_10_seconds": "通常仅需10秒",
     "lightning_fast_results": "闪电般的速度",
-    "lightning_fast_results_description": "10 秒内获得 AI 生成的精美头像。",
+    "lightning_fast_results_description": "10 秒内获得 AI 生成的精美视频。",
     "professional_quality": "专业品质",
-    "professional_quality_description": "AI 生成的 HeadShots.fun 头像媲美专业摄影，适合各种场合和用途。",
+    "professional_quality_description": "AI 生成的视频媲美专业制作，适合各种营销场景。",
     "effortlessly_fun": "轻松有趣",
-    "effortlessly_fun_description": "从拍摄到接收头像，享受流畅愉快的过程。既专业又充满乐趣。",
-    "superhero": "超级英雄",
-    "witch": "巫师",
-    "clay": "粘土风格"
+    "effortlessly_fun_description": "从素材上传到视频生成，享受流畅愉快的创作过程。既专业又高效。",
+    "superhero": "科技风格",
+    "witch": "时尚风格",
+    "clay": "商务风格"
   },
   "NavBar": {
     "dashboard": "仪表板",
@@ -175,20 +176,20 @@
     "pricing": "定价"
   },
   "HeadshotStylePage": {
-    "label": "HeadShots.fun 风格",
+    "label": "视频风格",
     "title": "适用于任何场合的多样风格",
-    "subtitle": "探索我们多样化的 AI 生成头像风格。快速、简单、个性化，只为您！"
+    "subtitle": "探索我们多样化的 AI 生成视频风格。快速、简单、个性化，只为您！"
   },
   "PricingPage": {
     "metadata": {
       "title": "价格 – {siteTitle}",
-      "description": "探寻我们的头像生成器定价"
+      "description": "探索我们的视频生成器定价"
     },
     "label": "价格",
     "title": "简单透明的定价",
-    "subtitle": "选择适合您需求的完美计划。没有隐藏费用，没有意外",
+    "subtitle": "选择适合您需求的完美计划。无隐藏费用，无意外支出",
     "trial_section_description": "享受所有计划的 7 天无风险试用。如果未使用点数，全额退款",
-    "1_credit_1_headshot": "1 点数 = 1 张头像",
+    "1_credit_1_headshot": "1 点数 = 1 个视频",
     "processing": "处理中...",
     "purchase": "购买",
     "most_popular": "最受欢迎",
@@ -198,27 +199,27 @@
     "credits": "点数",
     "plans": {
       "1": {
-        "description": "自拍新手：开启您靓丽的 AI 头像之旅",
+        "description": "入门套餐：开启您的 AI 视频营销之旅",
         "features": "2 点数"
       },
       "2": {
-        "description": "社交达人：为您的在线形象增添魅力",
+        "description": "基础套餐：为您的品牌增添魅力",
         "features": "10 点数"
       },
       "3": {
-        "description": "形象升级：超快速展现您的多面魅力",
+        "description": "进阶套餐：快速展现品牌多面魅力",
         "features": "25 点数"
       },
       "4": {
-        "description": "专业精英：打造职场精英的完美形象",
+        "description": "专业套餐：打造专业品牌形象",
         "features": "50 点数"
       },
       "5": {
-        "description": "团队先锋：提升整个团队的视觉形象",
+        "description": "企业套餐：提升企业整体营销效果",
         "features": "100 点数"
       },
       "6": {
-        "description": "无限创意：尽情探索头像的无限可能",
+        "description": "旗舰套餐：释放营销创意无限可能",
         "features": "200 点数"
       }
     }
@@ -229,38 +230,38 @@
     "subtitle": "关于我们价格的常见问题。",
     "qa": [
       [
-        "什么是 HeadShots.fun？",
-        "HeadShots.fun 是一个由 AI 驱动的平台，让您能够快速、轻松地创建独特而惊艳的头像，为每个场合量身定制。"
+        "什么是 Converters.pro？",
+        "Converters.pro 是一个由 AI 驱动的平台，让您能够快速、轻松地创建独特而专业的营销视频，为每个场合量身定制。"
       ],
       [
         "点数系统是如何运作的？",
-        "1 个点数 = 1 张头像。我们提供各种点数套餐以满足不同需求。您可以购买点数来生成 AI 头像。购买的点数越多，获得的价值就越高。"
+        "1 个点数 = 1 个视频。我们提供各种点数套餐以满足不同需求。您可以购买点数来生成 AI 视频。购买的点数越多，获得的价值就越高。"
       ],
       [
         "点数套餐的价格是多少？",
-        "我们的价格从 2.99 美元起，非常适合初次尝试我们的服务。我们还提供更大的套餐，其中最受欢迎的是 19.9 美元的「快照超级明星」计划，非常适合经常使用的用户。"
+        "我们的价格从 2.99 美元起，非常适合初次尝试我们的服务。我们还提供更大的套餐，其中最受欢迎的是 19.9 美元的「视频超级套餐」计划，非常适合经常使用的用户。"
       ],
       [
-        "有哪些功能可以帮助我定制头像？",
-        "当然有！我们提供由 AI 驱动的工具，旨在让每张头像都独一无二。您可以探索各种功能，释放创意，为不同场合个性化您的头像。"
+        "有哪些功能可以帮助我定制视频？",
+        "当然有！我们提供由 AI 驱动的工具，旨在让每个视频都独一无二。您可以探索各种功能，释放创意，为不同场合个性化您的视频。"
       ],
       [
-        "用于生成头像的 AI 技术有多快？",
-        "我们使用最快的 AI 技术，确保快速高效地生成头像，一般 10 秒即可完成。我们的目标是在最短的时间内为您提供令人惊叹的结果。"
+        "用于生成视频的 AI 技术有多快？",
+        "我们使用最快的 AI 技术，确保快速高效地生成视频，一般 10 秒即可完成。我们的目标是在最短的时间内为您提供令人惊叹的结果。"
       ],
       [
-        "我应该上传什么样的照片到平台？",
-        "我们建议您上传多张正面照片，以确保您的头像尽可能准确。这些照片需要能看到清晰/无遮挡的面部。请确保您的照片清晰、高质量，且不包含其他人或动物。"
+        "我应该上传什么样的素材到平台？",
+        "我们建议您上传清晰的产品或服务相关视频/图片素材。这些素材需要能清晰展示您想要推广的内容。请确保您的素材清晰、高质量，且符合平台规范。"
       ],
       [
-        "我可以用同一张照片生成多个头像吗？",
-        "是的，您可以用同一张照片生成多个头像。我们的 AI 技术允许从单张照片生成多种输出，因此您可以用同一张图片创建不同的外观和风格。"
+        "我可以用同一个素材生成多个视频吗？",
+        "是的，您可以用同一个素材生成多个视频。我们的 AI 技术允许从单个素材生成多种输出，因此您可以创建不同的风格和效果。"
       ]
     ]
   },
   "BlogPage": {
     "blog": "博客",
-    "description": "HeadShots.fun 的最新新闻和更新",
+    "description": "Converters.pro 的最新新闻和更新",
     "categories": "分类",
     "all": "全部",
     "news": "新闻",
@@ -275,18 +276,18 @@
     "a_list_of_all_your_created_studios": "您创建的所有工作室列表",
     "name": "名称",
     "type": "类型",
-    "headshots": "头像",
+    "headshots": "视频",
     "created_at": "创建时间",
     "no_studios_created": "尚未创建工作室",
     "you_dont_have_any_studios_yet": "您还没有任何工作室。开始创建工作室吧",
     "error_studio_type_required": "请选择工作室类型",
     "error_studio_name_required": "请输入工作室名称",
-    "error_at_least_one_image": "请至少上传一张图片",
-    "error_max_5_images": "最多可以上传5张图片",
-    "error_failed_to_upload_image": "图片上传失败",
+    "error_at_least_one_image": "请至少上传一个素材",
+    "error_max_5_images": "最多可以上传5个素材",
+    "error_failed_to_upload_image": "素材上传失败",
     "success_studio_created": "工作室创建成功！",
     "error_failed_to_create_studio": "工作室创建失败。请重试。",
-    "back_to_dashboard": "返回仪表板",
+    "back_to_dashboard": "返回控制台",
     "enter_basic_info_for_your_studio": "输入您工作室的基本信息",
     "studio_name": "工作室名称",
     "this_is_the_name_that_will_be_displayed_for_your_studio": "这是将显示的您工作室的名称。",

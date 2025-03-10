@@ -8,7 +8,7 @@
     "sign_in_with_linkedin": "Sign In with LinkedIn",
     "back": "Back",
     "welcome_back": "Welcome back",
-    "use_email_to_sign_in": "Use email to sign in to your HeadShots.fun account",
+    "use_email_to_sign_in": "Use email to sign in to your Converters.pro account",
     "don't_have_an_account": "Don't have an account?",
     "sign_up": "Sign Up",
     "email": "Email",
@@ -50,81 +50,81 @@
       "Terms": "Terms",
       "Privacy": "Privacy",
       "PixMiller": "PixMiller",
-      "HeadShots fun": "HeadShots.fun",
+      "HeadShots fun": "Converters.pro",
       "Ullr AI Lab": "Ullr AI Lab",
       "Pricing": "Pricing",
       "Styles": "Styles",
       "Blog": "Blog"
     },
-    "copyright": "Copyright © 2024. All rights reserved.",
+    "copyright": "Copyright © 2025. All rights reserved.",
     "built_by": "Built by",
     "open_source_by": "Open source by"
   },
   "HeroLanding": {
     "make-photo-successful": "Make Your Photo Successful First!",
-    "fun_pro_for_every_occasion": "Fun & Pro for Every Occasion, Just Shoot at",
-    "headshots_fun": "HeadShots.fun",
-    "get_unique_portraits": "Get unique and professional level portraits just in <bold>10 seconds</bold> using the fastest AI at HeadShots.fun. Only <bold>1/20</bold> the price of a physical photo shoot in the studio.",
-    "get_your_headshots": "Get Your HeadShots"
+    "fun_pro_for_every_occasion": "AI Marketing video drive Business Success at",
+    "headshots_fun": "Converters.pro",
+    "get_unique_portraits": "Get unique and professional level videos in just <bold>10 seconds</bold> using the fastest AI at Converters.pro. Only <bold>1/20</bold> the price of traditional video production.",
+    "get_your_headshots": "Get marketing  videos"
   },
   "Testimonials": {
     "label": "Testimonials",
     "title": "What our clients are sharing.",
     "subtitle": "Discover the glowing feedback from our delighted customers worldwide.",
     "reviews": {
-      "1": "HeadShots.fun has completely transformed my workflow. The AI tools are not only efficient but also fun to use, making the headshot creation process both professional and enjoyable.",
-      "2": "HeadShots.fun made it super easy to create professional headshots for all my social media campaigns. ",
-      "3": "HeadShots.fun has significantly enhanced my brand work by providing professional-quality images that perfectly align with my brand's style.",
-      "4": "Creating headshots for my startup has never been this easy and enjoyable. HeadShots.fun delivers fantastic results while keeping the process light and fun.",
-      "5": "I love how HeadShots.fun balances creativity and professionalism. The flexibility of the AI tools allows me to design headshots that are both fun and perfectly suited to my creative projects.",
-      "6": "The efficiency and quality of HeadShots.fun are outstanding. I was able to create studio-quality headshots in seconds, and the process was surprisingly enjoyable.",
-      "7": "HeadShots.fun has been a valuable tool for our marketing campaigns. The AI-generated headshots are not only professional but also have a unique, fun element that makes our profiles stand out.",
-      "8": "The quality and speed of HeadShots.fun are impressive. I was able to create a professional headshot that looks like it was done in a studio, all within seconds."
+      "1": "Converters.pro has revolutionized our marketing strategy. The AI-generated videos are not only cost-effective but also incredibly engaging, saving us countless hours of production time.",
+      "2": "The speed and quality of videos from Converters.pro are remarkable. We can now create professional marketing content in minutes instead of days.",
+      "3": "Converters.pro has transformed how we approach social media marketing. The AI-generated videos are perfect for our daily content needs and consistently drive engagement.",
+      "4": "As a startup founder, Converters.pro has been a game-changer. We can now produce high-quality marketing videos at a fraction of the cost of traditional production.",
+      "5": "The versatility of Converters.pro is impressive. Whether it's product demos or social ads, the AI consistently delivers professional-quality videos that resonate with our audience.",
+      "6": "Our marketing team's productivity has skyrocketed since using Converters.pro. The AI video generation tool helps us create content for multiple platforms in record time.",
+      "7": "The ROI we've seen with Converters.pro is outstanding. The AI-generated videos perform just as well as our traditionally produced content, at a fraction of the cost.",
+      "8": "What impresses me most about Converters.pro is how it maintains brand consistency across all generated videos while still keeping the content fresh and engaging."
     }
   },
   "InfoLanding": {
-    "title": "Empower Your Creativity",
-    "description": "Unlock the fun and potential of your headshots with HeadShots.fun. Transform simple snapshots into captivating AI-enhanced images that reflect your true self.",
+    "title": "Smart Video Marketing",
+    "description": "Unlock the power of video marketing with Converters.pro. Transform simple ideas into engaging AI-generated video content that perfectly represents your brand value.",
     "list": {
       "title": {
-        "1": "Create Effortlessly",
-        "2": "Personalize with AI",
-        "3": "Elevate Your Presence"
+        "1": "Rapid Creation",
+        "2": "AI Personalization",
+        "3": "Boost Impact"
       },
       "description": {
-        "1": "Enjoy a seamless and intuitive process that makes creating the perfect headshot a breeze.",
-        "2": "Use advanced AI tools to customize every aspect of your headshot, ensuring it’s uniquely you.",
-        "3": "Whether for work or play, make sure your online presence stands out with headshots that combine fun with professionalism."
+        "1": "Enjoy a seamless and intuitive creation process that makes professional marketing videos effortless.",
+        "2": "Use advanced AI tools to customize every detail of your video, ensuring perfect alignment with your brand identity.",
+        "3": "Whether for social media or business presentations, make your marketing videos stand out with the perfect balance of impact and efficiency."
       }
     }
   },
   "Features": {
     "title": "Explore Our Features",
-    "subtitle": "Unleash your creativity with AI-powered tools designed to make every headshot uniquely yours.",
+    "subtitle": "Unleash your marketing potential with AI-powered tools designed to create impactful videos for your business.",
     "features": {
       "1": {
-        "title": "Effortless Creation",
-        "description": "Tailor your AI-generated headshots to fit your unique style. Our intuitive tools make it easy to adjust every detail."
+        "title": "Smart Video Creation",
+        "description": "Create professional marketing videos in minutes with our AI-powered platform. No technical skills required."
       },
       "2": {
-        "title": "Personalized AI",
-        "description": "Generate stunning headshots in seconds. With the power of AI, you'll never have to wait for professional-quality images."
+        "title": "Brand Customization",
+        "description": "Easily customize videos with your brand colors, logos, and messaging to maintain consistent brand identity."
       },
       "3": {
-        "title": "Professional Quality",
-        "description": "Easily incorporate your headshots into your personal or professional profiles, with formats optimized for any platform."
+        "title": "Multi-Platform Ready",
+        "description": "Generate videos optimized for different social media platforms and marketing channels automatically."
       },
       "4": {
-        "title": "AI-Enhanced Creativity",
-        "description": "Your data is safe with us. We prioritize your privacy and ensure that your headshots are securely stored and shared."
+        "title": "AI Script Generation",
+        "description": "Let AI help craft compelling scripts and storyboards for your marketing videos, saving time and effort."
       },
       "5": {
-        "title": "Fun and Engaging",
-        "description": "Leverage the power of AI to explore creative possibilities. Experiment with different styles and looks effortlessly."
+        "title": "Performance Analytics",
+        "description": "Track and analyze your video performance with built-in analytics tools to optimize your marketing strategy."
       },
       "6": {
-        "title": "Fun and Engaging",
-        "description": "Enjoy a playful and engaging experience as you create headshots that are both fun and professional."
+        "title": "Rapid Iteration",
+        "description": "Quickly create multiple versions of your videos to test different approaches and find what works best."
       }
     }
   },
@@ -135,38 +135,38 @@
   },
   "StepsSection": {
     "step": "Step",
-    "uploadYourSelfies": "Upload Your Selfies",
-    "uploadYourSelfiesDescription": "Upload 1-5 clear selfies or photos showcasing your face in various settings.",
-    "personalizeYourStyle": "Personalize Your Style",
-    "personalizeYourStyleDescription": "Select from diverse styles or create custom prompts for truly unique headshots.",
-    "instantAIMagic": "Instant AI Magic",
-    "instantAIMagicDescription": "Our advanced AI generates pro-quality headshots in seconds, ready for any use.",
+    "uploadYourSelfies": "Upload Your Content",
+    "uploadYourSelfiesDescription": "Upload your images, text, or existing video content that you want to transform.",
+    "personalizeYourStyle": "Choose Your Style",
+    "personalizeYourStyleDescription": "Select from our diverse video styles or create custom prompts for unique marketing content.",
+    "instantAIMagic": "AI Video Generation",
+    "instantAIMagicDescription": "Our advanced AI transforms your content into professional marketing videos in seconds.",
     "quickAndEasyProcess": "Quick & Easy Process",
-    "createFunAndProHeadshotsIn3SimpleSteps": "Create Fun & Pro Headshots in 3 Simple Steps",
-    "experienceTheFastestAITechnologyAtHeadShotsFunForStunningPersonalizedHeadshotsPerfectForEveryOccasion": "Experience the fastest AI technology at HeadShots.fun for stunning, personalized headshots perfect for every occasion."
+    "createFunAndProHeadshotsIn3SimpleSteps": "Create Professional Marketing Videos in 3 Simple Steps",
+    "experienceTheFastestAITechnologyAtHeadShotsFunForStunningPersonalizedHeadshotsPerfectForEveryOccasion": "Experience the fastest AI video generation technology at Converters.pro for stunning, personalized marketing videos perfect for every business need."
   },
   "CTA": {
-    "title": "Make Me Look Awesome!",
-    "description": "Sick of your same old selfies? Our AI photo booth is here to spice things up! We've got you! No fancy gear needed – just a few clicks and boom! You're ready to wow the world!",
+    "title": "Transform Your Marketing!",
+    "description": "Need engaging marketing videos? Our AI video generator is here to help! No production team needed – just a few clicks and you'll have professional marketing content ready to go!",
     "button": "Get Started",
-    "cool_button": "Shoot Your Fun Headshots Now!",
-    "cool_title": "Instant Pro & Fun Headshots with AI Magic",
-    "cool_description": "Experience HeadShots.fun! Create stunning Pro & Fun portraits in seconds, no photographer needed."
+    "cool_button": "Create Your Marketing Video Now!",
+    "cool_title": "Instant Professional Marketing Videos with AI",
+    "cool_description": "Experience Converters.pro! Create compelling marketing videos in seconds, no production team needed."
   },
   "BentoGrid": {
     "customizable_prompts": "Customizable Prompts",
     "secure_by_design": "Secure by Design",
-    "secure_by_design_description": "Your data is protected with top-notch security, giving you peace of mind.",
+    "secure_by_design_description": "Your content is protected with top-notch security, giving you peace of mind.",
     "usually_in_10_seconds": "Usually in 10 seconds",
     "lightning_fast_results": "Lightning-Fast Results",
-    "lightning_fast_results_description": "Get AI-generated headshots in 10 seconds.",
+    "lightning_fast_results_description": "Get AI-generated marketing videos in 10 seconds.",
     "professional_quality": "Professional Quality",
-    "professional_quality_description": "AI-generated headshots.fun that rival professional photography, perfect for any occasion and purpose.",
-    "effortlessly_fun": "Effortlessly Fun",
-    "effortlessly_fun_description": "Enjoy a seamless and enjoyable process, from capturing to receiving your headshots. It’s as fun as it is professional.",
-    "superhero": "Superhero",
-    "witch": "Witch",
-    "clay": "Clay"
+    "professional_quality_description": "AI-generated videos that rival professional production, perfect for any business need.",
+    "effortlessly_fun": "Effortlessly Simple",
+    "effortlessly_fun_description": "Enjoy a seamless video creation process, from concept to final output.",
+    "business": "Business",
+    "social": "Social Media",
+    "product": "Product"
   },
   "NavBar": {
     "dashboard": "Dashboard",
@@ -176,20 +176,20 @@
     "pricing": "Pricing"
   },
   "HeadshotStylePage": {
-    "label": "HeadShots.fun Styles",
-    "title": "Versatile Headshot Styles for Any Occasion",
-    "subtitle": "Discover our diverse collection of AI-generated headshot styles. Quick, easy, and personalized just for you!"
+    "label": "Video Styles",
+    "title": "Versatile Video Styles for Every Business",
+    "subtitle": "Explore our diverse collection of AI-generated video styles. Professional, engaging, and customized for your marketing needs!"
   },
   "PricingPage": {
     "metadata": {
       "title": "Pricing – {siteTitle}",
-      "description": "Explore our headshot pricing."
+      "description": "Explore our video marketing pricing."
     },
     "label": "Pricing",
     "title": "Simple, Transparent Pricing",
     "subtitle": "Choose the perfect plan for your needs. No hidden fees, no surprises.",
     "trial_section_description": "Enjoy a 7-day risk-free trial on all plans. Full refund if no credits used.",
-    "1_credit_1_headshot": "1 Credit = 1 Headshot",
+    "1_credit_1_headshot": "1 Credit = 1 Marketing Video",
     "processing": "Processing...",
     "purchase": "Purchase",
     "most_popular": "Most Popular",
@@ -199,27 +199,27 @@
     "credits": "Credits",
     "plans": {
       "1": {
-        "description": "Selfie Starter: Your first step into AI glamour",
+        "description": "Starter: Begin your AI video marketing journey",
         "features": "2 Credits"
       },
       "2": {
-        "description": "Casual Charmer: Spice up your social media game",
+        "description": "Basic: Perfect for small business marketing",
         "features": "10 Credits"
       },
       "3": {
-        "description": "Snapshot Superstar: Unleash your inner model",
+        "description": "Professional: Boost your marketing reach",
         "features": "25 Credits"
       },
       "4": {
-        "description": "Portrait Pro: Elevate your online presence",
+        "description": "Business: Scale your video marketing",
         "features": "50 Credits"
       },
       "5": {
-        "description": "Team Transformer: Make your whole squad shine",
+        "description": "Enterprise: Complete marketing solution",
         "features": "100 Credits"
       },
       "6": {
-        "description": "Headshot Heaven: Enjoy unlimited fun",
+        "description": "Ultimate: Unlimited marketing potential",
         "features": "200 Credits"
       }
     }
@@ -230,38 +230,38 @@
     "subtitle": "Frequently asked questions about our pricing.",
     "qa": [
       [
-        "What is HeadShots.fun?",
-        "HeadShots.fun is an AI-powered platform that allows you to create unique and stunning headshots quickly and easily, personalized for every occasion."
+        "What is Converters.pro?",
+        "Converters.pro is an AI-powered platform that allows you to create professional marketing videos quickly and easily, perfect for any business marketing needs."
       ],
       [
         "How does the credit system work?",
-        "1 Credit = 1 Headshot. We offer various credit packages to suit different needs. You can purchase credits that can be used to generate AI headshots. The more credits you buy, the better value you get."
+        "1 Credit = 1 Marketing Video. We offer various credit packages to suit different needs. You can purchase credits that can be used to generate AI marketing videos. The more credits you buy, the better value you get."
       ],
       [
         "What's the pricing for credit packages?",
-        "Our pricing starts at $2.99, perfect for trying out our service. We also offer larger packages, with our most popular choice being $19.9 Plan Snapshot Superstar, ideal for regular users."
+        "Our pricing starts at $2.99, perfect for trying out our service. We offer larger packages for businesses with regular video marketing needs, with our most popular choice being the Professional plan."
       ],
       [
-        "Are there any features to help customize my headshots?",
-        "Yes! We offer AI-powered tools designed to make every headshot uniquely yours. You can explore various features to unleash your creativity and personalize your headshots for different occasions."
+        "Are there any features to help customize my videos?",
+        "Yes! We offer AI-powered tools designed to make every video uniquely yours. You can customize brand colors, logos, messaging, and choose from various styles to create videos that match your brand identity."
       ],
       [
-        "How fast is the AI technology used for generating headshots?",
-        "We use the fastest AI technology available to ensure quick and efficient headshot generation, typically in 10 seconds. Our goal is to provide you with stunning results in the shortest time possible."
+        "How fast is the AI technology used for generating videos?",
+        "We use the fastest AI technology available to ensure quick and efficient video generation, typically in 10 seconds. Our goal is to provide you with professional-quality marketing videos in the shortest time possible."
       ],
       [
-        "What kind of photos should I upload to the platform?",
-        "We recommend that you upload multiple front-facing photos to ensure that your profile picture is as accurate as possible. These photos should show a clear/unobstructed view of your face. Please make sure your photos are clear, high-quality, and do not include other people or animals."
+        "What kind of content should I upload to the platform?",
+        "You can upload images, text, or existing video content that you want to transform. For best results, ensure your content is clear, high-quality, and aligns with your marketing message. Our AI will help transform it into engaging marketing videos."
       ],
       [
-        "Can I use the same photo for multiple headshots?",
-        "Yes, you can use the same photo for multiple headshots. Our AI technology allows for multiple outputs from a single photo, so you can create different looks and styles with the same image."
+        "Can I create multiple versions of the same video?",
+        "Yes, you can create multiple versions of the same video with different styles and variations. This is perfect for A/B testing or creating content optimized for different social media platforms and marketing channels."
       ]
     ]
   },
   "BlogPage": {
     "blog": "Blog",
-    "description": "Latest news and updates from HeadShots.fun",
+    "description": "Latest news and updates from Converters.pro",
     "categories": "Categories",
     "all": "All",
     "news": "News",

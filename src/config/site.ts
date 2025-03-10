@@ -4,10 +4,10 @@ import { env } from "@/env.mjs";
 const site_url = env.NEXT_PUBLIC_APP_URL;
 
 export const siteConfig: SiteConfig = {
-  title: "Fun & Pro AI Headshots Generator | HeadShots.fun",
-  name: "HeadShots.fun",
-  description:
-    "Create stunning fun and professional headshots with AI at HeadShots.fun. Fast, affordable, and personalized AI-powered headshot generator. Perfect for LinkedIn, resumes, and social media.",
+  title: "AI Marketing Video Generator | Converters.pro",
+  name: "Converters.pro",
+  description: 
+    "Create stunning marketing videos with Converters.pro. Our AI-powered video generator helps you craft engaging social media content, product demos, and brand videos in minutes. Transform your marketing with professional, customizable video content.",
   url: site_url,
   ogImage: `${site_url}/_static/og.jpg`,
   links: {
@@ -18,9 +18,9 @@ export const siteConfig: SiteConfig = {
   structuredData: {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "HeadShots.fun",
+    "name": "Converters.pro",
     "url": site_url,
-    "description": "Create stunning fun and professional headshots with AI at HeadShots.fun. Fast, affordable, and personalized AI-powered headshot generator. Perfect for LinkedIn, resumes, and social media.",
+    "description": "Create stunning marketing videos with Converters.pro. Our AI-powered video generator helps you craft engaging social media content, product demos, and brand videos in minutes. Transform your marketing with professional, customizable video content.",
     "potentialAction": {
       "@type": "SearchAction",
       "target": `${site_url}/search?q={search_term_string}`,
@@ -28,7 +28,18 @@ export const siteConfig: SiteConfig = {
     }
   },
   keywords: [
-      "Headshots"
+    "AI video generator",
+    "marketing videos",
+    "video marketing",
+    "AI marketing",
+    "social media videos",
+    "brand videos",
+    "product demos",
+    "video creation tool",
+    "AI video editing",
+    "promotional videos",
+    "content marketing",
+    "digital marketing"
   ],
   authors: [
     {

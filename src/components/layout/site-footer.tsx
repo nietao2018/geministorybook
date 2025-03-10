@@ -49,13 +49,13 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
           <div className="text-left text-sm text-muted-foreground">
             <span className="font-medium">{t('built_by')}{" "}</span>
             <Link
-              href="https://headshot.cv/?from=opensource-footer"
+              href="https://Converters.pro/?from=opensource-footer"
               target="_blank"
               className="font-medium underline underline-offset-4"
             >
-              HeadShots.fun
+              Converters.pro
             </Link>
-            <span className="mr-2"> , </span>
+            {/* <span className="mr-2"> , </span>
 
             <span className="font-medium">{t('open_source_by')}{" "}</span>
             <Link
@@ -64,19 +64,19 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
               className="font-medium underline underline-offset-4"
             >
               UllrAI Lab
-            </Link>
+            </Link> */}
           </div>
 
           <div className="flex items-center gap-3">
             <LocaleSwitcher />
-            <Link
+            {/* <Link
               href={siteConfig.links.github}
               target="_blank"
               rel="noreferrer"
               className="font-medium underline underline-offset-4"
             >
               <Icons.github className="size-5" />
-            </Link>
+            </Link> */}
             <ModeToggle />
           </div>
         </div>
