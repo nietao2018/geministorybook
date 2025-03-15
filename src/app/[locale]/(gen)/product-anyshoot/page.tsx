@@ -3,6 +3,8 @@
 import { useReducer, useState } from 'react';
 import Image from 'next/image';
 import { FaPen, FaEraser, FaExchangeAlt, FaUpload, FaSpinner } from 'react-icons/fa';
+import { useParams } from 'next/navigation';
+import { unstable_setRequestLocale } from 'next-intl/server';
 
 // Define state types and initial state
 type State = {
@@ -54,6 +56,12 @@ function reducer(state: State, action: Action): State {
 
 export default function VirtualFitting() {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const params = useParams();
+  
+  // 设置请求的语言环境以启用静态渲染
+  if (typeof params.locale === 'string') {
+    unstable_setRequestLocale(params.locale);
+  }
   
   // 处理图片上传
   const handleProductImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
