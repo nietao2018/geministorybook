@@ -116,6 +116,11 @@ const ImageUploaderClient = () => {
       
       // 从解析后的数据中获取id
       setPredictionId(data.id);
+      
+      // 开始轮询获取处理结果
+      if (data.id) {
+        pollPredictionResult(data.id);
+      }
     } catch (err) {
       console.error('Failed to remove background:', err);
       setError('Error processing image, please try again');
@@ -123,6 +128,39 @@ const ImageUploaderClient = () => {
       setIsProcessing(false);
     }
   };
+
+  // 添加轮询函数
+  const pollPredictionResult = useCallback(async (id: string) => {
+    try {
+      const response = await fetch(`/api/prediction/${id}/get`, {
+        method: 'GET',
+      });
+      
+      if (!response.ok) {
+        throw new Error(`Failed to get prediction: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      console.log('Polling result:', data);
+      
+      if (data.status === 'succeeded' && data.imageUrl) {
+        // 处理成功，设置结果图片
+        setResultUrl(data.imageUrl);
+        setIsProcessing(false);
+      } else if (data.status === 'failed') {
+        // 处理失败
+        setError('Background removal failed: ' + (data.error || 'Unknown error'));
+        setIsProcessing(false);
+      } else if (['processing', 'starting'].includes(data.status)) {
+        // 继续轮询
+        setTimeout(() => pollPredictionResult(id), 1000);
+      }
+    } catch (err) {
+      console.error('Error polling for result:', err);
+      setError('Error checking processing status');
+      setIsProcessing(false);
+    }
+  }, []);
 
   const handleChangeImage = () => {
     setPreviewUrl(null);
