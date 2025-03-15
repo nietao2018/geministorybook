@@ -11,8 +11,16 @@ export async function POST(request: Request) {
             return NextResponse.json({ error: "Missing predictionId" }, { status: 400 });
         }
 
-        const body = await request.json();
-        const output = body.output;
+        let body;
+        try {
+            body = await request.json();
+            console.log("body", body)
+        } catch (jsonError) {
+            console.error("JSON parsing error:", jsonError);
+            return NextResponse.json({ error: "Invalid JSON in request body" }, { status: 400 });
+        }
+
+        const output = body?.output;
 
         if (!output || !Array.isArray(output) || output.length === 0) {
             return NextResponse.json({ error: "Invalid output" }, { status: 400 });
