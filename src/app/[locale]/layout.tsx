@@ -15,6 +15,7 @@ import Script from "next/script";
 import CookieConsent from '@/components/shared/cookie-consent';
 import { NextIntlClientProvider, useMessages } from "next-intl";
 import { locales } from "@/config/i18n-metadata";
+import SeoScript from "@/components/seo/GoogleAnalytics";
 
 interface RootLayoutProps {
   children: React.ReactNode;
@@ -57,6 +58,7 @@ export default function RootLayout({ children, params: { locale } }: RootLayoutP
               <ModalProvider locale={locale}>{children}</ModalProvider>
             </NextIntlClientProvider>
             <Analytics />
+            <SeoScript />
             <Toaster richColors closeButton />
             <TailwindIndicator />
             <CookieConsent />
