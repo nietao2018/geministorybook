@@ -22,11 +22,11 @@ export async function POST(request: Request) {
 
         const output = body?.output;
 
-        if (!output || !Array.isArray(output) || output.length === 0) {
+        if (!output) {
             return NextResponse.json({ error: "Invalid output" }, { status: 400 });
         }
 
-        const imageUrl = output[0];
+        const imageUrl = output;
         const fileName = `${Date.now()}-${Math.random().toString(36).substring(2, 15)}.png`;
         const newImageUrl = await uploadToR2(imageUrl, fileName);
 
