@@ -17,11 +17,11 @@ export async function uploadToR2(imageUrl: string, fileName: string): Promise<st
     await s3Client.send(
         new PutObjectCommand({
             Bucket: env.CLOUDFLARE_R2_BUCKET_NAME,
-            Key: `ai-img/${fileName}`,
+            Key: `result/${fileName}`,
             Body: Buffer.from(arrayBuffer),
             ContentType: 'image/png',
         })
     );
 
-    return `${env.CLOUDFLARE_R2_PUBLIC_URL}/ai-img/${fileName}`;
+    return `${env.CLOUDFLARE_R2_PUBLIC_URL}/result/${fileName}`;
 }
