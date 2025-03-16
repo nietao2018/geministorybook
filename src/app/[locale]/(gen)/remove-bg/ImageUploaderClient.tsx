@@ -124,7 +124,6 @@ const ImageUploaderClient = () => {
     } catch (err) {
       console.error('Failed to remove background:', err);
       setError('Error processing image, please try again');
-    } finally {
       setIsProcessing(false);
     }
   };
@@ -182,6 +181,32 @@ const ImageUploaderClient = () => {
     '/sample3.jpg',
     '/sample4.jpg',
   ];
+
+  // 添加下载图片的函数
+  const handleDownload = async () => {
+    if (!resultUrl) return;
+    
+    try {
+      // 获取图片数据
+      const response = await fetch(resultUrl);
+      const blob = await response.blob();
+      
+      // 创建一个临时的下载链接
+      const downloadUrl = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = downloadUrl;
+      a.download = 'removed-background.png';
+      document.body.appendChild(a);
+      a.click();
+      
+      // 清理
+      window.URL.revokeObjectURL(downloadUrl);
+      document.body.removeChild(a);
+    } catch (err) {
+      console.error('Download failed:', err);
+      setError('Error downloading image, please try again');
+    }
+  };
 
   return (
     <div 
@@ -268,16 +293,15 @@ const ImageUploaderClient = () => {
               </button>
               
               {resultUrl && (
-                <a 
-                  href={resultUrl}
-                  download="removed-background.png"
+                <button 
+                  onClick={handleDownload}
                   className="flex items-center rounded-lg bg-purple-500 px-4 py-2 text-white transition hover:bg-purple-600"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" className="mr-2 size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                   </svg>
                   Download Result
-                </a>
+                </button>
               )}
             </div>
           </div>
