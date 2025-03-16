@@ -36,6 +36,7 @@ export default function RootLayout({ children, params: { locale } }: RootLayoutP
     <html lang={locale} suppressHydrationWarning>
       <head>
         <Script async src="https://track.pixmiller.com/script.js" data-website-id="ad8dc479-9d9c-448e-b62a-ceee35a5943b" />
+        <meta name="google-site-verification" content="dq9G-Puh0N80DVbmnEZc8zJ8A3m1difzgcrRelE1T4M" />
       </head>
       
       <body
