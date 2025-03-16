@@ -35,6 +35,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "*.replicate.delivery",
       },
+      {
+        protocol: "https",
+        hostname: "pub-db17a2349e164868983605b173fbd7cd.r2.dev",
+      },
     ],
   },
   experimental: {
