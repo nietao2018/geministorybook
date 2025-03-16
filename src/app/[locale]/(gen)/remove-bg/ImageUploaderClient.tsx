@@ -176,10 +176,10 @@ const ImageUploaderClient = () => {
   };
 
   const sampleImages = [
-    '/sample1.jpg',
-    '/sample2.jpg',
-    '/sample3.jpg',
-    '/sample4.jpg',
+    '/_static/removebg/sample1.png',
+    '/_static/removebg/sample2.png',
+    '/_static/removebg/sample3.png',
+    '/_static/removebg/sample4.png',
   ];
 
   // 修改下载图片的函数
@@ -353,7 +353,7 @@ const ImageUploaderClient = () => {
 
         {!previewUrl && (
           <div className="mt-8">
-            <p className="mb-4 text-gray-600 dark:text-gray-300">No image? Try one of these:</p>
+            <p className="mb-4 text-gray-600 dark:text-gray-300">No image? Try one of these：</p>
             <div className="grid grid-cols-4 gap-4">
               {sampleImages.map((src, index) => (
                 <div 
@@ -361,7 +361,14 @@ const ImageUploaderClient = () => {
                   className="cursor-pointer overflow-hidden rounded-lg border border-gray-200 transition hover:border-blue-500 dark:border-gray-800"
                   onClick={() => setPreviewUrl(src)}
                 >
-                  <Image src={src} alt={`Sample ${index + 1}`} width={100} height={100} objectFit="cover" />
+                  <div className="relative h-24 w-full">
+                    <Image 
+                      src={src} 
+                      alt={`示例 ${index + 1}`} 
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
                 </div>
               ))}
             </div>
