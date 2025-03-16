@@ -143,7 +143,7 @@ const ImageUploaderClient = () => {
       const data = await response.json();
       console.log('Polling result:', data);
       
-      if (data.status === 'succeeded' && data.imageUrl) {
+      if (data.status === 'completed' && data.imageUrl) {
         // 处理成功，设置结果图片
         setResultUrl(data.imageUrl);
         setIsProcessing(false);
