@@ -182,13 +182,21 @@ const ImageUploaderClient = () => {
     '/sample4.jpg',
   ];
 
-  // 添加下载图片的函数
+  // 修改下载图片的函数
   const handleDownload = async () => {
     if (!resultUrl) return;
     
     try {
-      // 获取图片数据
-      const response = await fetch(resultUrl);
+      // 使用代理API获取图片数据
+      const response = await fetch('/api/image/download', {
+        method: 'POST',
+        body: JSON.stringify({ imageUrl: resultUrl }),
+      });
+      
+      if (!response.ok) {
+        throw new Error(`Failed to download image: ${response.status}`);
+      }
+      
       const blob = await response.blob();
       
       // 创建一个临时的下载链接
@@ -204,7 +212,7 @@ const ImageUploaderClient = () => {
       document.body.removeChild(a);
     } catch (err) {
       console.error('Download failed:', err);
-      setError('Error downloading image, please try again');
+      setError('download image failed, please retry!');
     }
   };
 
