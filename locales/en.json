@@ -201,27 +201,60 @@
     "plans": {
       "1": {
         "description": "Starter: Begin your AI video marketing journey",
-        "features": "2 Credits"
+        "features": [
+          "2 credit/month, expire annually",
+          "Unlimited video previews",
+          "Free&unlimited Custom Avatar",
+          "Photo Talking max 180s pre video",
+          "No watermark",
+          "Faster rendering speed"
+        ]
       },
       "2": {
         "description": "Basic: Perfect for small business marketing",
-        "features": "10 Credits"
+        "features": [
+          "10 credit/month, expire annually",
+          "Unlimited video previews",
+          "Free&unlimited Custom Avatar",
+          "Photo Talking max 180s pre video",
+          "No watermark",
+          "Faster rendering speed"
+        ]
       },
       "3": {
         "description": "Professional: Boost your marketing reach",
-        "features": "25 Credits"
+        "features": [
+          "10 credit/month, expire annually",
+          "Unlimited video previews",
+          "Free&unlimited Custom Avatar",
+          "Photo Talking max 180s pre video",
+          "No watermark",
+          "Faster rendering speed"
+        ]
       },
       "4": {
         "description": "Business: Scale your video marketing",
-        "features": "50 Credits"
+       "features": [
+          "2 点数",
+          "高清视频导出",
+          "无水印"
+        ]
       },
       "5": {
         "description": "Enterprise: Complete marketing solution",
-        "features": "100 Credits"
+        "features": [
+          "2 点数",
+          "高清视频导出",
+          "无水印"
+        ]
       },
       "6": {
         "description": "Ultimate: Unlimited marketing potential",
-        "features": "200 Credits"
+        "features": [
+          "2 点数",
+          "高清视频导出",
+          "无水印"
+        ]
       }
     }
   },

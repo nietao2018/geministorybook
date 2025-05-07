@@ -100,19 +100,21 @@ export function PricingCards({ pricingData, userId, emailAddress }: PricingCards
             ref={scrollContainerRef}
             className="scrollbar-hide flex snap-x snap-mandatory gap-6 overflow-x-auto pb-4"
           >
-            {pricingData.map((plan, index) => (
-              <PricingCard
-                key={index}
-                plan={{
-                  ...plan,
-                  description: t(`plans.${plan.id}.description`),
-                  features: [t(`plans.${plan.id}.features`)]
-                }}
-                index={index}
-                handlePurchase={handlePurchase}
-                isLoading={loadingPlan === index}
-              />
-            ))}
+            <div className="grid gap-6 pb-4" style={{ gridTemplateColumns: `repeat(${pricingData.length}, 1fr)` }}>
+              {pricingData.map((plan, index) => (
+                <PricingCard
+                  key={index}
+                  plan={{
+                    ...plan,
+                    description: t(`plans.${plan.id}.description`),
+                    features: t.raw(`plans.${plan.id}.features`)
+                  }}
+                  index={index}
+                  handlePurchase={handlePurchase}
+                  isLoading={loadingPlan === index}
+                />
+              ))}
+            </div>
           </div>
         </div>
         <button
@@ -138,7 +140,7 @@ function PricingCard({ plan, index, handlePurchase, isLoading }) {
   const t = useTranslations('PricingPage');
 
   return (
-    <Card className={`flex w-56 shrink-0 snap-center flex-col justify-between transition-all hover:shadow-lg ${index === 2 ? 'border-primary' : ''} relative ${index === 2 ? 'mt-4 overflow-visible' : 'mt-8'}`}>
+    <Card className={`flex flex-1 min-w-0 flex-col justify-between transition-all hover:shadow-lg ${index === 2 ? 'border-primary' : ''} relative ${index === 2 ? 'mt-4 overflow-visible' : 'mt-8'}`}>
       {index === 2 && (
         <div className="absolute -top-3 left-1/2 z-10 flex -translate-x-1/2 rounded-full bg-primary px-3 py-1 text-xs font-semibold text-primary-foreground shadow-md">
           {t('most_popular')}
@@ -153,10 +155,12 @@ function PricingCard({ plan, index, handlePurchase, isLoading }) {
       </CardHeader>
       <CardContent>
         <ul className="space-y-2">
-            <li className="flex items-center text-sm">
+          {plan.features && plan.features.map((feature, idx) => (
+            <li key={idx} className="flex items-center text-sm">
               <svg className="mr-2 size-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-              {plan.quantity} {t('credits')}
+              {feature}
             </li>
+          ))}
         </ul>
       </CardContent>
       <CardFooter>

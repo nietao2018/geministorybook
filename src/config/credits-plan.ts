@@ -14,14 +14,4 @@ export const pricingData = [
     price: 50,
     quantity: 50,
   },
-  {
-    id: 4,
-    price: 100,
-    quantity: 100,
-  },
-  {
-    id: 5,
-    price: 200,
-    quantity: 200,
-  }
 ];
