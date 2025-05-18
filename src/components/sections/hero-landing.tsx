@@ -49,7 +49,7 @@ export default function HeroLanding() {
           style={{ animationDelay: "0.4s", animationFillMode: "forwards" }}
         >
           <Link
-            href="/register"
+            href="/remove-bg"
             prefetch={true}
           >
             <RainbowButton>
