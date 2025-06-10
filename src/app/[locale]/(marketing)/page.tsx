@@ -8,6 +8,8 @@ import StepsSection from "@/components/sections/steps";
 import PreviewLanding from "@/components/sections/preview-landing";
 import Testimonials from "@/components/sections/testimonials";
 import CTA from "@/components/sections/CTA";
+import VideoSection from "@/components/sections/video-section";
+import DemoList from "@/components/sections/test-demo";
 
 export default function IndexPage({ params: { locale } }: { params: { locale: string } }) {
   unstable_setRequestLocale(locale);
@@ -15,13 +17,15 @@ export default function IndexPage({ params: { locale } }: { params: { locale: st
   return (
     <>
       <HeroLanding />
-      <PreviewLanding />
+      {/* <PreviewLanding /> */}
+      <VideoSection />
       {/* <Powered /> */}
       <StepsSection />
-      <BentoGrid />
-      <InfoLanding/>
+      {/* <BentoGrid /> */}
+      <DemoList />
+      {/* <InfoLanding/> */}
       <Features />
-      <Testimonials />
+      {/* <Testimonials /> */}
       <CTA />
     </>
   );
