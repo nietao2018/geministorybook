@@ -104,28 +104,28 @@
     "subtitle": "Unleash your marketing potential with AI-powered tools designed to create impactful videos for your business.",
     "features": {
       "1": {
-        "title": "Smart Video Creation",
-        "description": "Create professional marketing videos in minutes with our AI-powered platform. No technical skills required."
+        "title": "Image Restoration",
+        "description": "Restore & Colorize & Upscale old photos with Flux Kontext"
       },
       "2": {
-        "title": "Brand Customization",
-        "description": "Easily customize videos with your brand colors, logos, and messaging to maintain consistent brand identity."
+        "title": "Professional Headshot Generator",
+        "description": "Create stunning professional headshot with Flux Kontext"
       },
       "3": {
-        "title": "Multi-Platform Ready",
-        "description": "Generate videos optimized for different social media platforms and marketing channels automatically."
+        "title": "Change Haircut",
+        "description": "Change hair color or switch hair style with Flux Kontext"
       },
       "4": {
-        "title": "AI Script Generation",
-        "description": "Let AI help craft compelling scripts and storyboards for your marketing videos, saving time and effort."
+        "title": "Portrait Series",
+        "description": "Create a series of portrait photos from a single image."
       },
       "5": {
-        "title": "Performance Analytics",
-        "description": "Track and analyze your video performance with built-in analytics tools to optimize your marketing strategy."
+        "title": "Text Removal",
+        "description": "Remove text from images with Flux Kontext."
       },
       "6": {
-        "title": "Rapid Iteration",
-        "description": "Quickly create multiple versions of your videos to test different approaches and find what works best."
+        "title": "Watermark Remover",
+        "description": "Remove watermark from images with Flux Kontext."
       }
     }
   },
