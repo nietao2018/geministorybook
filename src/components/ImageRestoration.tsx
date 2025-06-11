@@ -133,17 +133,17 @@ const ImageRestoration: React.FC<ImageRestorationProps> = () => {
 
   if (isLoading) {
     previewContent = (
-      <div className="flex flex-col items-center justify-center size-full">
+      <div className="flex size-full flex-col items-center justify-center">
         <p className="text-gray-500 dark:text-gray-400">处理中，请稍候...</p>
         {/* 可以添加一个加载动画 */}
-        <div className="mt-4 animate-spin rounded-full size-8 border-b-2 border-gray-900 dark:border-white"></div>
+        <div className="mt-4 size-8 animate-spin rounded-full border-b-2 border-gray-900 dark:border-white"></div>
       </div>
     );
   } else if (error) {
     previewContent = (
-      <div className="flex flex-col items-center justify-center size-full text-red-500 dark:text-red-400">
+      <div className="flex size-full flex-col items-center justify-center text-red-500 dark:text-red-400">
         <p>错误: {error}</p>
-        <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">请尝试重新上传图片或检查URL。</p>
+        <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">请尝试重新上传图片或检查URL。</p>
       </div>
     );
   } else if (uploadedImageUrl && !restoredImageUrl) {
