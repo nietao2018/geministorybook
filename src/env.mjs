@@ -23,7 +23,7 @@ export const env = createEnv({
     REPLICATE_API_TOKEN: z.string().min(1),
     LINKEDIN_CLIENT_ID: z.string().min(1),
     LINKEDIN_CLIENT_SECRET: z.string().min(1),
-    NGROK: z.string().min(1)
+    NGROK: z.string().optional()
   },
   client: {
     NEXT_PUBLIC_STRIPE_PUBLIC_KEY: z.string().min(1),
