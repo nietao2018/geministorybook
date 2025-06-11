@@ -74,8 +74,8 @@ export const footerLinks: SidebarNavItem[] = [
     title: "Resources",
     items: [
       { title: "Pricing", href: "/pricing" },
-      // { title: "Styles", href: "/generator-styles" },
-      // { title: "Blog", href: "/blog" },
+      { title: "Styles", href: "/generator-styles" },
+      { title: "Blog", href: "/blog" },
     ],
   },
 ];
