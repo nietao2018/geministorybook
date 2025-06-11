@@ -15,7 +15,8 @@ export async function POST(request: NextRequest) {
     }
 
     const input =  {
-      image: `data:image/jpeg;base64,${image}`,
+      input_image: image,
+      prompt: 'Restore your old photo to a fresh state'
     }
 
     const webhookUrl = process.env.NODE_ENV === 'development' ? `${env.NGROK}/api/webhooks/replicate` : `${env.NEXT_PUBLIC_APP_URL}/api/webhooks/replicate`;
@@ -28,7 +29,7 @@ export async function POST(request: NextRequest) {
     });
 
     const response = await replicate.predictions.create({
-      version: "95fcc2a26d3899cd6c2691c900465aaeff466285a65c14638cc5f36f34befaf1",
+      model: "black-forest-labs/flux-kontext-pro",
       input: input,
       webhook: `${webhookUrl}?predictionId=${prediction.id}`,
       webhook_events_filter: ["completed"]

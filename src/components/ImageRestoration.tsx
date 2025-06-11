@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState,  useCallback} from 'react';
 
 interface ImageRestorationProps {
   // 你可能需要在这里添加一些 props，例如处理函数或默认图片
@@ -11,6 +11,9 @@ const ImageRestoration: React.FC<ImageRestorationProps> = () => {
   const [restoredImageUrl, setRestoredImageUrl] = useState<string | null>(null); // This will store the processed image result
   const [watermark, setWatermark] = useState<boolean>(true);
   const [sliderPosition, setSliderPosition] = useState<number>(50); // 初始位置为50%
+  const [isLoading, setIsLoading] = useState<boolean>(false); // New state for loading indicator
+  const [error, setError] = useState<string | null>(null); // New state for error messages
+  const [predictionId, setPredictionId] = useState<string | null>(null);
 
   // Hardcoded example images for the slider
   const beforeExampleUrl = 'https://s.magicaitool.com/flux-ai/flux-kontext-apps/restore-image/before.jpg';
@@ -21,8 +24,9 @@ const ImageRestoration: React.FC<ImageRestorationProps> = () => {
       const file = event.target.files[0];
       const reader = new FileReader();
       reader.onloadend = () => {
-        setUploadedImageUrl(reader.result as string); // Set the user's input image
+        setUploadedImageUrl(reader.result as string);
         setRestoredImageUrl(null); // Clear any previous restored image
+        setError(null); // Clear any previous errors
       };
       reader.readAsDataURL(file);
     }
@@ -31,23 +35,92 @@ const ImageRestoration: React.FC<ImageRestorationProps> = () => {
   const handleUrlChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUploadedImageUrl(event.target.value);
     setRestoredImageUrl(null); // Clear any previous restored image
+    setError(null); // Clear any previous errors
   };
 
-  const handleGenerate = () => {
-    // 处理图片生成逻辑
-    console.log('Generate button clicked!');
-    console.log('Input Image URL:', uploadedImageUrl);
-    console.log('Watermark:', watermark);
-    // Simulate image processing: set the restored image to a placeholder or the same as uploaded for now
-    if (uploadedImageUrl) {
-      // In a real app, this would be a network request and set the actual restored image.
-      // For demo purposes, let's just use the 'afterExampleUrl' as a placeholder for the restored image
-      setRestoredImageUrl(afterExampleUrl);
-    } else {
-      // If no image uploaded, generating still means using example images.
-      setRestoredImageUrl(afterExampleUrl);
+  const handleGenerate = async () => {
+    if (!uploadedImageUrl) {
+      setError("请先上传图片或输入图片URL。");
+      return;
+    }
+
+    setIsLoading(true);
+    setError(null);
+    setRestoredImageUrl(null); // Clear previous restored image before new generation
+
+    try {
+  
+      if (!uploadedImageUrl.startsWith('http')) {
+        // 如果是URL，直接使用URL
+        throw new Error('必须上传URL');
+      }
+      const response = await fetch('/api/generate/image-restoration', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ 
+          image: uploadedImageUrl,
+        }),
+      });
+
+
+      if (response.status !== 200) {
+        throw new Error(`API request failed: ${response.status}`);
+      }
+      
+      // 解析响应的JSON数据
+      const data = await response.json();
+      console.log(data);
+      
+      // 从解析后的数据中获取id
+      setPredictionId(data.id);
+      
+      // 开始轮询获取处理结果
+      if (data.id) {
+        pollPredictionResult(data.id);
+      }
+    } catch (err) {
+      setError((err as Error).message || '图片处理过程中发生未知错误。');
+      setRestoredImageUrl(null); // Ensure no restored image is shown on error
+    } finally {
+      setIsLoading(false);
     }
   };
+
+  // 添加轮询函数
+  const pollPredictionResult = useCallback(async (id: string) => {
+    try {
+      const response = await fetch(`/api/prediction/${id}/get`, {
+        method: 'GET',
+      });
+      
+      if (!response.ok) {
+        throw new Error(`Failed to get prediction: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      console.log('Polling result:', data);
+      
+      if (data.status === 'completed' && data.imageUrl) {
+        // 处理成功，设置结果图片
+        setRestoredImageUrl(data.imageUrl);
+        setSliderPosition(100); // 重置滑块位置到最右边
+        setIsLoading(false); // 确保加载状态被关闭
+      } else if (data.status === 'failed') {
+        // 处理失败
+        setError('Background removal failed: ' + (data.error || 'Unknown error'));
+        setIsLoading(false);
+      } else if (['processing', 'starting'].includes(data.status)) {
+        // 继续轮询
+        setTimeout(() => pollPredictionResult(id), 1000);
+      }
+    } catch (err) {
+      console.error('Error polling for result:', err);
+      setError('Error checking processing status');
+      setIsLoading(false);
+    }
+  }, []);
 
   const handleSliderChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSliderPosition(Number(event.target.value));
@@ -56,18 +129,110 @@ const ImageRestoration: React.FC<ImageRestorationProps> = () => {
   // Determine which images to display
   let displayBeforeImage = beforeExampleUrl;
   let displayAfterImage = afterExampleUrl;
-  let previewMessage = "上传或输入图片URL以查看结果";
+  let previewContent;
 
-  if (uploadedImageUrl && !restoredImageUrl) {
+  if (isLoading) {
+    previewContent = (
+      <div className="flex flex-col items-center justify-center size-full">
+        <p className="text-gray-500 dark:text-gray-400">处理中，请稍候...</p>
+        {/* 可以添加一个加载动画 */}
+        <div className="mt-4 animate-spin rounded-full size-8 border-b-2 border-gray-900 dark:border-white"></div>
+      </div>
+    );
+  } else if (error) {
+    previewContent = (
+      <div className="flex flex-col items-center justify-center size-full text-red-500 dark:text-red-400">
+        <p>错误: {error}</p>
+        <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">请尝试重新上传图片或检查URL。</p>
+      </div>
+    );
+  } else if (uploadedImageUrl && !restoredImageUrl) {
     // User has uploaded an image, but it's not yet processed
-    previewMessage = "您的上传图片 (暂无处理后图片)";
+    previewContent = (
+      <div className="relative flex size-full items-center justify-center">
+        <img src={uploadedImageUrl} alt="Uploaded Image" className="size-full object-cover" />
+        <p className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded bg-black/[70%] px-3 py-1 text-white">
+          您的上传图片 (暂无处理后图片)
+        </p>
+      </div>
+    );
   } else if (uploadedImageUrl && restoredImageUrl) {
     // User has uploaded an image AND it has been processed
-    displayBeforeImage = uploadedImageUrl;
-    displayAfterImage = restoredImageUrl;
-  }
-  // If neither uploadedImageUrl nor restoredImageUrl, default to example images (handled by initial assignment)
+    displayBeforeImage = restoredImageUrl;
+    displayAfterImage = uploadedImageUrl;
+    previewContent = (
+      <>
+        <img src={displayBeforeImage} alt="Before" className="absolute left-0 top-0 size-full object-cover" style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }} />
+        <img src={displayAfterImage} alt="After" className="absolute left-0 top-0 size-full object-cover" style={{ clipPath: `inset(0 0 0 ${sliderPosition}%)` }} />
 
+        <input
+          type="range"
+          min="0"
+          max="100"
+          value={sliderPosition}
+          onChange={handleSliderChange}
+          className="absolute inset-0 z-10 size-full cursor-ew-resize opacity-0"
+          aria-label="Image comparison slider"
+        />
+
+        <div
+          className="pointer-events-none absolute inset-y-0 z-20 w-1 bg-white dark:bg-gray-600"
+          style={{ left: `calc(${sliderPosition}% - 2px)` }}
+        >
+          <div className="absolute left-1/2 top-1/2 flex size-8 -translate-x-1/2 -translate-y-1/2 cursor-grab items-center justify-center rounded-full bg-white shadow-md group-active:cursor-grabbing dark:bg-gray-700">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="size-5 rotate-90 text-gray-600 dark:text-gray-300"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
+            </svg>
+          </div>
+        </div>
+        <span className="absolute left-2 top-2 rounded bg-black/[50%] px-2 py-1 text-xs text-white">Before</span>
+        <span className="absolute right-2 top-2 rounded bg-black/[50%] px-2 py-1 text-xs text-white">After</span>
+      </>
+    );
+  } else {
+    // Default: show example images Before & After slider
+    previewContent = (
+      <>
+        <img src={displayBeforeImage} alt="Before" className="absolute left-0 top-0 size-full object-cover" style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }} />
+        <img src={displayAfterImage} alt="After" className="absolute left-0 top-0 size-full object-cover" style={{ clipPath: `inset(0 0 0 ${sliderPosition}%)` }} />
+
+        <input
+          type="range"
+          min="0"
+          max="100"
+          value={sliderPosition}
+          onChange={handleSliderChange}
+          className="absolute inset-0 z-10 size-full cursor-ew-resize opacity-0"
+          aria-label="Image comparison slider"
+        />
+
+        <div
+          className="pointer-events-none absolute inset-y-0 z-20 w-1 bg-white dark:bg-gray-600"
+          style={{ left: `calc(${sliderPosition}% - 2px)` }}
+        >
+          <div className="absolute left-1/2 top-1/2 flex size-8 -translate-x-1/2 -translate-y-1/2 cursor-grab items-center justify-center rounded-full bg-white shadow-md group-active:cursor-grabbing dark:bg-gray-700">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="size-5 rotate-90 text-gray-600 dark:text-gray-300"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
+            </svg>
+          </div>
+        </div>
+        <span className="absolute left-2 top-2 rounded bg-black/[50%] px-2 py-1 text-xs text-white">Before</span>
+        <span className="absolute right-2 top-2 rounded bg-black/[50%] px-2 py-1 text-xs text-white">After</span>
+      </>
+    );
+  }
 
   return (
     <div className="mx-auto flex max-w-[1200px] flex-col gap-8 p-4 lg:flex-row">
@@ -92,6 +257,7 @@ const ImageRestoration: React.FC<ImageRestorationProps> = () => {
                 reader.onloadend = () => {
                   setUploadedImageUrl(reader.result as string);
                   setRestoredImageUrl(null); // Clear processed image on new upload
+                  setError(null); // Clear any previous errors
                 };
                 reader.readAsDataURL(file);
               }
@@ -187,54 +353,11 @@ const ImageRestoration: React.FC<ImageRestorationProps> = () => {
         <p className="mb-4 text-sm text-gray-500 dark:text-gray-400">Result Time 30s - 1min</p>
 
         <div className="group relative flex h-[500px] w-full items-center justify-center overflow-hidden rounded-md dark:bg-gray-900">
-          {(uploadedImageUrl && !restoredImageUrl) ? (
-            // Show single uploaded image preview
-            <div className="relative flex size-full items-center justify-center">
-              <img src={uploadedImageUrl} alt="Uploaded Image" className="size-full object-cover" />
-              <p className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded bg-black/70 px-3 py-1 text-white">
-                {previewMessage}
-              </p>
-            </div>
-          ) : (
-            // Show Before & After slider (either with examples or uploaded/restored)
-            <>
-              <img src={displayBeforeImage} alt="Before" className="absolute left-0 top-0 size-full object-cover" style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }} />
-              <img src={displayAfterImage} alt="After" className="absolute left-0 top-0 size-full object-cover" style={{ clipPath: `inset(0 0 0 ${sliderPosition}%)` }} />
-
-              <input
-                type="range"
-                min="0"
-                max="100"
-                value={sliderPosition}
-                onChange={handleSliderChange}
-                className="absolute inset-0 z-10 size-full cursor-ew-resize opacity-0"
-                aria-label="Image comparison slider"
-              />
-
-              <div
-                className="pointer-events-none absolute inset-y-0 z-20 w-1 bg-white dark:bg-gray-600"
-                style={{ left: `calc(${sliderPosition}% - 2px)` }}
-              >
-                <div className="absolute left-1/2 top-1/2 flex size-8 -translate-x-1/2 -translate-y-1/2 cursor-grab items-center justify-center rounded-full bg-white shadow-md group-active:cursor-grabbing dark:bg-gray-700">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="size-5 rotate-90 text-gray-600 dark:text-gray-300"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
-                  </svg>
-                </div>
-              </div>
-              <span className="absolute left-2 top-2 rounded bg-black/50 px-2 py-1 text-xs text-white">Before</span>
-              <span className="absolute right-2 top-2 rounded bg-black/50 px-2 py-1 text-xs text-white">After</span>
-            </>
-          )}
+          {previewContent}
         </div>
       </div>
     </div>
   );
 };
 
-export default ImageRestoration; 
+export default ImageRestoration;
