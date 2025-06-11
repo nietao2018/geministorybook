@@ -42,7 +42,7 @@
   "sitefooter": {
     "sections": {
       "Company": "Company",
-      "Ullr AI Products": "Ullr AI Products",
+      "Link": "Link",
       "Resources": "Resources"
     },
     "links": {
@@ -50,6 +50,7 @@
       "Terms": "Terms",
       "Privacy": "Privacy",
       "Refund": "Refund",
+      "ImageRestoration": "image-restoration",
       "PixMiller": "PixMiller",
       "HeadShots fun": "Converters.pro",
       "Ullr AI Lab": "Ullr AI Lab",
