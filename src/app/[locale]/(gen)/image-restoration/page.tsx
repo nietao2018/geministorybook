@@ -6,7 +6,7 @@ import { Metadata } from 'next';
 export async function generateMetadata({ params }: { params: { locale: string } }): Promise<Metadata> {
   return {
     alternates: {
-      canonical: `https://headshots.fun/${params.locale}/image-restoration`,
+      canonical: `https://www.converters.pro/${params.locale}/image-restoration`,
     },
     description: 'Transform your old photos with AI-powered restoration. Remove scratches, fix colors, and enhance details to bring your memories back to life.',
   };
