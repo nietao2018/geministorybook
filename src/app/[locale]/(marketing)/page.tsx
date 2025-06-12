@@ -10,6 +10,7 @@ import Testimonials from "@/components/sections/testimonials";
 import CTA from "@/components/sections/CTA";
 import VideoSection from "@/components/sections/video-section";
 import DemoList from "@/components/sections/test-demo";
+import ImageRestoration from "@/components/ImageRestoration";
 
 export default function IndexPage({ params: { locale } }: { params: { locale: string } }) {
   unstable_setRequestLocale(locale);
@@ -18,6 +19,8 @@ export default function IndexPage({ params: { locale } }: { params: { locale: st
     <>
       <HeroLanding />
       {/* <PreviewLanding /> */}
+      <ImageRestoration />
+
       <VideoSection />
       {/* <Powered /> */}
       <StepsSection />
