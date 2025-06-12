@@ -49,21 +49,47 @@ const ImageRestoration: React.FC<ImageRestorationProps> = () => {
     setRestoredImageUrl(null); // Clear previous restored image before new generation
 
     try {
-  
+      let imageUrl = uploadedImageUrl;
+
+      // 如果不是 URL，说明是 base64 图片，需要先上传到 R2
       if (!uploadedImageUrl.startsWith('http')) {
-        // If it's a URL, directly use the URL
-        throw new Error('Must upload a URL');
+        try {
+          // 生成文件名
+          const fileName = `restoration-${Date.now()}.png`;
+          
+          // 调用上传 API
+          const uploadResponse = await fetch('/api/image/upload', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              image: uploadedImageUrl,
+              fileName: fileName,
+            }),
+          });
+
+          if (!uploadResponse.ok) {
+            throw new Error('Failed to upload image');
+          }
+
+          const uploadData = await uploadResponse.json();
+          imageUrl = uploadData.url;
+        } catch (uploadError) {
+          console.error('Upload error:', uploadError);
+          throw new Error('Failed to upload image to storage');
+        }
       }
+
       const response = await fetch('/api/generate/image-restoration', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ 
-          image: uploadedImageUrl,
+          image: imageUrl,
         }),
       });
-
 
       if (!response.ok) {
         const errorData = await response.json();
@@ -79,13 +105,13 @@ const ImageRestoration: React.FC<ImageRestorationProps> = () => {
       
       // Start polling for processing results
       if (data.id) {
-        pollPredictionResult(data.id);
+        await pollPredictionResult(data.id);
       }
     } catch (err) {
+      console.error('Generation error:', err);
       setError((err as Error).message || 'An unknown error occurred during image processing.');
       setRestoredImageUrl(null); // Ensure no restored image is shown on error
-    } finally {
-      setIsLoading(false);
+      setIsLoading(false); // Only set loading to false on error
     }
   };
 
@@ -136,7 +162,6 @@ const ImageRestoration: React.FC<ImageRestorationProps> = () => {
     previewContent = (
       <div className="flex size-full flex-col items-center justify-center">
         <p className="text-gray-500 dark:text-gray-400">Processing, please wait...</p>
-        {/* Can add a loading animation */}
         <div className="mt-4 size-8 animate-spin rounded-full border-b-2 border-gray-900 dark:border-white"></div>
       </div>
     );
