@@ -40,7 +40,7 @@ const ImageRestoration: React.FC<ImageRestorationProps> = () => {
 
   const handleGenerate = async () => {
     if (!uploadedImageUrl) {
-      setError("请先上传图片或输入图片URL。");
+      setError("Please upload an image or enter an image URL.");
       return;
     }
 
@@ -51,8 +51,8 @@ const ImageRestoration: React.FC<ImageRestorationProps> = () => {
     try {
   
       if (!uploadedImageUrl.startsWith('http')) {
-        // 如果是URL，直接使用URL
-        throw new Error('必须上传URL');
+        // If it's a URL, directly use the URL
+        throw new Error('Must upload a URL');
       }
       const response = await fetch('/api/generate/image-restoration', {
         method: 'POST',
@@ -65,30 +65,31 @@ const ImageRestoration: React.FC<ImageRestorationProps> = () => {
       });
 
 
-      if (response.status !== 200) {
-        throw new Error(`API request failed: ${response.status}`);
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Image processing failed.');
       }
       
-      // 解析响应的JSON数据
+      // Parse the JSON response data
       const data = await response.json();
       console.log(data);
       
-      // 从解析后的数据中获取id
+      // Get the ID from the parsed data
       setPredictionId(data.id);
       
-      // 开始轮询获取处理结果
+      // Start polling for processing results
       if (data.id) {
         pollPredictionResult(data.id);
       }
     } catch (err) {
-      setError((err as Error).message || '图片处理过程中发生未知错误。');
+      setError((err as Error).message || 'An unknown error occurred during image processing.');
       setRestoredImageUrl(null); // Ensure no restored image is shown on error
     } finally {
       setIsLoading(false);
     }
   };
 
-  // 添加轮询函数
+  // Add polling function
   const pollPredictionResult = useCallback(async (id: string) => {
     try {
       const response = await fetch(`/api/prediction/${id}/get`, {
@@ -103,16 +104,16 @@ const ImageRestoration: React.FC<ImageRestorationProps> = () => {
       console.log('Polling result:', data);
       
       if (data.status === 'completed' && data.imageUrl) {
-        // 处理成功，设置结果图片
+        // Processing successful, set result image
         setRestoredImageUrl(data.imageUrl);
-        setSliderPosition(100); // 重置滑块位置到最右边
-        setIsLoading(false); // 确保加载状态被关闭
+        setSliderPosition(100); // Reset slider position to the far right
+        setIsLoading(false); // Ensure loading state is turned off
       } else if (data.status === 'failed') {
-        // 处理失败
+        // Processing failed
         setError('Background removal failed: ' + (data.error || 'Unknown error'));
         setIsLoading(false);
       } else if (['processing', 'starting'].includes(data.status)) {
-        // 继续轮询
+        // Continue polling
         setTimeout(() => pollPredictionResult(id), 1000);
       }
     } catch (err) {
@@ -134,16 +135,16 @@ const ImageRestoration: React.FC<ImageRestorationProps> = () => {
   if (isLoading) {
     previewContent = (
       <div className="flex size-full flex-col items-center justify-center">
-        <p className="text-gray-500 dark:text-gray-400">处理中，请稍候...</p>
-        {/* 可以添加一个加载动画 */}
+        <p className="text-gray-500 dark:text-gray-400">Processing, please wait...</p>
+        {/* Can add a loading animation */}
         <div className="mt-4 size-8 animate-spin rounded-full border-b-2 border-gray-900 dark:border-white"></div>
       </div>
     );
   } else if (error) {
     previewContent = (
       <div className="flex size-full flex-col items-center justify-center text-red-500 dark:text-red-400">
-        <p>错误: {error}</p>
-        <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">请尝试重新上传图片或检查URL。</p>
+        <p>Error: {error}</p>
+        <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">Please try re-uploading the image or checking the URL.</p>
       </div>
     );
   } else if (uploadedImageUrl && !restoredImageUrl) {
@@ -152,7 +153,7 @@ const ImageRestoration: React.FC<ImageRestorationProps> = () => {
       <div className="relative flex size-full items-center justify-center">
         <img src={uploadedImageUrl} alt="Uploaded Image" className="size-full object-cover" />
         <p className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded bg-black/[70%] px-3 py-1 text-white">
-          您的上传图片 (暂无处理后图片)
+          Your uploaded image (no processed image yet)
         </p>
       </div>
     );
@@ -236,13 +237,15 @@ const ImageRestoration: React.FC<ImageRestorationProps> = () => {
 
   return (
     <div className="mx-auto flex max-w-[1200px] flex-col gap-8 p-4 lg:flex-row">
-      {/* 左侧区域 */}
+      {/* Left Section */}
       <div className="flex-1 rounded-lg bg-white p-6 shadow-md dark:bg-gray-800">
         <h2 className="mb-4 text-xl font-semibold text-gray-900 dark:text-white">Restore Image | Flux Kontext App</h2>
         <p className="mb-6 text-gray-600 dark:text-gray-300">Restore your old photo to a fresh state</p>
 
+        <h2 className="mb-4 text-lg font-semibold text-gray-800 dark:text-white">Image Processing Settings</h2>
+
         <div className="mb-6">
-          <label className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-200">Image (Optional)</label>
+          <h3 className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-200">Image (Optional)</h3>
           <div className="mb-4 flex items-center space-x-2">
             <button className="rounded-md border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:border-gray-600 dark:text-gray-200 dark:hover:bg-gray-700">URL</button>
           </div>
@@ -303,16 +306,16 @@ const ImageRestoration: React.FC<ImageRestorationProps> = () => {
         </div>
 
         <div className="mb-6">
-          <label className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-200">Seed</label>
-          {/* 假设 Seed 是一个可展开的区域，目前只是占位符 */}
+          <h3 className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-200">Seed</h3>
+          {/* Assuming Seed is an expandable area, currently a placeholder */}
           <div className="flex h-10 items-center justify-center rounded-md border border-gray-300 text-gray-400 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-500">
-            下拉菜单占位符
+            Dropdown placeholder
           </div>
         </div>
 
         <div className="mb-6 flex items-center justify-between">
+          <h3 className="mr-2 text-sm font-medium text-gray-700 dark:text-gray-200">Watermark</h3>
           <label htmlFor="watermark-toggle" className="flex cursor-pointer items-center">
-            <span className="mr-2 text-sm font-medium text-gray-700 dark:text-gray-200">Watermark</span>
             <input
               type="checkbox"
               id="watermark-toggle"
@@ -346,7 +349,7 @@ const ImageRestoration: React.FC<ImageRestorationProps> = () => {
         </button>
       </div>
 
-      {/* 右侧区域 */}
+      {/* Right Section */}
       <div className="flex-1 rounded-lg bg-white p-6 shadow-md dark:bg-gray-800">
         <h2 className="mb-4 text-xl font-semibold text-gray-900 dark:text-white">Flux Kontext Restore Image Result</h2>
         <p className="mb-6 text-gray-600 dark:text-gray-300">The modified image results will appear here.</p>
