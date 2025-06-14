@@ -60,6 +60,26 @@ export const {
             // 使用现有用户的ID
             user.id = existingUser.id;
           }
+        } else {
+          // 如果是新用户，创建用户并设置初始积分为5
+          const newUser = await prisma.user.create({
+            data: {
+              email: user.email,
+              name: user.name,
+              image: user.image,
+              credits: 5, // 设置初始积分为5
+            },
+          });
+          user.id = newUser.id;
+
+          // 记录积分交易
+          await prisma.creditTransaction.create({
+            data: {
+              userId: newUser.id,
+              amount: 5,
+              type: 'PURCHASE',
+            },
+          });
         }
       }
       return true;

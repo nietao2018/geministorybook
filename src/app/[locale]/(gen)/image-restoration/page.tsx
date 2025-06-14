@@ -2,13 +2,14 @@ import { unstable_setRequestLocale } from 'next-intl/server';
 import CTA from '@/components/sections/CTA';
 import ImageRestoration from "@/components/ImageRestoration";
 import { Metadata } from 'next';
+import { env } from "@/env.mjs";
 
 export async function generateMetadata({ params }: { params: { locale: string } }): Promise<Metadata> {
   return {
     alternates: {
       canonical: params.locale === 'en' 
-        ? 'https://www.converters.pro/image-restoration'
-        : `https://www.converters.pro/${params.locale}/image-restoration`,
+        ? `${env.NEXT_PUBLIC_APP_URL}/image-restoration`
+        : `${env.NEXT_PUBLIC_APP_URL}/${params.locale}/image-restoration`,
     },
     description: 'Transform your old photos with AI-powered restoration. Remove scratches, fix colors, and enhance details to bring your memories back to life.',
   };

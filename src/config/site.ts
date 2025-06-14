@@ -65,7 +65,7 @@ export const footerLinks: SidebarNavItem[] = [
   {
     title: "Link",
     items: [
-      { title: "image-restoration", href: "https://www.converters.pro/image-restoration" },
+      { title: "image-restoration", href: `${site_url}/image-restoration` },
     ],
   },
   {
