@@ -1,12 +1,14 @@
 'use client';
 
-import React, { useState,  useCallback} from 'react';
-
+import React, { useState,  useCallback, useContext } from 'react';
+import { ModalContext } from "@/components/modals/providers";
+import { useRouter } from 'next/navigation';
 interface ImageRestorationProps {
   // 你可能需要在这里添加一些 props，例如处理函数或默认图片
 }
 
 const ImageRestoration: React.FC<ImageRestorationProps> = () => {
+  const { setShowSignInModal } = useContext(ModalContext);
   const [uploadedImageUrl, setUploadedImageUrl] = useState<string | null>(null); // This will store the user's uploaded/URL image
   const [restoredImageUrl, setRestoredImageUrl] = useState<string | null>(null); // This will store the processed image result
   const [watermark, setWatermark] = useState<boolean>(true);
@@ -43,31 +45,33 @@ const ImageRestoration: React.FC<ImageRestorationProps> = () => {
       setError("Please upload an image or enter an image URL.");
       return;
     }
-
     setIsLoading(true);
     setError(null);
-    setRestoredImageUrl(null); // Clear previous restored image before new generation
+    setRestoredImageUrl(null);
 
     try {
       let imageUrl = uploadedImageUrl;
 
-      // 如果不是 URL，说明是 base64 图片，需要先上传到 R2
       if (!uploadedImageUrl.startsWith('http')) {
         try {
-          // 生成文件名
           const fileName = `restoration-${Date.now()}.png`;
           
-          // 调用上传 API
           const uploadResponse = await fetch('/api/image/upload', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
             },
+            credentials: 'include',
             body: JSON.stringify({
               image: uploadedImageUrl,
               fileName: fileName,
             }),
           });
+
+          if (uploadResponse.status === 401) {
+            setShowSignInModal(true);
+            return;
+          }
 
           if (!uploadResponse.ok) {
             throw new Error('Failed to upload image');
@@ -86,60 +90,63 @@ const ImageRestoration: React.FC<ImageRestorationProps> = () => {
         headers: {
           'Content-Type': 'application/json',
         },
+        credentials: 'include',
         body: JSON.stringify({ 
           image: imageUrl,
         }),
       });
+
+      if (response.status === 401) {
+        setShowSignInModal(true);
+        return;
+      }
 
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.error || 'Image processing failed.');
       }
       
-      // Parse the JSON response data
       const data = await response.json();
-      console.log(data);
-      
-      // Get the ID from the parsed data
       setPredictionId(data.id);
       
-      // Start polling for processing results
       if (data.id) {
         await pollPredictionResult(data.id);
       }
     } catch (err) {
       console.error('Generation error:', err);
       setError((err as Error).message || 'An unknown error occurred during image processing.');
-      setRestoredImageUrl(null); // Ensure no restored image is shown on error
-      setIsLoading(false); // Only set loading to false on error
+      setRestoredImageUrl(null);
+    } finally {
+      setIsLoading(false);
     }
   };
 
-  // Add polling function
   const pollPredictionResult = useCallback(async (id: string) => {
     try {
       const response = await fetch(`/api/prediction/${id}/get`, {
         method: 'GET',
+        credentials: 'include',
       });
+      
+      if (response.status === 401) {
+        setShowSignInModal(true);
+        return;
+      }
       
       if (!response.ok) {
         throw new Error(`Failed to get prediction: ${response.status}`);
       }
       
       const data = await response.json();
-      console.log('Polling result:', data);
       
       if (data.status === 'completed' && data.imageUrl) {
-        // Processing successful, set result image
         setRestoredImageUrl(data.imageUrl);
-        setSliderPosition(100); // Reset slider position to the far right
-        setIsLoading(false); // Ensure loading state is turned off
+        setSliderPosition(100);
+        setIsLoading(false);
       } else if (data.status === 'failed') {
-        // Processing failed
         setError('Background removal failed: ' + (data.error || 'Unknown error'));
         setIsLoading(false);
       } else if (['processing', 'starting'].includes(data.status)) {
-        // Continue polling
         setTimeout(() => pollPredictionResult(id), 1000);
       }
     } catch (err) {
@@ -147,7 +154,7 @@ const ImageRestoration: React.FC<ImageRestorationProps> = () => {
       setError('Error checking processing status');
       setIsLoading(false);
     }
-  }, []);
+  }, [setShowSignInModal]);
 
   const handleSliderChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSliderPosition(Number(event.target.value));

@@ -1,8 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { uploadBase64ToR2 } from '@/actions/upload-to-r2';
+import { auth } from "@/auth";
 
 export async function POST(request: NextRequest) {
     try {
+        // 检查用户是否已登录
+        const session = await auth();
+        if (!session?.user) {
+            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+        }
+
         const { image, fileName } = await request.json();
 
         if (!image || !fileName) {
