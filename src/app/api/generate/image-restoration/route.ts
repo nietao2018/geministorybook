@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
     console.log("webhookUrl", webhookUrl);
     const prediction = await prisma.prediction.create({
             data: {
-                studioId: 'cm7yt0evd000466gc6l68kx9q',
+                studioId: 'cmbx4ftdr000314jmjt3rq2st',
                 status: "pending",
             },
     });

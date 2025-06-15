@@ -42,14 +42,37 @@ const ImageRestoration: React.FC<ImageRestorationProps> = () => {
 
   const handleGenerate = async () => {
     if (!uploadedImageUrl) {
-      setError("Please upload an image or enter an image URL.");
+      setError("请上传图片或输入图片URL。");
       return;
     }
-    setIsLoading(true);
-    setError(null);
-    setRestoredImageUrl(null);
 
     try {
+      // 先检查用户积分
+      const creditsResponse = await fetch('/api/user/credits/check', {
+        method: 'GET',
+        credentials: 'include',
+      });
+
+      if (creditsResponse.status === 401) {
+        setShowSignInModal(true);
+        return;
+      }
+
+      if (!creditsResponse.ok) {
+        throw new Error('获取用户积分失败');
+      }
+
+      const { credits } = await creditsResponse.json();
+      
+      if (credits < 5) {
+        setError(`积分不足，当前积分：${credits}，需要5积分才能生成图片。`);
+        return;
+      }
+
+      setIsLoading(true);
+      setError(null);
+      setRestoredImageUrl(null);
+
       let imageUrl = uploadedImageUrl;
 
       if (!uploadedImageUrl.startsWith('http')) {
@@ -74,14 +97,14 @@ const ImageRestoration: React.FC<ImageRestorationProps> = () => {
           }
 
           if (!uploadResponse.ok) {
-            throw new Error('Failed to upload image');
+            throw new Error('上传图片失败');
           }
 
           const uploadData = await uploadResponse.json();
           imageUrl = uploadData.url;
         } catch (uploadError) {
-          console.error('Upload error:', uploadError);
-          throw new Error('Failed to upload image to storage');
+          console.error('上传错误:', uploadError);
+          throw new Error('上传图片到存储失败');
         }
       }
 
@@ -103,18 +126,36 @@ const ImageRestoration: React.FC<ImageRestorationProps> = () => {
 
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.error || 'Image processing failed.');
+        throw new Error(errorData.error || '图片处理失败。');
       }
       
       const data = await response.json();
       setPredictionId(data.id);
       
       if (data.id) {
+        // 扣减积分
+        const deductResponse = await fetch('/api/user/credits', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          credentials: 'include',
+          body: JSON.stringify({
+            amount: 5,
+            type: 'USAGE',
+          }),
+        });
+
+        if (!deductResponse.ok) {
+          console.error('扣减积分失败');
+          // 这里不抛出错误，因为图片生成已经成功
+        }
+
         await pollPredictionResult(data.id);
       }
     } catch (err) {
-      console.error('Generation error:', err);
-      setError((err as Error).message || 'An unknown error occurred during image processing.');
+      console.error('生成错误:', err);
+      setError((err as Error).message || '图片处理过程中发生未知错误。');
       setRestoredImageUrl(null);
     } finally {
       setIsLoading(false);
