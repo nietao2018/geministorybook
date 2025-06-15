@@ -59,7 +59,7 @@ export function DashboardSidebar({ links }: DashboardSidebarProps) {
               <div className="flex h-14 items-center p-4 lg:h-[60px]">
                 {/* {isSidebarExpanded ? <ProjectSwitcher /> : null} */}
                 {isSidebarExpanded ? <Link
-                  href="#"
+                  href="/"
                   className="flex items-center gap-2 text-lg font-semibold"
                 >
                   <Icons.logo className="size-6" />

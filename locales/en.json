@@ -185,78 +185,156 @@
   "PricingPage": {
     "metadata": {
       "title": "Pricing – {siteTitle}",
-      "description": "Explore our video marketing pricing."
+      "description": "Explore our video generator pricing"
     },
-    "label": "Pricing",
+    "label": "Choose Your Plan",
     "title": "Simple, Transparent Pricing",
-    "subtitle": "Choose the perfect plan for your needs. No hidden fees, no surprises.",
-    "trial_section_description": "Enjoy a 7-day risk-free trial on all plans. Full refund if no credits used.",
-    "1_credit_1_headshot": "1 Credit = 1 Marketing Video",
+    "subtitle": "Our pricing is designed to provide flexibility and value, whether for personal use or professional needs.",
+    "period": {
+      "annually": "Annually",
+      "monthly": "Monthly",
+      "oneTime": "One-time",
+      "discount": "Save 20%"
+    },
+    "trial_section_description": "Want to try first? Sign up to get 3 free credits.",
+    "1_credit_1_headshot": "1 credit = 1 video",
     "processing": "Processing...",
     "purchase": "Purchase",
     "most_popular": "Most Popular",
-    "package": "Package",
-    "price": "Price",
-    "price_per": "Price per",
     "credits": "Credits",
     "plans": {
       "1": {
-        "description": "Starter: Begin your AI video marketing journey",
-        "features": [
-          "2 credit/month, expire annually",
-          "Unlimited video previews",
-          "Free&unlimited Custom Avatar",
-          "Photo Talking max 180s pre video",
-          "No watermark",
-          "Faster rendering speed"
-        ]
+        "title": "Basic",
+        "description": "Perfect for individuals and getting started."
       },
       "2": {
-        "description": "Basic: Perfect for small business marketing",
-        "features": [
-          "10 credit/month, expire annually",
-          "Unlimited video previews",
-          "Free&unlimited Custom Avatar",
-          "Photo Talking max 180s pre video",
-          "No watermark",
-          "Faster rendering speed"
-        ]
+        "title": "Professional",
+        "description": "Ideal for professionals and small businesses."
       },
       "3": {
-        "description": "Professional: Boost your marketing reach",
-        "features": [
-          "10 credit/month, expire annually",
-          "Unlimited video previews",
-          "Free&unlimited Custom Avatar",
-          "Photo Talking max 180s pre video",
-          "No watermark",
-          "Faster rendering speed"
-        ]
+        "title": "Enterprise",
+        "description": "For large teams and scaling needs."
       },
-      "4": {
-        "description": "Business: Scale your video marketing",
-       "features": [
-          "2 点数",
-          "高清视频导出",
-          "无水印"
-        ]
+      "annually": {
+        "1": {
+          "features": {
+            "0": "Unlimited video generation",
+            "1": "Advanced video editing",
+            "2": "Custom brand watermark",
+            "3": "Priority rendering queue",
+            "4": "Batch export",
+            "5": "Advanced effects library",
+            "6": "API access",
+            "7": "Dedicated support"
+          }
+        },
+        "2": {
+          "features": {
+            "0": "Unlimited video generation",
+            "1": "Advanced video editing",
+            "2": "Custom brand watermark",
+            "3": "Priority rendering queue",
+            "4": "Batch export",
+            "5": "Advanced effects library",
+            "6": "API access",
+            "7": "Dedicated support"
+          }
+        },
+        "3": {
+          "features": {
+            "0": "Unlimited video generation",
+            "1": "Advanced video editing",
+            "2": "Custom brand watermark",
+            "3": "Priority rendering queue",
+            "4": "Batch export",
+            "5": "Advanced effects library",
+            "6": "API access",
+            "7": "Dedicated support"
+          }
+        }
       },
-      "5": {
-        "description": "Enterprise: Complete marketing solution",
-        "features": [
-          "2 点数",
-          "高清视频导出",
-          "无水印"
-        ]
+      "monthly": {
+        "1": {
+          "features": {
+            "0": "300 videos per month",
+            "1": "Basic video editing",
+            "2": "Standard watermark",
+            "3": "Standard rendering queue",
+            "4": "Single export",
+            "5": "Basic effects library",
+            "6": "Community support",
+            "7": "API access"
+          }
+        },
+        "2": {
+          "features": {
+            "0": "800 videos per month",
+            "1": "Advanced video editing",
+            "2": "Custom watermark",
+            "3": "Priority rendering queue",
+            "4": "Batch export",
+            "5": "Advanced effects library",
+            "6": "Email support",
+            "7": "API access"
+          }
+        },
+        "3": {
+          "features": {
+            "0": "2000 videos per month",
+            "1": "Professional video editing",
+            "2": "Brand watermark",
+            "3": "Highest priority rendering",
+            "4": "Unlimited batch export",
+            "5": "Full effects library",
+            "6": "Dedicated support",
+            "7": "API access"
+          }
+        }
       },
-      "6": {
-        "description": "Ultimate: Unlimited marketing potential",
-        "features": [
-          "2 点数",
-          "高清视频导出",
-          "无水印"
-        ]
+      "oneTime": {
+        "1": {
+          "features": {
+            "0": "10 video credits",
+            "1": "Basic video editing",
+            "2": "Standard watermark",
+            "3": "Standard rendering queue",
+            "4": "Single export",
+            "5": "Basic effects library",
+            "6": "Community support",
+            "7": "API access"
+          }
+        },
+        "2": {
+          "features": {
+            "0": "20 video credits",
+            "1": "Advanced video editing",
+            "2": "Custom watermark",
+            "3": "Priority rendering queue",
+            "4": "Batch export",
+            "5": "Advanced effects library",
+            "6": "Email support",
+            "7": "API access"
+          }
+        },
+        "3": {
+          "features": {
+            "0": "50 video credits",
+            "1": "Professional video editing",
+            "2": "Brand watermark",
+            "3": "Highest priority rendering",
+            "4": "Unlimited batch export",
+            "5": "Full effects library",
+            "6": "Dedicated support",
+            "7": "API access"
+          }
+        }
       }
+    },
+    "toast": {
+      "signInRequired": "Please sign in to purchase.",
+      "checkoutFailed": "Checkout failed, please try again later.",
+      "invalidCheckoutUrl": "Invalid checkout URL.",
+      "checkoutInitiationFailed": "Failed to initiate checkout session."
     }
   },
   "PricingPageFAQ": {
