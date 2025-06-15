@@ -335,7 +335,10 @@
       "checkoutFailed": "Checkout failed, please try again later.",
       "invalidCheckoutUrl": "Invalid checkout URL.",
       "checkoutInitiationFailed": "Failed to initiate checkout session."
-    }
+    },
+    "package": "Package",
+    "price_per": "per credit",
+    "price": "Price"
   },
   "PricingPageFAQ": {
     "title": "Frequently Asked Questions",

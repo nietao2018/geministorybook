@@ -360,8 +360,9 @@ function PricingCard({
     <Card
       className={cn(
         "relative flex min-h-[550px] w-[320px] min-w-0 flex-1 flex-col justify-between transition-all duration-300",
-        "bg-gradient-to-br from-gray-900 to-black",
-        shouldShowPopularStyle ? 'mt-4 overflow-visible border-primary ring-2 ring-primary' : 'mt-8 border border-transparent',
+        "bg-gradient-to-br from-background to-muted",
+        "dark:from-gray-900 dark:to-black",
+        shouldShowPopularStyle ? 'mt-4 overflow-visible border-primary ring-2 ring-primary' : 'mt-8 border border-border',
         isHovered && 'border-primary/50 ring-2 ring-primary/50',
         !isMediumPackage && isHovered && 'mt-4'
       )}
@@ -378,7 +379,7 @@ function PricingCard({
           {plan.quantity} {t('credits')}
         </Badge>
         <CardTitle className={`${shouldShowPopularStyle ? 'pb-2 text-3xl' : 'text-2xl'} font-bold`}>{plan.price}</CardTitle>
-        <p className="line-clamp-2 text-sm text-gray-300">{t(plan.description)}</p>
+        <p className="line-clamp-2 text-sm text-muted-foreground">{t(plan.description)}</p>
       </CardHeader>
       <CardContent>
         <ul className="space-y-2">
@@ -390,7 +391,7 @@ function PricingCard({
                 ) : (
                   <XCircle className="mr-2 size-4 shrink-0 text-red-500" />
                 )}
-                <span className="line-clamp-1 text-base text-gray-300">{t(feature.text)}</span>
+                <span className="line-clamp-1 text-base text-muted-foreground">{t(feature.text)}</span>
               </li>
             );
           })}
