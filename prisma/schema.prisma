@@ -65,6 +65,7 @@ model User {
   studios Studio[]
   transactions CreditTransaction[] // 关联到 CreditTransaction 模型
   stripeTransactions StripeTransaction[]
+  checkoutSessions   CheckoutSession[] // 新增关联到 CheckoutSession 模型
 
   @@map(name: "users")
 }
@@ -137,4 +138,36 @@ model StripeTransaction {
   updatedAt             DateTime @updatedAt
 
   @@map(name: "stripe_transactions")
+}
+
+// CheckoutSession 模型
+model CheckoutSession {
+  id                 String        @id @default(cuid())
+  checkoutId         String        @unique @map("checkout_id")
+  userId             String        @map("user_id")
+  user               User          @relation(fields: [userId], references: [id])
+  sessionType        SessionType   @map("session_type")
+  productId          String?       @map("product_id")
+  amount             Decimal       @db.Decimal(10,2)
+  currency           String?       @default("USD")
+  status             CheckoutStatus @default(PENDING)
+  successRedirectUrl String?       @map("success_redirect_url")
+  createdAt          DateTime      @default(now()) @map("created_at")
+  paidAt             DateTime?     @map("paid_at")
+
+  @@map("checkout_sessions")
+}
+
+// SessionType 枚举
+enum SessionType {
+  ONE_TIME
+  SUBSCRIPTION
+}
+
+// CheckoutStatus 枚举
+enum CheckoutStatus {
+  PENDING
+  PAID
+  EXPIRED
+  FAILED
 }

@@ -11,11 +11,13 @@ import { useRef } from "react";
 import { ChevronLeft, ChevronRight, CheckCircle2, XCircle } from "lucide-react";
 import { useTranslations } from 'next-intl';
 import { cn } from "@/lib/utils";
+import { env } from "@/env.mjs";
 
 type PricingPeriod = "annually" | "monthly" | "one-time";
 
 interface PricingPlanData {
   id: number;
+  product_id: string,
   title: string;
   price: string;
   quantity: number;
@@ -49,6 +51,7 @@ export function PricingCards({
     annually: [
       {
         id: pricingData[0].id,
+        product_id: '1',
         title: "plans.1.title",
         price: `$${pricingData[0].price}`,
         quantity: pricingData[0].quantity,
@@ -66,6 +69,7 @@ export function PricingCards({
       },
       {
         id: pricingData[1].id,
+        product_id: '',
         title: "plans.2.title",
         price: `$${pricingData[1].price}`,
         quantity: pricingData[1].quantity,
@@ -84,6 +88,7 @@ export function PricingCards({
       },
       {
         id: pricingData[2].id,
+        product_id: '',
         title: "plans.3.title",
         price: `$${pricingData[2].price}`,
         quantity: pricingData[2].quantity,
@@ -103,6 +108,7 @@ export function PricingCards({
     monthly: [
       {
         id: pricingData[0].id,
+        product_id: '',
         title: "plans.1.title",
         price: `$${(pricingData[0].price * 1.25).toFixed(1)}`,
         quantity: pricingData[0].quantity,
@@ -120,6 +126,7 @@ export function PricingCards({
       },
       {
         id: pricingData[1].id,
+        product_id: '',
         title: "plans.2.title",
         price: `$${(pricingData[1].price * 1.25).toFixed(1)}`,
         quantity: pricingData[1].quantity,
@@ -138,6 +145,7 @@ export function PricingCards({
       },
       {
         id: pricingData[2].id,
+        product_id: '',
         title: "plans.3.title",
         price: `$${(pricingData[2].price * 1.25).toFixed(1)}`,
         quantity: pricingData[2].quantity,
@@ -157,6 +165,7 @@ export function PricingCards({
     "one-time": [
       {
         id: pricingData[0].id,
+        product_id: 'prod_54resnez8YIzBKrSvm3yXi',
         title: "plans.1.title",
         price: `$${pricingData[0].price}`,
         quantity: pricingData[0].quantity,
@@ -174,6 +183,7 @@ export function PricingCards({
       },
       {
         id: pricingData[1].id,
+        product_id: 'prod_54resnez8YIzBKrSvm3yXi',
         title: "plans.2.title",
         price: `$${pricingData[1].price}`,
         quantity: pricingData[1].quantity,
@@ -192,6 +202,7 @@ export function PricingCards({
       },
       {
         id: pricingData[2].id,
+        product_id: 'prod_54resnez8YIzBKrSvm3yXi',
         title: "plans.3.title",
         price: `$${pricingData[2].price}`,
         quantity: pricingData[2].quantity,
@@ -220,17 +231,14 @@ export function PricingCards({
 
     setLoadingPlan(plan.id);
     try {
-      const response = await fetch("/api/stripe/create-checkout", {
+      const response = await fetch("/api/creem/create-checkout", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          amount: Math.round(parseFloat(plan.price.replace('$', '')) * 100) / 100,
-          quantity: plan.quantity,
-          description: t(plan.description),
-          userId,
-          emailAddress,
+          productId: plan.product_id,
+          successUrl: `${env.NEXT_PUBLIC_APP_URL}/payment-status`,
         }),
       });
 
@@ -238,13 +246,13 @@ export function PricingCards({
         throw new Error(t("toast.checkoutFailed"));
       }
 
-      const { checkoutUrl } = await response.json();
+      const { checkout_url } = await response.json();
 
-      if (!checkoutUrl) {
+      if (!checkout_url) {
         throw new Error(t("toast.invalidCheckoutUrl"));
       }
 
-      window.location.href = checkoutUrl;
+      window.location.href = checkout_url;
     } catch (error) {
       console.error("Error creating checkout session:", error);
       toast.error(t("toast.checkoutInitiationFailed"));

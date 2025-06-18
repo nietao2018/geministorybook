@@ -10,6 +10,7 @@ export const env = createEnv({
     GOOGLE_CLIENT_ID: z.string().min(1),
     GOOGLE_CLIENT_SECRET: z.string().min(1),
     DATABASE_URL: z.string().min(1),
+    DIRECT_URL: z.string().min(1),
     RESEND_API_KEY: z.string().min(1),
     EMAIL_FROM: z.string().min(1),
     STRIPE_SECRET_KEY: z.string().min(1),
@@ -23,6 +24,8 @@ export const env = createEnv({
     REPLICATE_API_TOKEN: z.string().min(1),
     LINKEDIN_CLIENT_ID: z.string().min(1),
     LINKEDIN_CLIENT_SECRET: z.string().min(1),
+    CREEM_API_URL: z.string().min(1),
+    CREEM_API_KEY: z.string().min(1),
     NGROK: z.string().optional()
   },
   client: {
@@ -35,6 +38,7 @@ export const env = createEnv({
     GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
     GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
     DATABASE_URL: process.env.DATABASE_URL,
+    DIRECT_URL: process.env.DIRECT_URL,
     RESEND_API_KEY: process.env.RESEND_API_KEY,
     EMAIL_FROM: process.env.EMAIL_FROM,
     NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
@@ -52,5 +56,8 @@ export const env = createEnv({
     REPLICATE_API_TOKEN: process.env.REPLICATE_API_TOKEN,
     LINKEDIN_CLIENT_ID: process.env.LINKEDIN_CLIENT_ID,
     LINKEDIN_CLIENT_SECRET: process.env.LINKEDIN_CLIENT_SECRET,
+
+    CREEM_API_URL: process.env.CREEM_API_URL,
+    CREEM_API_KEY: process.env.CREEM_API_KEY
   },
 });
