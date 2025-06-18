@@ -6,7 +6,8 @@ export const sidebarLinks: SidebarNavItem[] = [
   {
     title: "menu",
     items: [
-      { href: "/dashboard", icon: "dashboard", title: "dashboard" },
+      // { href: "/dashboard", icon: "dashboard", title: "dashboard" },
+      { href: "/dashboard/prediction", icon: "dashboard", title: "dashboard" },
       { href: "/dashboard/billing", icon: "billing", title: "billing" },
     ],
   },
@@ -40,18 +41,18 @@ export const sidebarLinks: SidebarNavItem[] = [
         title: "users",
         authorizeOnly: UserRole.ADMIN,
       },
-      {
-        href: "/admin/studios",
-        icon: "sliders",
-        title: "studios",
-        authorizeOnly: UserRole.ADMIN,
-      },
-      {
-        href: "/admin/predictions",
-        icon: "image",
-        title: "predictions",
-        authorizeOnly: UserRole.ADMIN,
-      },
+      // {
+      //   href: "/admin/studios",
+      //   icon: "sliders",
+      //   title: "studios",
+      //   authorizeOnly: UserRole.ADMIN,
+      // },
+      // {
+      //   href: "/admin/predictions",
+      //   icon: "image",
+      //   title: "predictions",
+      //   authorizeOnly: UserRole.ADMIN,
+      // },
       {
         href: "/admin/orders",
         icon: "package",

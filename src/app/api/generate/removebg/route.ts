@@ -2,9 +2,16 @@ import { NextRequest, NextResponse } from 'next/server';
 import { replicate } from "@/lib/replicate";
 import { env } from "@/env.mjs";
 import { prisma } from "@/lib/db";
+import { auth } from "@/auth";
 
 export async function POST(request: NextRequest) {
   try {
+    const session = await auth();
+    
+    if (!session?.user?.id) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
     const { image } = await request.json();
     
     if (!image) {
@@ -22,7 +29,7 @@ export async function POST(request: NextRequest) {
     console.log("webhookUrl", webhookUrl);
     const prediction = await prisma.prediction.create({
             data: {
-                studioId: 'cm7yt0evd000466gc6l68kx9q',
+                userId: session?.user?.id,
                 status: "pending",
             },
     });
