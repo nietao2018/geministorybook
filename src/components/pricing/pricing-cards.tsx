@@ -238,7 +238,7 @@ export function PricingCards({
         },
         body: JSON.stringify({
           productId: plan.product_id,
-          successUrl: `${env.NEXT_PUBLIC_APP_URL}/payment-status`,
+          successUrl: `${env.NEXT_PUBLIC_APP_URL}`,
         }),
       });
 
