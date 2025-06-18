@@ -6,9 +6,13 @@ export const marketingConfig: MarketingConfig = {
       title: "blog",
       href: "/blog",
     },
+    // {
+    //   title: "generator-styles",
+    //   href: "/generator-styles",
+    // },
     {
-      title: "generator-styles",
-      href: "/generator-styles",
+      title: "image-restoration",
+      href: "/image-restoration",
     },
     {
       title: "pricing",

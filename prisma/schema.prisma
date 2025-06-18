@@ -89,7 +89,6 @@ model Studio {
   user        User         @relation(fields: [userId], references: [id])
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
-  predictions Prediction[] @relation("StudioPredictions")
 
   @@map(name: "studios")
 }
@@ -97,8 +96,7 @@ model Studio {
 model Prediction {
   id       String  @id @default(cuid())
   pId       String?
-  studioId  String
-  studio   Studio  @relation("StudioPredictions", fields: [studioId], references: [id], onDelete: Cascade)
+  userId    String
   status    String   @default("pending") // "pending", "processing", "completed", "failed"
   style     String?
   imageUrl  String?

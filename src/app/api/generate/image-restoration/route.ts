@@ -2,11 +2,18 @@ import { NextRequest, NextResponse } from 'next/server';
 import { replicate } from "@/lib/replicate";
 import { env } from "@/env.mjs";
 import { prisma } from "@/lib/db";
+import { auth } from "@/auth";
 
 export async function POST(request: NextRequest) {
   try {
-    const { image } = await request.json();
+
+    const session = await auth();
     
+    if (!session?.user?.id) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    const { image } = await request.json();
     if (!image) {
       return NextResponse.json(
         { error: 'No image data provided' },
@@ -23,7 +30,7 @@ export async function POST(request: NextRequest) {
     console.log("webhookUrl", webhookUrl);
     const prediction = await prisma.prediction.create({
             data: {
-                studioId: 'cmbx4ftdr000314jmjt3rq2st',
+                userId: session?.user?.id,
                 status: "pending",
             },
     });

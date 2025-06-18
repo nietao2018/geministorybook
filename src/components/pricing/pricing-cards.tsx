@@ -165,7 +165,7 @@ export function PricingCards({
     "one-time": [
       {
         id: pricingData[0].id,
-        product_id: 'prod_54resnez8YIzBKrSvm3yXi',
+        product_id: env.NEXT_PUBLIC_CREEM_ONETIME_MIN,
         title: "plans.1.title",
         price: `$${pricingData[0].price}`,
         quantity: pricingData[0].quantity,
@@ -183,7 +183,7 @@ export function PricingCards({
       },
       {
         id: pricingData[1].id,
-        product_id: 'prod_54resnez8YIzBKrSvm3yXi',
+        product_id: env.NEXT_PUBLIC_CREEM_ONETIME_MED,
         title: "plans.2.title",
         price: `$${pricingData[1].price}`,
         quantity: pricingData[1].quantity,
@@ -202,7 +202,7 @@ export function PricingCards({
       },
       {
         id: pricingData[2].id,
-        product_id: 'prod_54resnez8YIzBKrSvm3yXi',
+        product_id: env.NEXT_PUBLIC_CREEM_ONETIME_MAX,
         title: "plans.3.title",
         price: `$${pricingData[2].price}`,
         quantity: pricingData[2].quantity,
@@ -272,6 +272,7 @@ export function PricingCards({
       </div>
 
       <div className="mb-8 flex items-center justify-center gap-4 rounded-full bg-muted p-1">
+        {/*
         <Button
           variant={period === "annually" ? "default" : "ghost"}
           onClick={() => setPeriod("annually")}
@@ -280,8 +281,8 @@ export function PricingCards({
             period === "annually" ? "bg-primary text-primary-foreground shadow-lg" : "hover:bg-muted-foreground/10"
           )}
         >
-          {t('period.annually')} 
-          <Badge 
+          {t('period.annually')}
+          <Badge
             className={cn(
               "ml-2 transition-all duration-300",
               period === "annually" ? "bg-primary-foreground text-primary" : "bg-primary/20 text-primary"
@@ -300,6 +301,7 @@ export function PricingCards({
         >
           {t('period.monthly')}
         </Button>
+        */}
         <Button
           variant={period === "one-time" ? "default" : "ghost"}
           onClick={() => setPeriod("one-time")}

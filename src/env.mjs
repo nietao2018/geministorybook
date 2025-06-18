@@ -31,6 +31,9 @@ export const env = createEnv({
   client: {
     NEXT_PUBLIC_STRIPE_PUBLIC_KEY: z.string().min(1),
     NEXT_PUBLIC_APP_URL: z.string().min(1),
+    NEXT_PUBLIC_CREEM_ONETIME_MIN: z.string().min(1),
+    NEXT_PUBLIC_CREEM_ONETIME_MAX: z.string().min(1),
+    NEXT_PUBLIC_CREEM_ONETIME_MED: z.string().min(1),
   },
   runtimeEnv: {
     NEXTAUTH_URL: process.env.NEXTAUTH_URL,
@@ -56,8 +59,10 @@ export const env = createEnv({
     REPLICATE_API_TOKEN: process.env.REPLICATE_API_TOKEN,
     LINKEDIN_CLIENT_ID: process.env.LINKEDIN_CLIENT_ID,
     LINKEDIN_CLIENT_SECRET: process.env.LINKEDIN_CLIENT_SECRET,
-
     CREEM_API_URL: process.env.CREEM_API_URL,
-    CREEM_API_KEY: process.env.CREEM_API_KEY
+    CREEM_API_KEY: process.env.CREEM_API_KEY,
+    NEXT_PUBLIC_CREEM_ONETIME_MIN: process.env.NEXT_PUBLIC_CREEM_ONETIME_MIN,
+    NEXT_PUBLIC_CREEM_ONETIME_MAX: process.env.NEXT_PUBLIC_CREEM_ONETIME_MAX,
+    NEXT_PUBLIC_CREEM_ONETIME_MED: process.env.NEXT_PUBLIC_CREEM_ONETIME_MED,
   },
 });

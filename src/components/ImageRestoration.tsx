@@ -221,13 +221,10 @@ const ImageRestoration: React.FC<ImageRestorationProps> = () => {
       </div>
     );
   } else if (uploadedImageUrl && !restoredImageUrl) {
-    // User has uploaded an image, but it's not yet processed
+    // 只显示图片，不显示提示文字
     previewContent = (
       <div className="relative flex size-full items-center justify-center">
         <img src={uploadedImageUrl} alt="Uploaded Image" className="size-full object-cover" />
-        <p className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded bg-black/[70%] px-3 py-1 text-white">
-          Your uploaded image (no processed image yet)
-        </p>
       </div>
     );
   } else if (uploadedImageUrl && restoredImageUrl) {
