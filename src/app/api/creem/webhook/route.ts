@@ -2,11 +2,12 @@ import { NextResponse } from 'next/server';
 import crypto from 'crypto';
 import { updateCheckoutSession, getUserIdByProductId } from '@/supabase/checkout_sessions'
 import { updateUserCredits } from '@/supabase/user'
+import { env } from '@/env.mjs'
 
 function verifyCreemSignature(payload: string, signature: string): boolean {
   try {
     const computedSignature = crypto
-      .createHmac('sha256', 'whsec_7abhsSKuzKXf8SjJcJO8De')
+      .createHmac('sha256', env.SIGNATURE)
       .update(payload)
       .digest('hex');
     

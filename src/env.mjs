@@ -26,6 +26,7 @@ export const env = createEnv({
     LINKEDIN_CLIENT_SECRET: z.string().min(1),
     CREEM_API_URL: z.string().min(1),
     CREEM_API_KEY: z.string().min(1),
+    SIGNATURE: z.string().min(1),
     NGROK: z.string().optional()
   },
   client: {
@@ -59,8 +60,10 @@ export const env = createEnv({
     REPLICATE_API_TOKEN: process.env.REPLICATE_API_TOKEN,
     LINKEDIN_CLIENT_ID: process.env.LINKEDIN_CLIENT_ID,
     LINKEDIN_CLIENT_SECRET: process.env.LINKEDIN_CLIENT_SECRET,
+    // Creem
     CREEM_API_URL: process.env.CREEM_API_URL,
     CREEM_API_KEY: process.env.CREEM_API_KEY,
+    SIGNATURE: process.env.SIGNATURE,
     NEXT_PUBLIC_CREEM_ONETIME_MIN: process.env.NEXT_PUBLIC_CREEM_ONETIME_MIN,
     NEXT_PUBLIC_CREEM_ONETIME_MAX: process.env.NEXT_PUBLIC_CREEM_ONETIME_MAX,
     NEXT_PUBLIC_CREEM_ONETIME_MED: process.env.NEXT_PUBLIC_CREEM_ONETIME_MED,
