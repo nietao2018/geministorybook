@@ -3,6 +3,7 @@ import crypto from 'crypto';
 import { updateCheckoutSession, getUserIdByProductId } from '@/supabase/checkout_sessions'
 import { updateUserCredits } from '@/supabase/user'
 import { env } from '@/env.mjs'
+import { pricingData } from "@/config/credits-plan";
 
 function verifyCreemSignature(payload: string, signature: string): boolean {
   try {
@@ -16,6 +17,10 @@ function verifyCreemSignature(payload: string, signature: string): boolean {
     console.error('Error verifying signature:', error);
     return false;
   }
+}
+
+function getCreditsAmountByProductId(productId: string) {
+  return pricingData.find(item => item.productId === productId) || null;
 }
 
 export async function POST(req: Request) {
@@ -34,9 +39,10 @@ export async function POST(req: Request) {
 
     const payload = JSON.parse(body);
     const { eventType, object } = payload;
+    const productData = getCreditsAmountByProductId(object?.order?.product)
 
     // 更新checkout_sessions
-    if (eventType === 'checkout.completed') {
+    if (eventType === 'checkout.completed' && productData) {
       await updateCheckoutSession({
         checkoutId: object?.id,
         updates: {
@@ -49,7 +55,7 @@ export async function POST(req: Request) {
 
       userId && await updateUserCredits({
         userId,
-        amount: 100,
+        amount: productData.quantity,
         type: "PURCHASE"
       })
     }
