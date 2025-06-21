@@ -28,7 +28,7 @@ export default async function SettingsPage() {
       <div className="divide-y divide-muted pb-10">
         <UserNameForm user={{ id: user.id, name: user.name || "" }} />
         <UserAvatarForm user={{ id: user.id, image: user.image || "" }} />
-        <DeleteAccountSection />
+        {/* <DeleteAccountSection /> */}
       </div>
     </>
   );
