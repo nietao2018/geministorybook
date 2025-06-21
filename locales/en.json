@@ -194,7 +194,7 @@
     "period": {
       "annually": "Annually",
       "monthly": "Monthly",
-      "oneTime": "One-time",
+      "oneTime": "One time Payment",
       "discount": "Save 20%"
     },
     "trial_section_description": "Want to try first? Sign up to get 3 free credits.",

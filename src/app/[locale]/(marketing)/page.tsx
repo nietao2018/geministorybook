@@ -11,6 +11,7 @@ import CTA from "@/components/sections/CTA";
 import VideoSection from "@/components/sections/video-section";
 import DemoList from "@/components/sections/test-demo";
 import TryOnClothing from "@/components/try-on-clothing";
+import { PricingCards } from "@/components/pricing/pricing-cards";
 
 export default function IndexPage({ params: { locale } }: { params: { locale: string } }) {
   unstable_setRequestLocale(locale);
@@ -29,6 +30,8 @@ export default function IndexPage({ params: { locale } }: { params: { locale: st
       {/* <InfoLanding/> */}
       <Features />
       {/* <Testimonials /> */}
+      <PricingCards />
+
       <CTA />
     </>
   );

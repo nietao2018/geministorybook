@@ -6,12 +6,14 @@ import { toast } from "sonner";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { HeaderSection } from "@/components/shared/header-section";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { ModalContext } from "@/components/modals/providers";
 import { useRef } from "react";
 import { ChevronLeft, ChevronRight, CheckCircle2, XCircle } from "lucide-react";
 import { useTranslations } from 'next-intl';
 import { cn } from "@/lib/utils";
 import { env } from "@/env.mjs";
+import { pricingData } from "@/config/credits-plan";
 
 type PricingPeriod = "annually" | "monthly" | "one-time";
 
@@ -32,16 +34,9 @@ interface PricingData {
   quantity: number;
 }
 
-export function PricingCards({ 
-  userId, 
-  emailAddress,
-  pricingData 
-}: { 
-  userId?: string; 
-  emailAddress?: string;
-  pricingData: PricingData[];
-}) {
+export function PricingCards({}: {}) {
   const router = useRouter();
+  const { setShowSignInModal } = useContext(ModalContext);
   const [loadingPlan, setLoadingPlan] = useState<number | null>(null);
   const [period, setPeriod] = useState<PricingPeriod>("one-time");
   const [isAnyCardHovered, setIsAnyCardHovered] = useState(false);
@@ -224,10 +219,6 @@ export function PricingCards({
   const currentPricing = allPricingData[period];
 
   const handlePurchase = async (plan: PricingPlanData) => {
-    if (!userId) {
-      toast.error(t("toast.signInRequired"));
-      return;
-    }
 
     setLoadingPlan(plan.id);
     try {
@@ -242,6 +233,10 @@ export function PricingCards({
         }),
       });
 
+      if (response.status === 401) {
+        setShowSignInModal(true)
+        return
+      }
       if (!response.ok) {
         throw new Error(t("toast.checkoutFailed"));
       }
@@ -263,7 +258,7 @@ export function PricingCards({
 
   return (
     <>
-      <div className="mx-auto mb-12 flex w-full flex-col items-center gap-5">
+      <div className="mx-auto mb-12 flex w-full max-w-[1200px] flex-col items-center gap-5">
         <HeaderSection
           label={t('label')}
           title={t('title')}
@@ -271,7 +266,7 @@ export function PricingCards({
         />
       </div>
 
-      <div className="mb-8 flex items-center justify-center gap-4 rounded-full bg-muted p-1">
+      <div className="mb-8 flex items-center justify-center gap-4 rounded-full bg-muted p-1 max-w-[1200px] w-full mx-auto">
         {/*
         <Button
           variant={period === "annually" ? "default" : "ghost"}
@@ -314,7 +309,7 @@ export function PricingCards({
         </Button>
       </div>
 
-      <div className="grid gap-6 pb-4 md:grid-cols-3">
+      <div className="grid gap-6 pb-4 md:grid-cols-3 max-w-[1200px] w-full mx-auto">
         {currentPricing.map((plan) => (
           <PricingCard
             key={plan.id}
@@ -326,7 +321,7 @@ export function PricingCards({
           />
         ))}
       </div>
-      <div className="my-10 text-center">
+      <div className="my-10 text-center max-w-[1200px] w-full mx-auto">
         <p className="text-sm leading-relaxed text-muted-foreground">
           {t('trial_section_description')}
           <br />

@@ -140,7 +140,7 @@ export default function DashboardPage() {
           <EmptyPlaceholder.Description>
             {t('you_dont_have_any_studios_yet')}
           </EmptyPlaceholder.Description>
-          <Link href="/pricing">
+          <Link href="/">
             <Button>{t('create_new_studio')}</Button>
           </Link>
         </EmptyPlaceholder>
