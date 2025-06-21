@@ -148,16 +148,16 @@ export default function TryOnClothing() {
       };
 
     return (
-        <section className="flex justify-center bg-background py-12 text-foreground dark:bg-[#18181b] dark:text-white max-w-[1200px] mx-auto">
+        <section className="mx-auto flex max-w-[1200px] justify-center bg-background py-12 text-foreground dark:bg-[#18181b] dark:text-white">
             <div className="container mx-auto grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
                 {/* Person Image Column */}
                 <div className="space-y-4">
                     <h2 className="flex items-center gap-2 text-lg font-semibold">
-                        Step 1. Upload a person image <Download className="h-5 w-5" />
+                        Step 1. Upload a person image <Download className="size-5" />
                     </h2>
                     <Card
                         className={cn(
-                            "relative h-96 border-dashed bg-white dark:bg-[#232329] border-gray-200 dark:border-gray-700",
+                            "relative h-96 border-dashed border-gray-200 bg-white dark:border-gray-700 dark:bg-[#232329]",
                             isPersonDragOver && "border-primary ring-2 ring-primary"
                         )}
                         onDragOver={handleDragOver}
@@ -167,24 +167,24 @@ export default function TryOnClothing() {
                     >
                         {personImage ? (
                             <>
-                                <img src={personImage} alt="Person" className="h-full w-full rounded-md object-cover" />
+                                <img src={personImage} alt="Person" className="size-full rounded-md object-cover" />
                                 <Button
                                     variant="ghost"
                                     size="icon"
-                                    className="absolute right-2 top-2 bg-white/80 dark:bg-[#232329]/80 text-black dark:text-white"
+                                    className="absolute right-2 top-2 bg-white/80 text-black dark:bg-[#232329]/80 dark:text-white"
                                     onClick={() => setPersonImage(null)}
                                 >
-                                    <X className="h-4 w-4" />
+                                    <X className="size-4" />
                                 </Button>
                             </>
                         ) : (
                             <>
-                                <div className="absolute left-2 top-2 flex items-center gap-1 rounded-sm bg-background dark:bg-[#232329] p-1 text-xs text-muted-foreground dark:text-gray-400">
-                                    <ImageIcon className="h-3 w-3" />
+                                <div className="absolute left-2 top-2 flex items-center gap-1 rounded-sm bg-background p-1 text-xs text-muted-foreground dark:bg-[#232329] dark:text-gray-400">
+                                    <ImageIcon className="size-3" />
                                     <span>Drag and drop an image here</span>
                                 </div>
                                 <CardContent className="flex h-full flex-col items-center justify-center gap-1 p-6 text-center text-sm text-muted-foreground dark:text-gray-400">
-                                    <Upload className="h-8 w-8" />
+                                    <Upload className="size-8" />
                                     <span>Drag and drop an image here</span>
                                     <span>- or -</span>
                                     <Button
@@ -212,7 +212,7 @@ export default function TryOnClothing() {
                                 key={index}
                                 src={src}
                                 alt={`Person example ${index + 1}`}
-                                className="aspect-square w-full cursor-pointer rounded-md object-cover transition ring-2 ring-transparent hover:ring-primary dark:hover:ring-blue-400"
+                                className="aspect-square w-full cursor-pointer rounded-md object-cover ring-2 ring-transparent transition hover:ring-primary dark:hover:ring-blue-400"
                                 onClick={() => setPersonImage(src)}
                             />
                         ))}
@@ -222,11 +222,11 @@ export default function TryOnClothing() {
                 {/* Garment Image Column */}
                 <div className="space-y-4">
                     <h2 className="flex items-center gap-2 text-lg font-semibold">
-                        Step 2. Upload a garment image <Download className="h-5 w-5" />
+                        Step 2. Upload a garment image <Download className="size-5" />
                     </h2>
                     <Card
                         className={cn(
-                            "relative h-96 border-dashed bg-white dark:bg-[#18181b] border-gray-200 dark:border-[#232329]",
+                            "relative h-96 border-dashed border-gray-200 bg-white dark:border-[#232329] dark:bg-[#18181b]",
                             isGarmentDragOver && "border-primary ring-2 ring-primary"
                         )}
                         onDragOver={handleDragOver}
@@ -239,25 +239,25 @@ export default function TryOnClothing() {
                                 <img
                                     src={garmentImage}
                                     alt="Garment"
-                                    className="h-full w-full rounded-md object-cover"
+                                    className="size-full rounded-md object-cover"
                                 />
                                 <Button
                                     variant="ghost"
                                     size="icon"
-                                    className="absolute right-2 top-2 bg-white/80 dark:bg-[#18181b]/80 text-black dark:text-white"
+                                    className="absolute right-2 top-2 bg-white/80 text-black dark:bg-[#18181b]/80 dark:text-white"
                                     onClick={() => setGarmentImage(null)}
                                 >
-                                    <X className="h-4 w-4" />
+                                    <X className="size-4" />
                                 </Button>
                             </>
                         ) : (
                             <>
-                                <div className="absolute left-2 top-2 flex items-center gap-1 rounded-sm bg-background dark:bg-[#18181b] p-1 text-xs text-muted-foreground dark:text-gray-400">
-                                    <ImageIcon className="h-3 w-3" />
+                                <div className="absolute left-2 top-2 flex items-center gap-1 rounded-sm bg-background p-1 text-xs text-muted-foreground dark:bg-[#18181b] dark:text-gray-400">
+                                    <ImageIcon className="size-3" />
                                     <span>Drag and drop an image here</span>
                                 </div>
                                 <CardContent className="flex h-full flex-col items-center justify-center gap-1 p-6 text-center text-sm text-muted-foreground dark:text-gray-400">
-                                    <Upload className="h-8 w-8" />
+                                    <Upload className="size-8" />
                                     <span>Drag and drop an image here</span>
                                     <span>- or -</span>
                                     <Button
@@ -285,7 +285,7 @@ export default function TryOnClothing() {
                                 key={index}
                                 src={src}
                                 alt={`Garment example ${index + 1}`}
-                                className="aspect-square w-full cursor-pointer rounded-md object-cover transition ring-2 ring-transparent hover:ring-primary dark:hover:ring-blue-400"
+                                className="aspect-square w-full cursor-pointer rounded-md object-cover ring-2 ring-transparent transition hover:ring-primary dark:hover:ring-blue-400"
                                 onClick={() => setGarmentImage(src)}
                             />
                         ))}
@@ -295,19 +295,19 @@ export default function TryOnClothing() {
                 {/* Result Column */}
                 <div className="space-y-4">
                     <h2 className="text-lg font-semibold">Step 3. Press &quot;Run&quot; to get try-on results</h2>
-                    <Card className="h-96 bg-white dark:bg-[#18181b] border-gray-200 dark:border-[#232329]">
+                    <Card className="h-96 border-gray-200 bg-white dark:border-[#232329] dark:bg-[#18181b]">
                         <CardContent className="flex h-full items-center justify-center p-0">
                             {isLoading ? (
                                 <div className="flex flex-col items-center gap-2 text-muted-foreground dark:text-gray-400">
-                                    <Loader2 className="h-12 w-12 animate-spin" />
+                                    <Loader2 className="size-12 animate-spin" />
                                     <p>Generating...</p>
                                 </div>
                             ) : resultImage ? (
-                                <div className="flex items-center justify-center w-full h-full relative">
+                                <div className="relative flex size-full items-center justify-center">
                                     <img
                                         src={resultImage}
                                         alt="Result"
-                                        className="w-full h-full max-w-full max-h-full object-cover object-center rounded-md"
+                                        className="size-full max-h-full max-w-full rounded-md object-cover object-center"
                                         style={{ aspectRatio: '1/1' }}
                                     />
                                     <a
@@ -315,26 +315,26 @@ export default function TryOnClothing() {
                                         download
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="absolute top-2 right-2 z-10"
+                                        className="absolute right-2 top-2 z-10"
                                     >
                                         <Button
                                             variant="ghost"
                                             size="icon"
-                                            className="bg-white/80 dark:bg-[#232329]/80 text-black dark:text-white"
+                                            className="bg-white/80 text-black dark:bg-[#232329]/80 dark:text-white"
                                         >
-                                            <Download className="h-4 w-4" />
+                                            <Download className="size-4" />
                                         </Button>
                                     </a>
                                 </div>
                             ) : (
                                 <div className="text-center text-muted-foreground dark:text-gray-400">
-                                    <ImageIcon className="mx-auto h-12 w-12" />
+                                    <ImageIcon className="mx-auto size-12" />
                                     <p>Result</p>
                                 </div>
                             )}
                         </CardContent>
                     </Card>
-                    <div className="space-y-4 rounded-md border bg-muted/20 dark:bg-[#18181b]/60 border-gray-200 dark:border-[#232329] p-4">
+                    <div className="space-y-4 rounded-md border border-gray-200 bg-muted/20 p-4 dark:border-[#232329] dark:bg-[#18181b]/60">
                         <div className="grid gap-4">
                             <div className="flex items-center gap-4">
                                 <Label htmlFor="seed-slider" className="w-12">
@@ -354,7 +354,7 @@ export default function TryOnClothing() {
                                     type="number"
                                     value={seed}
                                     onChange={e => setSeed(Number(e.target.value))}
-                                    className="w-24 bg-white dark:bg-[#18181b] text-black dark:text-white border-gray-200 dark:border-[#232329]"
+                                    className="w-24 border-gray-200 bg-white text-black dark:border-[#232329] dark:bg-[#18181b] dark:text-white"
                                     disabled={isRandomSeed}
                                 />
                             </div>
@@ -371,7 +371,7 @@ export default function TryOnClothing() {
                     <div className="grid grid-cols-2 gap-4">
                         <div className="space-y-1">
                             <Label htmlFor="seed-used">Seed used</Label>
-                            <Input id="seed-used" readOnly value={seedUsed ?? ""} className="bg-white dark:bg-[#18181b] text-black dark:text-white border-gray-200 dark:border-[#232329]" />
+                            <Input id="seed-used" readOnly value={seedUsed ?? ""} className="border-gray-200 bg-white text-black dark:border-[#232329] dark:bg-[#18181b] dark:text-white" />
                         </div>
                         <div className="space-y-1">
                             <Label htmlFor="response">Response</Label>
@@ -380,13 +380,13 @@ export default function TryOnClothing() {
                     </div>
                     <Button
                         size="lg"
-                        className="w-full bg-primary text-white dark:bg-blue-600 dark:text-white hover:bg-primary/90 dark:hover:bg-blue-500"
+                        className="w-full bg-primary text-white hover:bg-primary/90 dark:bg-blue-600 dark:text-white dark:hover:bg-blue-500"
                         onClick={handleRun}
                         disabled={isLoading || !personImage || !garmentImage}
                     >
                         {isLoading ? (
                             <>
-                                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                <Loader2 className="mr-2 size-4 animate-spin" />
                                 Please wait
                             </>
                         ) : (
