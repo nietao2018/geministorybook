@@ -133,24 +133,6 @@ const ImageRestoration: React.FC<ImageRestorationProps> = () => {
       setPredictionId(data.id);
       
       if (data.id) {
-        // 扣减积分
-        const deductResponse = await fetch('/api/user/credits', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          credentials: 'include',
-          body: JSON.stringify({
-            amount: 5,
-            type: 'USAGE',
-          }),
-        });
-
-        if (!deductResponse.ok) {
-          console.error('扣减积分失败');
-          // 这里不抛出错误，因为图片生成已经成功
-        }
-
         await pollPredictionResult(data.id);
       }
     } catch (err) {
