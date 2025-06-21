@@ -112,7 +112,7 @@ export default function TryOnClothing() {
                         garm_img: garmentImage,
                         garment_des: ''
                     },
-                    useCredit: 5,
+                    useCredit: 10,
                     model: 'tryClothing'
                 }),
             });
