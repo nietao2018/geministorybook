@@ -100,3 +100,13 @@ export const getUserIdByProductId = async (checkoutId: string) => {
    return null;
  }
 };
+
+export async function getCheckoutSessionStatusById(checkoutId: string) {
+  // 假设你用的是supabase-js
+  const session = await prisma.checkoutSession.findUnique({
+    where: { checkoutId },
+    select: { status: true }
+  });
+  return session?.status || null;
+
+}

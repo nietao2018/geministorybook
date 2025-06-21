@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import crypto from 'crypto';
-import { updateCheckoutSession, getUserIdByProductId } from '@/supabase/checkout_sessions'
+import { updateCheckoutSession, getUserIdByProductId, getCheckoutSessionStatusById } from '@/supabase/checkout_sessions'
 import { updateUserCredits } from '@/supabase/user'
 import { env } from '@/env.mjs'
 import { pricingData } from "@/config/credits-plan";
@@ -41,8 +41,11 @@ export async function POST(req: Request) {
     const { eventType, object } = payload;
     const productData = getCreditsAmountByProductId(object?.order?.product)
 
+    //查询checkout状态
+    const status = await getCheckoutSessionStatusById(object?.id)
+
     // 更新checkout_sessions
-    if (eventType === 'checkout.completed' && productData) {
+    if (eventType === 'checkout.completed' && status === 'PAID' && productData) {
       await updateCheckoutSession({
         checkoutId: object?.id,
         updates: {
