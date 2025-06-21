@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 import { Download, ImageIcon, Loader2, Upload, X } from "lucide-react";
 import React, { useRef, useState, useContext } from "react";
 import { ModalContext } from "@/components/modals/providers";
+import { toast } from "sonner";
 
 const personExamples = [
 
@@ -122,8 +123,10 @@ export default function TryOnClothing() {
                 return;
             }
             if (response.status === 201) {
+                console.error("ad", response.status)
+
                 // @ts-ignore
-                window.toast && window.toast("Insufficient credits, please purchase more.");
+                toast.error("Insufficient credits, please purchase more.");
                 return;
             }
 
