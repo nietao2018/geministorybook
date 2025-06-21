@@ -136,7 +136,6 @@ export default function TryOnClothing() {
             console.error(e)
         } finally {
             setResultImage("https://via.placeholder.com/400"); // Placeholder for result
-            setIsLoading(false);
         }
     };
 
@@ -150,6 +149,7 @@ export default function TryOnClothing() {
           
         if (response.ok && data.status === 'completed' && data.imageUrl) {
             setResultImage(data.imageUrl);
+            setIsLoading(false);
         } else if (['processing', 'starting'].includes(data.status)) {
             setTimeout(() => pollPredictionResult(id), 1000);
         }
