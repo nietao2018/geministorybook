@@ -6,12 +6,14 @@ import { env } from "@/env.mjs";
 
 export async function generateMetadata({ params }: { params: { locale: string } }): Promise<Metadata> {
   return {
+    title: "AI Photo Restoration & Enhancement – Restore Old Photos Online Instantly",
+    description: "Bring your old, damaged, or faded photos back to life with advanced AI photo restoration. Instantly remove scratches, repair colors, and enhance details for stunning results. Perfect for preserving memories!",
     alternates: {
       canonical: params.locale === 'en' 
         ? `${env.NEXT_PUBLIC_APP_URL}/image-restoration`
         : `${env.NEXT_PUBLIC_APP_URL}/${params.locale}/image-restoration`,
     },
-    description: 'Transform your old photos with AI-powered restoration. Remove scratches, fix colors, and enhance details to bring your memories back to life.',
+    keywords: "AI photo restoration, restore old photos, photo enhancement, remove scratches, colorize photos, repair faded images, online photo repair, digital photo restoration, enhance photo details, memory preservation",
   };
 }
 
@@ -25,6 +27,9 @@ export default function RemoveBgPage({ params }: { params: { locale: string } })
       <h1 className="mb-8 text-center text-4xl font-bold">
         { 'AI Photo Restoration & Enhancement' }
       </h1>
+      <h2 className="container mx-auto mb-8 text-center text-xl font-bold w-full max-w-[1200px]">
+        { 'Bring your old, damaged, or faded photos back to life with advanced AI photo restoration. Instantly remove scratches, repair colors, and enhance details for stunning results. Perfect for preserving memories!' }
+      </h2>
     </div>
     <ImageRestoration />
 

@@ -50,7 +50,8 @@
       "Terms": "Terms",
       "Privacy": "Privacy",
       "Refund": "Refund",
-      "image-restoration": "image-restoration",
+      "image-restoration": "Image-Restoration",
+      "clothes-try-on": "Clothing-Try-On",
       "PixMiller": "PixMiller",
       "HeadShots fun": "Converters.pro",
       "Ullr AI Lab": "Ullr AI Lab",
@@ -175,7 +176,8 @@
     "sign_in": "Sign In",
     "blog": "Blog",
     "generator-styles": "Styles",
-    "image-restoration": "image-restoration",
+    "image-restoration": "Image-Restoration",
+    "clothes-try-on": "Clothing-Try-On",
     "pricing": "Pricing"
   },
   "HeadshotStylePage": {
@@ -197,8 +199,8 @@
       "oneTime": "One time Payment",
       "discount": "Save 20%"
     },
-    "trial_section_description": "Want to try first? Sign up to get 3 free credits.",
-    "1_credit_1_headshot": "1 credit = 1 video",
+    "trial_section_description": "Want to try first? Sign up to get 5 free credits.",
+    "1_credit_1_headshot": "login got discount",
     "processing": "Processing...",
     "purchase": "Purchase",
     "most_popular": "Most Popular",

@@ -11,6 +11,10 @@ export const marketingConfig: MarketingConfig = {
     //   href: "/generator-styles",
     // },
     {
+      title: "clothes-try-on",
+      href: "/try-on-clothing",
+    },
+    {
       title: "image-restoration",
       href: "/image-restoration",
     },

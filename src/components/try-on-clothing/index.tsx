@@ -226,7 +226,7 @@ export default function TryOnClothing() {
                     </h2>
                     <Card
                         className={cn(
-                            "relative h-96 border-dashed border-gray-200 bg-white dark:border-[#232329] dark:bg-[#18181b]",
+                            "relative h-96 border-dashed border-gray-200 bg-white dark:border-gray-700 dark:bg-[#232329]",
                             isGarmentDragOver && "border-primary ring-2 ring-primary"
                         )}
                         onDragOver={handleDragOver}
@@ -295,7 +295,7 @@ export default function TryOnClothing() {
                 {/* Result Column */}
                 <div className="space-y-4">
                     <h2 className="text-lg font-semibold">Step 3. Press &quot;Run&quot; to get try-on results</h2>
-                    <Card className="h-96 border-gray-200 bg-white dark:border-[#232329] dark:bg-[#18181b]">
+                    <Card className="h-96 border-dashed border-gray-200 bg-white dark:border-gray-700 dark:bg-[#232329]">
                         <CardContent className="flex h-full items-center justify-center p-0">
                             {isLoading ? (
                                 <div className="flex flex-col items-center gap-2 text-muted-foreground dark:text-gray-400">
