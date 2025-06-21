@@ -288,45 +288,45 @@
             "4": "Unlimited batch export",
             "5": "Full effects library",
             "6": "Dedicated support",
-            "7": "API access"
+            "7": "Personalized support"
           }
         }
       },
       "oneTime": {
         "1": {
           "features": {
-            "0": "10 video credits",
-            "1": "Basic video editing",
-            "2": "Standard watermark",
-            "3": "Standard rendering queue",
-            "4": "Single export",
-            "5": "Basic effects library",
-            "6": "Community support",
-            "7": "API access"
+            "0": "100 credits",
+            "1": "High quality AI Image",
+            "2": "Private Generation",
+            "3": "Manage generated Content",
+            "4": "Image download",
+            "5": "Commerical License",
+            "6": "Priority support",
+            "7": "Benifits valid for 500 days"
           }
         },
         "2": {
           "features": {
-            "0": "20 video credits",
-            "1": "Advanced video editing",
-            "2": "Custom watermark",
-            "3": "Priority rendering queue",
-            "4": "Batch export",
-            "5": "Advanced effects library",
-            "6": "Email support",
-            "7": "API access"
+            "0": "300 credits",
+            "1": "High quality AI Image",
+            "2": "Private Generation",
+            "3": "Manage generated Content",
+            "4": "Image download",
+            "5": "Commerical License",
+            "6": "Priority support",
+            "7": "Benifits valid for 500 days"
           }
         },
         "3": {
           "features": {
-            "0": "50 video credits",
-            "1": "Professional video editing",
-            "2": "Brand watermark",
-            "3": "Highest priority rendering",
-            "4": "Unlimited batch export",
-            "5": "Full effects library",
-            "6": "Dedicated support",
-            "7": "API access"
+            "0": "600 credits",
+            "1": "High quality AI Image",
+            "2": "Private Generation",
+            "3": "Manage generated Content",
+            "4": "Image download",
+            "5": "Commerical License",
+            "6": "Priority support",
+            "7": "Benifits valid for 1000 days"
           }
         }
       }
