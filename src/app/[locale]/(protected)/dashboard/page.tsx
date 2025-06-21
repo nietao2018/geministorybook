@@ -73,13 +73,13 @@ export default function DashboardPage() {
       <DashboardHeader
         heading={t('studios')}
       >
-        <Link href="/dashboard/studio/create">
+        {/* <Link href="/dashboard/studio/create">
           <Button>
             <Icons.add className="mr-2 size-4" />
             <span className="hidden sm:inline-flex">{t('create_new_studio')}</span>
             <span className="inline-flex sm:hidden">{t('create_new_studio_short')}</span>
           </Button>
-        </Link>
+        </Link> */}
       </DashboardHeader>
 
       {loading ? (
@@ -140,7 +140,7 @@ export default function DashboardPage() {
           <EmptyPlaceholder.Description>
             {t('you_dont_have_any_studios_yet')}
           </EmptyPlaceholder.Description>
-          <Link href="/dashboard/studio/create">
+          <Link href="/pricing">
             <Button>{t('create_new_studio')}</Button>
           </Link>
         </EmptyPlaceholder>
