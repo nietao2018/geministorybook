@@ -45,7 +45,7 @@ export async function POST(req: Request) {
     const status = await getCheckoutSessionStatusById(object?.id)
 
     // 更新checkout_sessions
-    if (eventType === 'checkout.completed' && status === 'PAID' && productData) {
+    if (eventType === 'checkout.completed' && status != 'PAID' && productData) {
       await updateCheckoutSession({
         checkoutId: object?.id,
         updates: {
