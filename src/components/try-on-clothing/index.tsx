@@ -121,6 +121,11 @@ export default function TryOnClothing() {
                 setShowSignInModal(true);
                 return;
             }
+            if (response.status === 201) {
+                // @ts-ignore
+                window.toast && window.toast("Insufficient credits, please purchase more.");
+                return;
+            }
 
             const data = await response.json();
             data.id && await pollPredictionResult(data.id);
@@ -390,7 +395,7 @@ export default function TryOnClothing() {
                                 Please wait
                             </>
                         ) : (
-                            "Run"
+                            "Run (Cost 10 Credits)"
                         )}
                     </Button>
                 </div>
