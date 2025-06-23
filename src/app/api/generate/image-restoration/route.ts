@@ -32,6 +32,10 @@ export async function POST(request: NextRequest) {
             data: {
                 userId: session?.user?.id,
                 status: "pending",
+                predictionData: {
+                  type: 'restoration',
+                  beforeImage: image
+                }
             },
     });
 

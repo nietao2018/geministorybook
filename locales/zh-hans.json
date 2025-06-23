@@ -51,6 +51,7 @@
       "Privacy": "隐私",
       "Refund": "退款",
       "image-restoration": "照片修复",
+      "clothes-try-on": "虚拟试衣",
       "PixMiller": "PixMiller",
       "HeadShots fun": "HeadShots.fun",
       "Ullr AI Lab": "Ullr AI 实验室",
@@ -176,6 +177,7 @@
     "blog": "博客",
     "generator-styles": "风格灵感",
     "image-restoration": "照片修复",
+    "clothes-try-on": "虚拟试衣",
     "pricing": "定价"
   },
   "HeadshotStylePage": {

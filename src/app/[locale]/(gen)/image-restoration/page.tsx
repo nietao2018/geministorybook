@@ -27,7 +27,7 @@ export default function RemoveBgPage({ params }: { params: { locale: string } })
       <h1 className="mb-8 text-center text-4xl font-bold">
         { 'AI Photo Restoration & Enhancement' }
       </h1>
-      <h2 className="container mx-auto mb-8 text-center text-xl font-bold w-full max-w-[1200px]">
+      <h2 className="container mx-auto mb-8 w-full max-w-[1200px] text-center text-xl font-bold">
         { 'Bring your old, damaged, or faded photos back to life with advanced AI photo restoration. Instantly remove scratches, repair colors, and enhance details for stunning results. Perfect for preserving memories!' }
       </h2>
     </div>
