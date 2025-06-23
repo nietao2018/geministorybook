@@ -9,7 +9,7 @@ export async function GET(request: Request, { params }: { params: { id: string }
   const authFlag = url.searchParams.get('auth');
 
   const session = await auth();
-  if (!session?.user && !!authFlag) {
+  if (!session?.user && !authFlag) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
