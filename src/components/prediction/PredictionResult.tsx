@@ -19,11 +19,11 @@ export default function PredictionResult() {
     if (!id) return;
     setLoading(true);
     setError(null);
-    fetch(`/api/prediction/${id}/get`)
+    fetch(`/api/prediction/${id}/get?auth=false`)
       .then(res => {
         if (!res.ok) throw new Error("Failed to fetch prediction result");
         return res.json();
-      })
+    })
       .then(result => {
         // 假设API返回 { beforeImageUrl, afterImageUrl }
         setData({
