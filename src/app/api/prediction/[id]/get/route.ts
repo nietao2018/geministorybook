@@ -5,7 +5,8 @@ import { auth } from "@/auth";
 
 export async function GET(request: Request, { params }: { params: { id: string } }) {
 
-  const authFlag = request?.query?.auth
+  const url = new URL(request.url);
+  const authFlag = url.searchParams.get('auth');
 
   const session = await auth();
   if (!session?.user && !!authFlag) {
