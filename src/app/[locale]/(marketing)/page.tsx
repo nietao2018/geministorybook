@@ -31,7 +31,7 @@ export default function IndexPage({ params: { locale } }: { params: { locale: st
       <Features />
       {/* <Testimonials /> */}
       <PricingCards />
-      <div className="flex justify-center my-4">
+      <div className="my-4 flex justify-center">
         <a href="https://magicbox.tools" target="_blank">
           <img src="https://magicbox.tools/badge.svg" alt="Featured on MagicBox.tools" width="200" height="54" />
         </a>

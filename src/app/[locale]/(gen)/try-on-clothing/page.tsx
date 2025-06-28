@@ -23,10 +23,10 @@ export default function RemoveBgPage({ params }: { params: { locale: string } })
 
   // 渲染客户端组件
   return <>
-    <section className="w-full max-w-[1200px] mx-auto px-4 py-8">
-      <div className="mb-4 text-left flex flex-row items-center gap-2">
-        <a href="/" className="text-primary hover:text-blue-600 transition">Home</a>
-        <a href="/try-on-clothing" className="text-primary hover:text-blue-600 transition">{'> Try on Clothes'}</a>
+    <section className="mx-auto w-full max-w-[1200px] px-4 py-8">
+      <div className="mb-4 flex flex-row items-center gap-2 text-left">
+        <a href="/" className="text-primary transition hover:text-blue-600">Home</a>
+        <a href="/try-on-clothing" className="text-primary transition hover:text-blue-600">{'> Try on Clothes'}</a>
       </div>
       <h1 className="mb-2 text-center text-4xl font-bold">
         { 'Virtual Clothes Try-On AI Fashion Fitting' }

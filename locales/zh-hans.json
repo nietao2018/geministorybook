@@ -52,6 +52,7 @@
       "Refund": "退款",
       "image-restoration": "照片修复",
       "clothes-try-on": "虚拟试衣",
+      "photo-real-style": "动漫转真实",
       "PixMiller": "PixMiller",
       "HeadShots fun": "HeadShots.fun",
       "Ullr AI Lab": "Ullr AI 实验室",
@@ -178,6 +179,7 @@
     "generator-styles": "风格灵感",
     "image-restoration": "照片修复",
     "clothes-try-on": "虚拟试衣",
+    "photo-real-style": "动漫转真实",
     "pricing": "定价"
   },
   "HeadshotStylePage": {

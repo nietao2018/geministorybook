@@ -13,7 +13,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const { image } = await request.json();
+    const { image, prompt } = await request.json();
     if (!image) {
       return NextResponse.json(
         { error: 'No image data provided' },
@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
 
     const input =  {
       input_image: `data:image/jpeg;base64,${image}`,
-      prompt: 'Restore your old photo to a fresh state'
+      prompt: 'Convert the picture into a photorealistic image' + prompt
     }
 
     const webhookUrl = process.env.NODE_ENV === 'development' ? `${env.NGROK}/api/webhooks/replicate` : `${env.NEXT_PUBLIC_APP_URL}/api/webhooks/replicate`;

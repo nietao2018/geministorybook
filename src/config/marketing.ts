@@ -19,6 +19,10 @@ export const marketingConfig: MarketingConfig = {
       href: "/image-restoration",
     },
     {
+      title: "photo-real-style",
+      href: "/photo-real-style",
+    },
+    {
       title: "pricing",
       href: "/pricing",
     },
