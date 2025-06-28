@@ -162,7 +162,7 @@ export default function ImageInputAndResult() {
         console.error(e)
     } finally {
     }
-};
+  };
 
 
   return (
@@ -306,7 +306,7 @@ export default function ImageInputAndResult() {
                 ) : (
                   <div className="flex items-center space-x-3">
                     <Icons.zap className="size-5" />
-                    <span>Transform</span>
+                    <span>Transform(5 credits)</span>
                   </div>
                 )}
               </Button>

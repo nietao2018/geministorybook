@@ -6,6 +6,7 @@ import { auth } from "@/auth";
 
 const Version = {
   tryClothing: "cuuupid/idm-vton:0513734a452173b8173e907e3a59d19a36266e55b48528559432bd21c7d7e985",
+  removeBg:  "95fcc2a26d3899cd6c2691c900465aaeff466285a65c14638cc5f36f34befaf1"
 }
 const MODEL = {
   photoRealStyle: "black-forest-labs/flux-kontext-pro"

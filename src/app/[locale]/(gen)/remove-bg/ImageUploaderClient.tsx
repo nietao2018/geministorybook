@@ -1,12 +1,15 @@
 "use client";
 
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useContext } from 'react';
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
+import { ModalContext } from "@/components/modals/providers";
+import { toast } from "sonner";
 
 const ImageUploaderClient = () => {
   const params = useParams();
-  
+  const { setShowSignInModal } = useContext(ModalContext);
+
   const [image, setImage] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [resultUrl, setResultUrl] = useState<string | null>(null);
@@ -98,33 +101,43 @@ const ImageUploaderClient = () => {
         });
       }
       
-      // Call API service to remove background
-      const response = await fetch('/api/generate/removebg', {
-        method: 'POST',
-        body: JSON.stringify({ 
-          image: imageBase64.toString().replace(/^data:image\/\w+;base64,/, '')
-        }),
-      });
-      
-      if (response.status !== 200) {
-        throw new Error(`API request failed: ${response.status}`);
-      }
-      
-      // 解析响应的JSON数据
-      const data = await response.json();
-      console.log(data);
-      
-      // 从解析后的数据中获取id
-      setPredictionId(data.id);
-      
-      // 开始轮询获取处理结果
-      if (data.id) {
-        pollPredictionResult(data.id);
-      }
-    } catch (err) {
-      console.error('Failed to remove background:', err);
-      setError('Error processing image, please try again');
-      setIsProcessing(false);
+      imageBase64 = imageBase64.toString().replace(/^data:image\/\w+;base64,/, '')
+      // Prepare image data, remove base64 prefix
+
+        // Simulate API call
+        const response = await fetch('/api/replicate/create', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: 'include',
+            body: JSON.stringify({
+                input: {
+                    image: `data:image/jpeg;base64,${imageBase64}`,
+                },
+                useCredit: 5,
+                model: 'removeBg',
+                type: 'version'
+            }),
+        });
+
+        if (response.status === 401) {
+            setShowSignInModal(true);
+            return;
+        }
+        if (response.status === 201) {
+            console.error("ad", response.status)
+            setIsProcessing(false)
+            // @ts-ignore
+            toast.error("Insufficient credits, please purchase more.");
+            return;
+        }
+
+        const data = await response.json();
+        data.id && await pollPredictionResult(data.id);
+    } catch(e) {
+        console.error(e)
+    } finally {
     }
   };
 
@@ -295,7 +308,7 @@ const ImageUploaderClient = () => {
                     <svg xmlns="http://www.w3.org/2000/svg" className="mr-2 size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.121 14.121L19 19m-7-7l7-7m-7 7l-2.879 2.879M12 12L9.121 9.121m0 5.758a3 3 0 10-4.243-4.243 3 3 0 004.243 4.243z" />
                     </svg>
-                    Remove Background
+                    RemoveBg (5 credits)
                   </>
                 )}
               </button>
