@@ -4,8 +4,11 @@ import { env } from "@/env.mjs";
 import { prisma } from "@/lib/db";
 import { auth } from "@/auth";
 
+const Version = {
+  tryClothing: "cuuupid/idm-vton:0513734a452173b8173e907e3a59d19a36266e55b48528559432bd21c7d7e985",
+}
 const MODEL = {
-  tryClothing: "cuuupid/idm-vton:0513734a452173b8173e907e3a59d19a36266e55b48528559432bd21c7d7e985"
+  photoRealStyle: "black-forest-labs/flux-kontext-pro"
 }
 
 export async function POST(request: NextRequest) {
@@ -19,7 +22,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const { input, model, useCredit } = await request.json();
+    const { input, model, useCredit, type } = await request.json();
 
     // 查询用户id 积分
     const creditUser = await prisma.user.findUnique({
@@ -43,12 +46,23 @@ export async function POST(request: NextRequest) {
     });
 
     // 发起预测
-    const response = await replicate.predictions.create({
-      version: MODEL[model],
-      input: input,
-      webhook: `${webhookUrl}?predictionId=${prediction.id}`,
-      webhook_events_filter: ["completed"]
-    });
+    let response;
+    if (type === 'model') {
+      response = await replicate.predictions.create({
+        model: MODEL[model],
+        input: input,
+        webhook: `${webhookUrl}?predictionId=${prediction.id}`,
+        webhook_events_filter: ["completed"]
+      });
+    } else {
+      response = await replicate.predictions.create({
+        version: Version[model],
+        input: input,
+        webhook: `${webhookUrl}?predictionId=${prediction.id}`,
+        webhook_events_filter: ["completed"]
+      });
+    }
+    
   
     console.log(response, response)
 

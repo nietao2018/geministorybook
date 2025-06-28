@@ -4,6 +4,7 @@ import { ModalContext } from "@/components/modals/providers";
 import { Button } from "@/components/ui/button";
 import { Icons } from "@/components/shared/icons";
 import MaxWidthWrapper from "@/components/shared/max-width-wrapper";
+import { toast } from "sonner";
 
 export default function ImageInputAndResult() {
   const { setShowSignInModal } = useContext(ModalContext);
@@ -94,7 +95,6 @@ export default function ImageInputAndResult() {
     }
   }, [setShowSignInModal]);
 
-  // Generate button logic
   const handleGenerate = async () => {
     if (!inputImage) return;
 
@@ -125,43 +125,45 @@ export default function ImageInputAndResult() {
       // Prepare image data, remove base64 prefix
       const imageData = imageBase64.startsWith('data:') ? imageBase64.split(',')[1] : imageBase64;
 
-      // Call API to generate image
-      const response = await fetch('/api/generate/photo-real-style', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        credentials: 'include',
-        body: JSON.stringify({ 
-          image: imageData,
-          prompt: prompt || undefined,
-        }),
-      });
+        // Simulate API call
+        const response = await fetch('/api/replicate/create', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: 'include',
+            body: JSON.stringify({
+                input: {
+                    image: imageData,
+                    input_image: `data:image/jpeg;base64,${imageData}`,
+                    prompt: 'Convert the picture into a photorealistic image' + prompt
+                },
+                useCredit: 5,
+                model: 'photoRealStyle',
+                type: 'model'
+            }),
+        });
 
-      if (response.status === 401) {
-        setShowSignInModal(true);
-        return;
-      }
+        if (response.status === 401) {
+            setShowSignInModal(true);
+            return;
+        }
+        if (response.status === 201) {
+            console.error("ad", response.status)
+            setLoading(false)
+            // @ts-ignore
+            toast.error("Insufficient credits, please purchase more.");
+            return;
+        }
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || 'Image processing failed.');
-      }
-      
-      const data = await response.json();
-      setPredictionId(data.id);
-      
-      if (data.id) {
-        // Start polling for results
-        await pollPredictionResult(data.id);
-      }
-    } catch (err) {
-      console.error('Generation error:', err);
-      setError((err as Error).message || 'An unknown error occurred during image processing.');
-      setResultImage(null);
+        const data = await response.json();
+        data.id && await pollPredictionResult(data.id);
+    } catch(e) {
+        console.error(e)
     } finally {
     }
-  };
+};
+
 
   return (
     <MaxWidthWrapper>

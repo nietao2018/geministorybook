@@ -266,7 +266,7 @@ export function PricingCards({}: {}) {
         />
       </div>
 
-      <div className="mb-8 flex items-center justify-center gap-4 rounded-full bg-muted p-1 max-w-[1200px] w-full mx-auto">
+      <div className="mx-auto mb-8 flex w-full max-w-[1200px] items-center justify-center gap-4 rounded-full bg-muted p-1">
         {/*
         <Button
           variant={period === "annually" ? "default" : "ghost"}
@@ -309,7 +309,7 @@ export function PricingCards({}: {}) {
         </Button>
       </div>
 
-      <div className="grid gap-6 pb-4 md:grid-cols-3 max-w-[1200px] w-full mx-auto">
+      <div className="mx-auto grid w-full max-w-[1200px] gap-6 pb-4 md:grid-cols-3">
         {currentPricing.map((plan) => (
           <PricingCard
             key={plan.id}
@@ -321,7 +321,7 @@ export function PricingCards({}: {}) {
           />
         ))}
       </div>
-      <div className="my-10 text-center max-w-[1200px] w-full mx-auto">
+      <div className="mx-auto my-10 w-full max-w-[1200px] text-center">
         <p className="text-sm leading-relaxed text-muted-foreground">
           {t('trial_section_description')}
           <br />
