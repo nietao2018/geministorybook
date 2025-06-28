@@ -4,6 +4,7 @@ import CTA from '@/components/sections/CTA';
 import ImageRestoration from "@/components/phtoto-real-style";
 import { Metadata } from 'next';
 import { env } from "@/env.mjs";
+import Features from '@/components/sections/features';
 
 export async function generateMetadata({ params }: { params: { locale: string } }): Promise<Metadata> {
   const isChinese = params.locale === 'zh-hans';
@@ -44,7 +45,7 @@ export default function PhotoRealStylePage({ params }: { params: { locale: strin
       </h2>
     </div>
     <ImageRestoration />
-
+    <Features />
     <CTA />
   </>;
 }

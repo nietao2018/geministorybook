@@ -112,16 +112,16 @@
         "description": "Restore & Colorize & Upscale old photos with Flux Kontext"
       },
       "2": {
-        "title": "Professional Headshot Generator",
-        "description": "Create stunning professional headshot with Flux Kontext"
+        "title": "Virtual Try-On",
+        "description": "Instantly preview different outfits on your photo with"
       },
       "3": {
-        "title": "Change Haircut",
-        "description": "Change hair color or switch hair style with Flux Kontext"
+        "title": "Anime to Real Photo",
+        "description": "Transform your anime-style images into realistic portraits in one click."
       },
       "4": {
-        "title": "Portrait Series",
-        "description": "Create a series of portrait photos from a single image."
+        "title": "Background Removal",
+        "description": "Effortlessly erase image backgrounds and get a clean cutout in seconds."
       },
       "5": {
         "title": "Text Removal",

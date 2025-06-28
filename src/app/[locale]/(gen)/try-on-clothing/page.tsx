@@ -3,6 +3,7 @@ import CTA from '@/components/sections/CTA';
 import TryOnClothing from "@/components/try-on-clothing";
 import { Metadata } from 'next';
 import { env } from "@/env.mjs";
+import Features from '@/components/sections/features';
 
 export async function generateMetadata({ params }: { params: { locale: string } }): Promise<Metadata> {
   return {
@@ -35,6 +36,7 @@ export default function RemoveBgPage({ params }: { params: { locale: string } })
         { 'Try on clothes virtually with AI. Instantly see how different outfits look on you, no need to visit a store. Perfect for online shopping and fashion fun!' }
       </h2>
       <TryOnClothing />
+      <Features />
     </section>
     <CTA />
   </>;

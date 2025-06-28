@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 import ImageUploaderClient from './ImageUploaderClient';
 import HeroLanding from '@/components/sections/hero-landing';
 import PreviewLanding from '@/components/sections/preview-landing';
-import StepsSection from '@/components/sections/steps';
+import RemoveBgSteps from '@/components/remove-bg/RemoveBgSteps';
 import BentoGrid from '@/components/sections/bentogrid';
 import InfoLanding from '@/components/sections/info-landing';
 import Features from '@/components/sections/features';
@@ -175,8 +175,7 @@ export default function RemoveBgPage({ params }: { params: { locale: string } })
     />
     <ImageUploaderClient />
     {/* <Powered /> */}
-    <StepsSection />
-    <BentoGrid />
+    <RemoveBgSteps />
     <InfoLanding />
     <Features />
     <Testimonials />

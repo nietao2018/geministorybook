@@ -3,6 +3,8 @@ import CTA from '@/components/sections/CTA';
 import ImageRestoration from "@/components/ImageRestoration";
 import { Metadata } from 'next';
 import { env } from "@/env.mjs";
+import Features from '@/components/sections/features';
+
 
 export async function generateMetadata({ params }: { params: { locale: string } }): Promise<Metadata> {
   return {
@@ -32,7 +34,7 @@ export default function RemoveBgPage({ params }: { params: { locale: string } })
       </h2>
     </div>
     <ImageRestoration />
-
+    <Features />
     <CTA />
   </>;
 }

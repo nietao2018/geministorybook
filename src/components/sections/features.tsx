@@ -6,7 +6,15 @@ import { Icons } from "@/components/shared/icons";
 import MaxWidthWrapper from "@/components/shared/max-width-wrapper";
 import { useTranslations } from "next-intl";
 
-const featuresIcons = ["sliders", "zap", "share2", "shield",  "cpu", "smile"];
+const featuresIcons = [
+  { icon: "sliders", link: "/image-restoration" },
+  { icon: "zap", link: "/try-on-clothing" },
+  { icon: "share2", link: "/photo-real-style" },
+  { icon: "shield", link: "/remove-bg" },
+  { icon: "cpu", link: "/" },
+  { icon: "smile", link: "/" },
+];
+
 export default function Features() {
   const t = useTranslations("Features");
   return (
@@ -20,13 +28,17 @@ export default function Features() {
           />
 
           <div className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {featuresIcons.map((icon, index) => {
-              const Icon = Icons[icon || "nextjs"];
+            {featuresIcons.map((item, index) => {
+              const Icon = Icons[item.icon || "nextjs"];
               const featureNumber = (index + 1).toString();
               return (
-                <div
-                  className="group relative overflow-hidden rounded-2xl border bg-background p-5 md:p-8"
+                <Link
+                  href={item.link}
                   key={t(`features.${featureNumber}.title`)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={t(`features.${featureNumber}.title`)}
+                  className="group relative overflow-hidden rounded-2xl border bg-background p-5 transition-transform hover:scale-105 hover:shadow-lg md:p-8"
                 >
                   <div
                     aria-hidden="true"
@@ -43,7 +55,7 @@ export default function Features() {
                       {t(`features.${featureNumber}.description`)}
                     </p>
                   </div>
-                </div>
+                </Link>
               );
             })}
           </div>
