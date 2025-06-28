@@ -46,23 +46,24 @@
       "Resources": "资源"
     },
     "links": {
-      "About": "关于我们",
+      "About": "关于",
       "Terms": "条款",
       "Privacy": "隐私",
       "Refund": "退款",
       "image-restoration": "照片修复",
       "clothes-try-on": "虚拟试衣",
       "photo-real-style": "动漫转真实",
+      "remove-bg": "背景移除",
       "PixMiller": "PixMiller",
-      "HeadShots fun": "HeadShots.fun",
-      "Ullr AI Lab": "Ullr AI 实验室",
+      "HeadShots fun": "Converters.pro",
+      "Ullr AI Lab": "Ullr AI Lab",
       "Pricing": "定价",
       "Styles": "风格",
       "Blog": "博客"
     },
     "copyright": "版权所有 © 2025。保留所有权利。",
-    "built_by": "开发者：",
-    "open_source_by": "开源提供："
+    "built_by": "由",
+    "open_source_by": "开源由"
   },
   "HeroLanding": {
     "make-photo-successful": "让您的视频营销成功！",
@@ -180,6 +181,7 @@
     "image-restoration": "照片修复",
     "clothes-try-on": "虚拟试衣",
     "photo-real-style": "动漫转真实",
+    "remove-bg": "背景移除",
     "pricing": "定价"
   },
   "HeadshotStylePage": {

@@ -68,6 +68,7 @@ export const footerLinks: SidebarNavItem[] = [
       { title: "image-restoration", href: `${site_url}/image-restoration` },
       { title: "clothes-try-on", href: `${site_url}/try-on-clothing` },
       { title: "photo-real-style", href: `${site_url}/photo-real-style` },
+      { title: "remove-bg", href: `${site_url}/remove-bg` },
     ],
   },
   {

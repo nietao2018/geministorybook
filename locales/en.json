@@ -53,6 +53,7 @@
       "image-restoration": "Image-Restoration",
       "clothes-try-on": "Clothing-Try-On",
       "photo-real-style": "Photo-Real-Style",
+      "remove-bg": "Remove-BG",
       "PixMiller": "PixMiller",
       "HeadShots fun": "Converters.pro",
       "Ullr AI Lab": "Ullr AI Lab",
@@ -180,6 +181,7 @@
     "image-restoration": "Image-Restoration",
     "clothes-try-on": "Clothing-Try-On",
     "photo-real-style": "Photo-Real-Style",
+    "remove-bg": "Remove-BG",
     "pricing": "Pricing"
   },
   "HeadshotStylePage": {

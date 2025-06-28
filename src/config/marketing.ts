@@ -23,6 +23,10 @@ export const marketingConfig: MarketingConfig = {
       href: "/photo-real-style",
     },
     {
+      title: "remove-bg",
+      href: "/remove-bg",
+    },
+    {
       title: "pricing",
       href: "/pricing",
     },
