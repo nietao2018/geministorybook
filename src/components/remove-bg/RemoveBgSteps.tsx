@@ -57,11 +57,11 @@ export default function RemoveBgSteps() {
         {/* Step Bar */}
         <ol className="relative flex items-center justify-between px-8 pb-10 pt-6" style={{ listStyle: 'none' }}>
           {/* 贯穿线条 */}
-          <div className="absolute inset-x-0 top-1/2 z-0 h-0.5 bg-gray-200" style={{ transform: 'translateY(-50%)' }} />
+          {/* <div className="absolute inset-x-0 top-1/2 z-0 h-0.5 bg-gray-200" style={{ transform: 'translateY(-50%)' }} /> */}
           {stepData.map((stepItem, idx) => (
             <li key={stepItem.title} className="relative z-10 flex min-w-[180px] flex-1 flex-col items-center">
               {/* 圆点 */}
-              <div className="mb-2 size-4 rounded-full border-4 border-background bg-purple-400 shadow" />
+              {/* <div className="mb-2 size-4 rounded-full border-4 border-background bg-purple-400 shadow" /> */}
               {/* step标题 */}
               <span className="relative z-10 bg-background px-3 text-xl font-bold tracking-wide text-purple-700">
                 {stepItem.title}

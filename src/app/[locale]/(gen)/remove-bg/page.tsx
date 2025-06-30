@@ -1,6 +1,6 @@
 import { unstable_setRequestLocale } from 'next-intl/server';
 import { Metadata } from 'next';
-import ImageUploaderClient from './ImageUploaderClient';
+import ImageUploaderClient from '../../../../components/remove-bg/ImageUploaderClient';
 import HeroLanding from '@/components/sections/hero-landing';
 import PreviewLanding from '@/components/sections/preview-landing';
 import RemoveBgSteps from '@/components/remove-bg/RemoveBgSteps';
@@ -9,6 +9,7 @@ import InfoLanding from '@/components/sections/info-landing';
 import Features from '@/components/sections/features';
 import Testimonials from '@/components/sections/testimonials';
 import CTA from '@/components/sections/CTA';
+import RemoveBGFeature from '@/components/remove-bg/RemoveBGFeature';
 
 export async function generateMetadata({ params }: { params: { locale: string } }): Promise<Metadata> {
   const locale = params.locale;
@@ -173,10 +174,13 @@ export default function RemoveBgPage({ params }: { params: { locale: string } })
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
     />
+    <h1 className="mx-auto my-20 flex max-w-[1200px] items-center justify-center text-center text-4xl font-bold text-gray-800 dark:text-white">
+      Upload an image to remove the background
+    </h1>
     <ImageUploaderClient />
     {/* <Powered /> */}
     <RemoveBgSteps />
-    <InfoLanding />
+    <RemoveBGFeature />
     <Features />
     <Testimonials />
     <CTA />

@@ -231,17 +231,14 @@ const ImageUploaderClient = () => {
 
   return (
     <div 
-      className="flex min-h-screen flex-col items-center justify-center bg-white p-4 dark:bg-black"
+      className="mx-auto flex min-h-screen max-w-[1150px] flex-col items-center justify-center rounded-3xl bg-white dark:bg-[#18181b]"
       onPaste={handlePaste}
     >
       <div 
-      className="flex min-h-screen flex-col items-center justify-center bg-white p-4 dark:bg-black"
+      className="mx-auto flex min-h-screen max-w-[1150px] flex-col items-center justify-center bg-white dark:bg-[#18181b]"
       onPaste={handlePaste}
-    >
+      >
       <div className="w-full max-w-2xl text-center">
-        <h1 className="mb-6 text-4xl font-bold text-gray-800 dark:text-white">
-          Upload an image to remove the background
-        </h1>
 
         {previewUrl ? (
           <div className="mb-6">
