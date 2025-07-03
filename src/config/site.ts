@@ -13,6 +13,7 @@ export const siteConfig: SiteConfig = {
   links: {
     twitter: "https://twitter.com/ullr_ai",
     github: "https://github.com/ullrai/HeadShots.fun",
+    discord: "https://discord.gg/8SpXRTBRfD"
   },
   mailSupport: "support@headshots.fun",
   structuredData: {

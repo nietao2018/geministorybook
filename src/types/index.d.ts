@@ -33,6 +33,7 @@ export interface SiteConfig {
   links: {
     twitter: string;
     github: string;
+    discord: string,
   };
 };
 
