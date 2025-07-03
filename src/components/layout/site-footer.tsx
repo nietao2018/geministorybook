@@ -45,7 +45,7 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
             href={siteConfig.links.discord}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full bg-[#5865F2] px-5 py-2 mt-3 text-white font-semibold shadow-lg hover:bg-[#4752c4] transition"
+            className="mt-3 inline-flex items-center gap-2 rounded-full bg-[#5865F2] px-5 py-2 font-semibold text-white shadow-lg transition hover:bg-[#4752c4]"
             style={{ fontSize: 18 }}
           >
             <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
