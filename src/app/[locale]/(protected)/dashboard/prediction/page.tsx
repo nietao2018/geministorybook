@@ -11,17 +11,22 @@ export default async function PredictionDashboardPage() {
     return <div>Please log in first</div>;
   }
 
+  let predictions
   // Get all predictions for this user
-  const predictions = await getPredictionsByUserId(userId);
+  getPredictionsByUserId(userId).then((res) => {
+    predictions = res
+  }).catch(e => {
+    console.error(e)
+  });
 
   return (
     <div className="p-8">
       <h1 className="mb-6 text-2xl font-bold">My Image Generation Records</h1>
-      {predictions.length === 0 ? (
+      {predictions?.length === 0 ? (
         <div>No generation records</div>
       ) : (
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3 lg:grid-cols-4">
-          {predictions.map((item) => (
+          {predictions?.map((item) => (
             <div key={item.id} className="rounded border p-2 shadow">
               {item.imageUrl ? (
                 <img src={item.imageUrl} alt="Generated image" className="h-48 w-full rounded object-cover" />
