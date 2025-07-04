@@ -6,7 +6,7 @@ export const config = {
       subTitle: "Remove background from tattoo photos instantly with advanced AI. Get clean, professional tattoo images for portfolios, social media, and more.",
       src: "https://pub-db17a2349e164868983605b173fbd7cd.r2.dev/ai-img/remove-bg.mp4",
       metaData: {
-        title: "AI Tattoo Background Remover | HeadShots.fun",
+        title: "AI Tattoo Background Remover | Converters.pro",
         description: "Remove background from tattoo photos online with AI. Perfect for artists, studios, and enthusiasts. Get transparent tattoo images in seconds.",
         keywords: "tattoo background remover, AI tattoo, remove tattoo background, transparent tattoo, tattoo portfolio, tattoo image editing"
       },
@@ -53,7 +53,7 @@ export const config = {
       subTitle: "Remove background from WebP images online for free. Fast, accurate, and supports batch processing.",
       src: "https://pub-db17a2349e164868983605b173fbd7cd.r2.dev/ai-img/remove-bg.mp4",
       metaData: {
-        title: "WebP Background Remover Online | HeadShots.fun",
+        title: "WebP Background Remover Online | Converters.pro",
         description: "Remove background from WebP images instantly. Free online tool for transparent WebP backgrounds. No software download required.",
         keywords: "webp background remover, remove webp background, transparent webp, webp to png, online background remover"
       },
@@ -100,7 +100,7 @@ export const config = {
       subTitle: "Integrate AI background removal into your ComfyUI workflow. Fast, seamless, and open source.",
       src: "https://pub-db17a2349e164868983605b173fbd7cd.r2.dev/ai-img/remove-bg.mp4",
       metaData: {
-        title: "ComfyUI Background Remover Extension | HeadShots.fun",
+        title: "ComfyUI Background Remover Extension | Converters.pro",
         description: "Add AI background removal to ComfyUI. Enhance your creative pipeline with one-click background erasing for any image.",
         keywords: "comfyui background remover, AI extension, remove background comfyui, open source, creative workflow"
       },
@@ -147,7 +147,7 @@ export const config = {
       subTitle: "Discover top alternatives to Remove.bg for background removal. Free, fast, and no watermark.",
       src: "https://pub-db17a2349e164868983605b173fbd7cd.r2.dev/ai-img/remove-bg.mp4",
       metaData: {
-        title: "Best Remove BG Alternatives Online | HeadShots.fun",
+        title: "Best Remove BG Alternatives Online | Converters.pro",
         description: "Explore the best free alternatives to Remove.bg. Remove image backgrounds online with no watermark and high quality results.",
         keywords: "remove bg alternative, free background remover, remove.bg alternative, no watermark, online background removal"
       },

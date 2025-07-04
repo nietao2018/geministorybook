@@ -14,11 +14,11 @@ import RemoveBGFeature from '@/components/remove-bg/RemoveBGFeature';
 export async function generateMetadata({ params }: { params: { locale: string } }): Promise<Metadata> {
   const locale = params.locale;
   
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://headshots.fun';
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://converters.pro';
   
   if (locale === 'zh-hans') {
     return {
-      title: 'AI背景移除工具 - 免费在线去除图片背景 | HeadShots.fun',
+      title: 'AI背景移除工具 - 免费在线去除图片背景 | Converters.pro',
       description: '使用先进的AI技术，一键移除图片背景。支持人像、产品、动物等各种图片类型。免费在线使用，无需下载软件，快速获得透明背景图片。',
       keywords: [
         'AI背景移除',
@@ -77,7 +77,7 @@ export async function generateMetadata({ params }: { params: { locale: string } 
 
   // English metadata
   return {
-    title: 'AI Background Remover - Free Online Background Removal Tool | HeadShots.fun',
+    title: 'AI Background Remover - Free Online Background Removal Tool | Converters.pro',
     description: 'Remove image backgrounds instantly with advanced AI technology. Supports portraits, products, animals, and more. Free online tool, no download required. Get transparent background images in seconds.',
     keywords: [
       'AI background remover',

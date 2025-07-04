@@ -23,7 +23,7 @@ export const infos: InfoLdg[] = [
   {
     title: "Empower Your Creativity",
     description:
-      "Unlock the fun and potential of your headshots with HeadShots.fun. Transform simple snapshots into captivating AI-enhanced images that reflect your true self.",
+      "Unlock the fun and potential of your headshots with Converters.pro. Transform simple snapshots into captivating AI-enhanced images that reflect your true self.",
     image: "/_static/illustrations/work-from-home.jpg",
     list: [
       {
@@ -117,21 +117,21 @@ export const testimonials: TestimonialType[] = [
     job: "Startup Founder",
     image: "https://randomuser.me/api/portraits/women/12.jpg",
     review:
-      "Creating headshots for my startup has never been this easy and enjoyable. HeadShots.fun delivers fantastic results while keeping the process light and fun.",
+      "Creating headshots for my startup has never been this easy and enjoyable. Converters.pro delivers fantastic results while keeping the process light and fun.",
   },
   {
     name: "David Harris",
     job: "Creative Director",
     image: "https://randomuser.me/api/portraits/men/13.jpg",
     review:
-      "I love how HeadShots.fun balances creativity and professionalism. The flexibility of the AI tools allows me to design headshots that are both fun and perfectly suited to my creative projects.",
+      "I love how Converters.pro balances creativity and professionalism. The flexibility of the AI tools allows me to design headshots that are both fun and perfectly suited to my creative projects.",
   },
   {
     name: "Chris Wilson",
     job: "Full-Stack Developer",
     image: "https://randomuser.me/api/portraits/men/15.jpg",
     review:
-      "The efficiency and quality of HeadShots.fun are outstanding. I was able to create studio-quality headshots in minutes, and the process was surprisingly enjoyable.",
+      "The efficiency and quality of Converters.pro are outstanding. I was able to create studio-quality headshots in minutes, and the process was surprisingly enjoyable.",
   },
   {
     name: "Emma Collins",
@@ -145,6 +145,6 @@ export const testimonials: TestimonialType[] = [
     job: "CEO",
     image: "https://randomuser.me/api/portraits/men/17.jpg",
     review:
-      "The quality and speed of HeadShots.fun are impressive. I was able to create a professional headshot that looks like it was done in a studio, all within minutes.",
+      "The quality and speed of Converters.pro are impressive. I was able to create a professional headshot that looks like it was done in a studio, all within minutes.",
   },
 ];

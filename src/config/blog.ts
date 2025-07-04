@@ -6,12 +6,12 @@ export const BLOG_CATEGORIES: {
   {
     title: "news",
     slug: "news",
-    description: "Updates and announcements from HeadShots.fun",
+    description: "Updates and announcements from Converters.pro",
   },
   {
     title: "education",
     slug: "education",
-    description: "Educational content about HeadShots.fun",
+    description: "Educational content about Converters.pro",
   },
 ];
 
