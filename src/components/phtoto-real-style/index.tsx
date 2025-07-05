@@ -3,7 +3,6 @@ import React, { useRef, useState, useContext, useCallback } from "react";
 import { ModalContext } from "@/components/modals/providers";
 import { Button } from "@/components/ui/button";
 import { Icons } from "@/components/shared/icons";
-import MaxWidthWrapper from "@/components/shared/max-width-wrapper";
 import { toast } from "sonner";
 
 export default function ImageInputAndResult() {
@@ -166,106 +165,112 @@ export default function ImageInputAndResult() {
 
 
   return (
-    <MaxWidthWrapper>
-      <div className="space-y-8 py-12">
+    <section className="relative py-4">
+      <div className="mx-auto max-w-7xl px-4">
         {/* Main Content */}
         <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-3">
           {/* Upload Section */}
           <div className="space-y-4">
-            <div className="text-center">
-              <div className="mb-2 inline-flex size-8 items-center justify-center rounded-full bg-primary text-sm font-semibold text-primary-foreground">
-                1
-              </div>
-              <h2 className="text-xl font-semibold text-foreground">Upload</h2>
-            </div>
-            
-            <div 
-              className={`relative flex h-[400px] items-center justify-center rounded-lg border-2 border-dashed p-6 transition-all duration-200 ${
-                isDragOver 
-                  ? 'border-primary bg-primary/5' 
-                  : 'border-border hover:border-primary/50 hover:bg-muted/50'
-              }`}
-              onDragOver={handleDragOver}
-              onDrop={handleDrop}
-              onDragEnter={handleDragEnter}
-              onDragLeave={handleDragLeave}
-            >
-              {inputImage ? (
-                <div className="relative size-full">
-                  <img 
-                    src={inputImage} 
-                    alt="Input image" 
-                    className="size-full rounded-md object-contain" 
-                  />
-                  <Button
-                    variant="destructive"
-                    size="sm"
-                    className="absolute right-2 top-2 size-8 p-0"
-                    onClick={() => {
-                      setInputImage(null);
-                      setResultImage(null);
-                      setError(null);
-                      setPrompt("");
-                    }}
-                  >
-                    <Icons.close className="size-4" />
-                  </Button>
+            <div className="rounded-3xl border border-gray-200/50 bg-white/80 p-8 shadow-lg backdrop-blur-sm dark:border-gray-600/50 dark:bg-gray-800/80">
+              <div className="mb-6 flex items-center gap-3">
+                <div className="flex size-8 items-center justify-center rounded-full bg-gradient-to-r from-blue-500 to-purple-500 text-sm font-bold text-white">
+                  1
                 </div>
-              ) : (
-                <label className="group flex size-full cursor-pointer flex-col items-center justify-center">
-                  <div className="mb-4 flex size-16 items-center justify-center rounded-full bg-muted transition-colors group-hover:bg-primary/10">
-                    <Icons.imageuplus className="size-8 text-muted-foreground transition-colors group-hover:text-primary" />
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                  Upload Image
+                </h3>
+              </div>
+              
+              <div 
+                className={`relative flex h-[400px] items-center justify-center rounded-2xl border-2 border-dashed p-6 transition-all duration-200 ${
+                  isDragOver 
+                    ? 'border-blue-500 bg-blue-50/30 dark:bg-blue-900/20' 
+                    : 'border-gray-300/60 bg-white/50 hover:border-blue-400/60 hover:bg-blue-50/30 dark:border-gray-500/60 dark:bg-gray-800/50 dark:hover:border-blue-400/60 dark:hover:bg-blue-900/20'
+                }`}
+                onDragOver={handleDragOver}
+                onDrop={handleDrop}
+                onDragEnter={handleDragEnter}
+                onDragLeave={handleDragLeave}
+              >
+                {inputImage ? (
+                  <div className="relative size-full">
+                    <img 
+                      src={inputImage} 
+                      alt="Input image" 
+                      className="size-full rounded-lg object-contain" 
+                    />
+                    <Button
+                      variant="destructive"
+                      size="sm"
+                      className="absolute right-2 top-2 size-8 p-0"
+                      onClick={() => {
+                        setInputImage(null);
+                        setResultImage(null);
+                        setError(null);
+                        setPrompt("");
+                      }}
+                    >
+                      <Icons.close className="size-4" />
+                    </Button>
                   </div>
-                  <span className="mb-2 font-medium text-foreground">
-                    Drop image here
-                  </span>
-                  <span className="text-sm text-muted-foreground">
-                    or click to browse
-                  </span>
-                  <input
-                    type="file"
-                    accept="image/*"
-                    ref={fileInputRef}
-                    onChange={handleFileSelect}
-                    className="hidden"
-                  />
-                </label>
-              )}
+                ) : (
+                  <label className="group flex size-full cursor-pointer flex-col items-center justify-center">
+                    <div className="mb-4 flex size-16 items-center justify-center rounded-2xl bg-gradient-to-r from-blue-100 to-purple-100 transition-colors group-hover:scale-105 dark:from-blue-900/50 dark:to-purple-900/50">
+                      <Icons.imageuplus className="size-8 text-blue-600 dark:text-blue-400" />
+                    </div>
+                    <span className="mb-2 font-medium text-gray-900 dark:text-white">
+                      Drop image here
+                    </span>
+                    <span className="text-sm text-gray-600 dark:text-gray-400">
+                      or click to browse
+                    </span>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      ref={fileInputRef}
+                      onChange={handleFileSelect}
+                      className="hidden"
+                    />
+                  </label>
+                )}
+              </div>
             </div>
           </div>
 
-          {/* Generate Button - Centered and Elevated */}
+          {/* Generate Section - Centered */}
           <div className="relative flex min-h-[400px] flex-col items-center justify-center">
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className="h-full w-px bg-border"></div>
+              <div className="h-full w-px bg-gray-200 dark:bg-gray-700"></div>
             </div>
             
-            {/* Step 2 Header */}
-            <div className="mb-4 text-center">
-              <div className="mb-2 inline-flex size-8 items-center justify-center rounded-full bg-primary text-sm font-semibold text-primary-foreground">
-                2
+            <div className="relative z-10 w-full rounded-3xl border border-gray-200/50 bg-white/80 p-8 shadow-lg backdrop-blur-sm dark:border-gray-600/50 dark:bg-gray-800/80">
+              {/* Step 2 Header */}
+              <div className="mb-6 flex items-center gap-3">
+                <div className="flex size-8 items-center justify-center rounded-full bg-gradient-to-r from-purple-500 to-pink-500 text-sm font-bold text-white">
+                  2
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                  Transform
+                </h3>
               </div>
-              <h3 className="text-lg font-semibold text-foreground">Transform</h3>
-            </div>
-            
-            <div className="relative z-10 flex h-[400px] flex-col justify-center rounded-xl border bg-background px-6 py-4 shadow-sm">
+              
               {/* Prompt Input */}
-              <div className="mb-4">
-                <label className="mb-2 block text-sm font-medium text-foreground">
+              <div className="mb-6">
+                <label className="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
                   Custom Style (Optional)
                 </label>
                 <textarea
                   value={prompt}
                   onChange={(e) => setPrompt(e.target.value)}
                   placeholder="Describe the style you want (e.g., 'Real human skin')"
-                  className="w-full resize-none rounded-md border border-border bg-background px-3 py-4 text-foreground placeholder:text-muted-foreground focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary"
-                  rows={2}
+                  className="w-full resize-none rounded-xl border border-gray-200/50 bg-white/50 px-4 py-3 text-gray-900 backdrop-blur-sm placeholder:text-gray-500 focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400/20 dark:border-gray-600/50 dark:bg-gray-800/50 dark:text-white dark:placeholder:text-gray-400"
+                  rows={3}
                 />
               </div>
               
               {/* Preset Prompts */}
-              <div className="mb-4">
-                <label className="mb-2 block text-sm font-medium text-foreground">
+              <div className="mb-6">
+                <label className="mb-3 block text-sm font-medium text-gray-900 dark:text-white">
                   Quick Presets
                 </label>
                 <div className="flex flex-wrap gap-2">
@@ -280,10 +285,10 @@ export default function ImageInputAndResult() {
                     <button
                       key={preset}
                       onClick={() => setPrompt(preset)}
-                      className={`rounded-full border px-3 py-1 text-xs transition-colors ${
+                      className={`rounded-full border px-3 py-1.5 text-xs font-medium transition-all duration-200 ${
                         prompt === preset
-                          ? 'border-primary bg-primary text-primary-foreground'
-                          : 'border-border bg-background text-foreground hover:border-primary hover:text-primary'
+                          ? 'border-blue-500 bg-blue-500 text-white shadow-lg'
+                          : 'border-gray-200/50 bg-white/50 text-gray-700 hover:border-blue-400 hover:bg-blue-50 dark:border-gray-600/50 dark:bg-gray-800/50 dark:text-gray-300 dark:hover:border-blue-400 dark:hover:bg-blue-900/30'
                       }`}
                     >
                       {preset}
@@ -294,7 +299,7 @@ export default function ImageInputAndResult() {
               
               <Button
                 size="lg"
-                className="w-full px-8 py-4 text-lg font-semibold shadow-lg transition-all duration-200 hover:shadow-xl"
+                className="w-full rounded-xl bg-gradient-to-r from-blue-500 to-purple-500 py-4 font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl disabled:transform-none disabled:cursor-not-allowed disabled:opacity-50"
                 onClick={handleGenerate}
                 disabled={!inputImage || loading}
               >
@@ -306,14 +311,17 @@ export default function ImageInputAndResult() {
                 ) : (
                   <div className="flex items-center space-x-3">
                     <Icons.zap className="size-5" />
-                    <span>Transform(5 credits)</span>
+                    <span>Transform (5 credits)</span>
                   </div>
                 )}
               </Button>
               
               {error && (
-                <div className="mt-4 max-w-xs rounded-lg border border-destructive/20 bg-destructive/10 p-3 text-center text-sm text-destructive">
-                  {error}
+                <div className="mt-4 rounded-xl border border-red-200/50 bg-red-50/80 p-4 text-red-600 backdrop-blur-sm dark:border-red-700/50 dark:bg-red-900/30 dark:text-red-400">
+                  <div className="flex items-center gap-2">
+                    <Icons.close className="size-4" />
+                    <span className="text-sm font-medium">{error}</span>
+                  </div>
                 </div>
               )}
             </div>
@@ -321,88 +329,93 @@ export default function ImageInputAndResult() {
 
           {/* Result Section */}
           <div className="space-y-4">
-            <div className="text-center">
-              <div className="mb-2 inline-flex size-8 items-center justify-center rounded-full bg-primary text-sm font-semibold text-primary-foreground">
-                3
+            <div className="rounded-3xl border border-gray-200/50 bg-white/80 p-8 shadow-lg backdrop-blur-sm dark:border-gray-600/50 dark:bg-gray-800/80">
+              <div className="mb-6 flex items-center gap-3">
+                <div className="flex size-8 items-center justify-center rounded-full bg-gradient-to-r from-green-500 to-emerald-500 text-sm font-bold text-white">
+                  3
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                  Result
+                </h3>
               </div>
-              <h2 className="text-xl font-semibold text-foreground">Result</h2>
-            </div>
-            
-            <div className="flex h-[400px] items-center justify-center rounded-lg border-2 border-dashed border-border p-6">
-              {loading ? (
-                <div className="space-y-4 text-center">
-                  <Icons.spinner className="mx-auto size-8 animate-spin text-primary" />
-                  <div className="space-y-2">
-                    <p className="font-medium text-foreground">Creating portrait...</p>
-                    <p className="text-sm text-muted-foreground">Please wait</p>
+              
+              <div className="flex h-[400px] items-center justify-center rounded-2xl border-2 border-dashed border-gray-300/60 bg-gray-50/50 p-6 dark:border-gray-600/50 dark:bg-gray-900/50">
+                {loading ? (
+                  <div className="space-y-4 text-center">
+                    <div className="mx-auto flex size-16 items-center justify-center rounded-full bg-gradient-to-r from-blue-500 to-purple-500">
+                      <Icons.spinner className="size-8 animate-spin text-white" />
+                    </div>
+                    <div className="space-y-2">
+                      <p className="font-medium text-gray-900 dark:text-white">Creating portrait...</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">Please wait</p>
+                    </div>
                   </div>
-                </div>
-              ) : resultImage ? (
-                <div className="relative size-full">
-                  <img 
-                    src={resultImage} 
-                    alt="Generated result" 
-                    className="size-full rounded-md object-contain" 
-                  />
-                  <Button
-                    variant="secondary"
-                    size="sm"
-                    className="absolute right-2 top-2 size-8 p-0"
-                    onClick={() => {
-                      // Download functionality
-                      const link = document.createElement('a');
-                      link.href = resultImage;
-                      link.download = 'photo-real-style-result.jpg';
-                      document.body.appendChild(link);
-                      link.click();
-                      document.body.removeChild(link);
-                    }}
-                  >
-                    <Icons.image className="size-4" />
-                  </Button>
-                </div>
-              ) : (
-                <div className="space-y-4 text-center">
-                  <div className="mx-auto flex size-16 items-center justify-center rounded-full bg-muted">
-                    <Icons.image className="size-8 text-muted-foreground" />
+                ) : resultImage ? (
+                  <div className="relative size-full">
+                    <img 
+                      src={resultImage} 
+                      alt="Generated result" 
+                      className="size-full rounded-lg object-contain" 
+                    />
+                    <Button
+                      variant="secondary"
+                      size="sm"
+                      className="absolute right-2 top-2 size-8 bg-white/90 p-0 shadow-lg hover:bg-white dark:bg-gray-800/90 dark:hover:bg-gray-800"
+                      onClick={() => {
+                        const link = document.createElement('a');
+                        link.href = resultImage;
+                        link.download = 'photo-real-style-result.jpg';
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                      }}
+                    >
+                      <Icons.image className="size-4" />
+                    </Button>
                   </div>
-                  <div className="space-y-2">
-                    <p className="font-medium text-foreground">Ready</p>
-                    <p className="text-sm text-muted-foreground">Upload to start</p>
+                ) : (
+                  <div className="space-y-4 text-center">
+                    <div className="mx-auto flex size-16 items-center justify-center rounded-2xl bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800">
+                      <Icons.image className="size-8 text-gray-400" />
+                    </div>
+                    <div className="space-y-2">
+                      <p className="font-medium text-gray-900 dark:text-white">Ready</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">Upload to start</p>
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
+              </div>
             </div>
           </div>
         </div>
 
         {/* Features Section */}
         <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-3">
-          <div className="space-y-4 rounded-lg border bg-card p-6 text-center">
-            <div className="mx-auto flex size-12 items-center justify-center rounded-lg bg-primary/10">
-              <Icons.zap className="size-6 text-primary" />
+          <div className="rounded-3xl border border-gray-200/50 bg-white/80 p-8 text-center shadow-lg backdrop-blur-sm dark:border-gray-600/50 dark:bg-gray-800/80">
+            <div className="mx-auto mb-4 flex size-12 items-center justify-center rounded-2xl bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/50 dark:to-purple-900/50">
+              <Icons.zap className="size-6 text-blue-600 dark:text-blue-400" />
             </div>
-            <h3 className="text-lg font-semibold text-foreground">Lightning Fast</h3>
-            <p className="text-muted-foreground">Get your realistic portrait in seconds with our advanced AI technology</p>
+            <h3 className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">Lightning Fast</h3>
+            <p className="text-gray-600 dark:text-gray-300">Get your realistic portrait in seconds with our advanced AI technology</p>
           </div>
           
-          <div className="space-y-4 rounded-lg border bg-card p-6 text-center">
-            <div className="mx-auto flex size-12 items-center justify-center rounded-lg bg-primary/10">
-              <Icons.check className="size-6 text-primary" />
+          <div className="rounded-3xl border border-gray-200/50 bg-white/80 p-8 text-center shadow-lg backdrop-blur-sm dark:border-gray-600/50 dark:bg-gray-800/80">
+            <div className="mx-auto mb-4 flex size-12 items-center justify-center rounded-2xl bg-gradient-to-r from-green-100 to-emerald-100 dark:from-green-900/50 dark:to-emerald-900/50">
+              <Icons.check className="size-6 text-green-600 dark:text-green-400" />
             </div>
-            <h3 className="text-lg font-semibold text-foreground">High Quality</h3>
-            <p className="text-muted-foreground">Professional-grade results that maintain the essence of your original character</p>
+            <h3 className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">High Quality</h3>
+            <p className="text-gray-600 dark:text-gray-300">Professional-grade results that maintain the essence of your original character</p>
           </div>
           
-          <div className="space-y-4 rounded-lg border bg-card p-6 text-center">
-            <div className="mx-auto flex size-12 items-center justify-center rounded-lg bg-primary/10">
-              <Icons.shield className="size-6 text-primary" />
+          <div className="rounded-3xl border border-gray-200/50 bg-white/80 p-8 text-center shadow-lg backdrop-blur-sm dark:border-gray-600/50 dark:bg-gray-800/80">
+            <div className="mx-auto mb-4 flex size-12 items-center justify-center rounded-2xl bg-gradient-to-r from-purple-100 to-pink-100 dark:from-purple-900/50 dark:to-pink-900/50">
+              <Icons.shield className="size-6 text-purple-600 dark:text-purple-400" />
             </div>
-            <h3 className="text-lg font-semibold text-foreground">Secure & Private</h3>
-            <p className="text-muted-foreground">Your images are processed securely and never stored permanently</p>
+            <h3 className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">Secure & Private</h3>
+            <p className="text-gray-600 dark:text-gray-300">Your images are processed securely and never stored permanently</p>
           </div>
         </div>
       </div>
-    </MaxWidthWrapper>
+    </section>
   );
 } 

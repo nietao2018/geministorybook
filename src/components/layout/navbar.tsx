@@ -34,34 +34,36 @@ export function NavBar({ scroll = false }: NavBarProps) {
 
   return (
     <header
-      className={`sticky top-0 z-40 flex w-full justify-center bg-background/60 backdrop-blur-xl transition-all ${
-        scroll ? (scrolled ? "border-b-0" : "bg-transparent") : "border-b"
+      className={`sticky top-0 z-40 flex w-full justify-center transition-all ${
+        scroll ? (scrolled ? "border-b border-gray-200/50 bg-white/80 shadow-lg backdrop-blur-xl dark:border-gray-700/50 dark:bg-gray-900/80" : "bg-transparent") : "border-b border-gray-200/50 bg-white/80 backdrop-blur-xl dark:border-gray-700/50 dark:bg-gray-900/80"
       }`}
     >
       <MaxWidthWrapper
-        className="flex h-14 items-center justify-between py-4"
+        className="flex h-16 items-center justify-between py-4"
       >
         <div className="flex gap-6 md:gap-10">
-          <Link href="/" className="flex items-center space-x-1.5">
-            <Icons.logo />
-            <span className="font-urban text-xl font-bold">
+          <Link href="/" className="group flex items-center space-x-2">
+            <div className="flex size-8 items-center justify-center rounded-2xl bg-gradient-to-r from-blue-500 to-purple-500 text-white transition-transform group-hover:scale-105">
+              <Icons.logo className="size-5" />
+            </div>
+            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text font-urban text-xl font-bold text-transparent">
               {siteConfig.name}
             </span>
           </Link>
 
           {links && links.length > 0 ? (
-            <nav className="hidden gap-6 md:flex">
+            <nav className="hidden gap-1 md:flex">
               {links.map((item, index) => (
                 <Link
                   key={index}
                   href={item.disabled ? "#" : item.href}
                   prefetch={true}
                   className={cn(
-                    "flex items-center text-lg font-medium transition-colors hover:text-foreground/80 sm:text-sm",
+                    "flex items-center rounded-xl px-4 py-2 text-sm font-medium transition-all duration-200 hover:bg-blue-50/80 hover:text-blue-600 dark:hover:bg-blue-900/30 dark:hover:text-blue-400",
                     item.href.startsWith(`/${selectedLayout}`)
-                      ? "text-foreground"
-                      : "text-foreground/60",
-                    item.disabled && "cursor-not-allowed opacity-80",
+                      ? "bg-gradient-to-r from-blue-100 to-purple-100 text-blue-600 shadow-sm dark:from-blue-900/50 dark:to-purple-900/50 dark:text-blue-400"
+                      : "text-gray-600 dark:text-gray-300",
+                    item.disabled && "cursor-not-allowed opacity-50",
                   )}
                 >
                   {t(item.title)}
@@ -71,8 +73,10 @@ export function NavBar({ scroll = false }: NavBarProps) {
           ) : null}
         </div>
 
-        <div className="flex items-center space-x-3">
-          <div className="hidden md:block"><LocaleSwitcher/></div>
+        <div className="flex items-center space-x-4">
+          <div className="hidden md:block">
+            <LocaleSwitcher/>
+          </div>
 
           {session ? (
             <Link
@@ -80,7 +84,7 @@ export function NavBar({ scroll = false }: NavBarProps) {
               className="hidden md:block"
             >
               <Button
-                className="gap-2 px-5"
+                className="border-0 bg-gradient-to-r from-blue-500 to-purple-500 px-6 py-2.5 text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl"
                 variant="default"
                 size="sm"
                 rounded="full"
@@ -90,7 +94,7 @@ export function NavBar({ scroll = false }: NavBarProps) {
             </Link>
           ) : status === "unauthenticated" ? (
             <Button
-              className="hidden gap-2 px-5 md:flex"
+              className="hidden gap-2 border-0 bg-gradient-to-r from-blue-500 to-purple-500 px-6 py-2.5 text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl md:flex"
               variant="default"
               size="sm"
               rounded="full"
@@ -100,7 +104,7 @@ export function NavBar({ scroll = false }: NavBarProps) {
               <Icons.arrowRight className="size-4" />
             </Button>
           ) : (
-            <Skeleton className="hidden h-9 w-28 rounded-full lg:flex" />
+            <Skeleton className="hidden h-10 w-28 rounded-full bg-gray-200/50 dark:bg-gray-700/50 lg:flex" />
           )}
         </div>
       </MaxWidthWrapper>

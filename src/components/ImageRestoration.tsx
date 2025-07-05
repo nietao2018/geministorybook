@@ -190,23 +190,33 @@ const ImageRestoration: React.FC<ImageRestorationProps> = () => {
 
   if (isLoading) {
     previewContent = (
-      <div className="flex size-full flex-col items-center justify-center">
-        <p className="text-gray-500 dark:text-gray-400">Processing, please wait...</p>
-        <div className="mt-4 size-8 animate-spin rounded-full border-b-2 border-gray-900 dark:border-white"></div>
+      <div className="flex h-full flex-col items-center justify-center gap-4">
+        <div className="flex size-16 items-center justify-center rounded-full bg-gradient-to-r from-blue-500 to-purple-500">
+          <div className="size-8 animate-spin rounded-full border-2 border-white/30 border-t-white" />
+        </div>
+        <div className="text-center">
+          <p className="mb-1 text-lg font-semibold text-gray-900 dark:text-white">Processing your image...</p>
+          <p className="text-sm text-gray-600 dark:text-gray-400">This may take 30s - 1min</p>
+        </div>
       </div>
     );
   } else if (error) {
     previewContent = (
-      <div className="flex size-full flex-col items-center justify-center text-red-500 dark:text-red-400">
-        <p>Error: {error}</p>
-        <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">Please try re-uploading the image or checking the URL.</p>
+      <div className="flex h-full flex-col items-center justify-center px-8 text-center">
+        <div className="mb-4 flex size-16 items-center justify-center rounded-2xl bg-gradient-to-r from-red-100 to-red-200 dark:from-red-900/50 dark:to-red-800/50">
+          <svg className="size-8 text-red-600 dark:text-red-400" fill="currentColor" viewBox="0 0 20 20">
+            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+          </svg>
+        </div>
+        <p className="mb-2 text-lg font-semibold text-red-600 dark:text-red-400">Processing Failed</p>
+        <p className="text-sm text-gray-600 dark:text-gray-400">Please try uploading a different image or check the URL</p>
       </div>
     );
   } else if (uploadedImageUrl && !restoredImageUrl) {
     // 只显示图片，不显示提示文字
     previewContent = (
-      <div className="relative flex size-full items-center justify-center">
-        <img src={uploadedImageUrl} alt="Uploaded Image" className="size-full object-cover" />
+      <div className="relative flex h-full items-center justify-center">
+        <img src={uploadedImageUrl} alt="Uploaded Image" className="max-h-full max-w-full rounded-lg object-contain" />
       </div>
     );
   } else if (uploadedImageUrl && restoredImageUrl) {
@@ -215,8 +225,8 @@ const ImageRestoration: React.FC<ImageRestorationProps> = () => {
     displayAfterImage = uploadedImageUrl;
     previewContent = (
       <>
-        <img src={displayBeforeImage} alt="Before" className="absolute left-0 top-0 size-full object-cover" style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }} />
-        <img src={displayAfterImage} alt="After" className="absolute left-0 top-0 size-full object-cover" style={{ clipPath: `inset(0 0 0 ${sliderPosition}%)` }} />
+        <img src={displayBeforeImage} alt="Before" className="absolute left-0 top-0 size-full object-contain" style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }} />
+        <img src={displayAfterImage} alt="After" className="absolute left-0 top-0 size-full object-contain" style={{ clipPath: `inset(0 0 0 ${sliderPosition}%)` }} />
 
         <input
           type="range"
@@ -232,7 +242,7 @@ const ImageRestoration: React.FC<ImageRestorationProps> = () => {
           className="pointer-events-none absolute inset-y-0 z-20 w-1 bg-white dark:bg-gray-600"
           style={{ left: `calc(${sliderPosition}% - 2px)` }}
         >
-          <div className="absolute left-1/2 top-1/2 flex size-8 -translate-x-1/2 -translate-y-1/2 cursor-grab items-center justify-center rounded-full bg-white shadow-md group-active:cursor-grabbing dark:bg-gray-700">
+          <div className="absolute left-1/2 top-1/2 flex size-10 -translate-x-1/2 -translate-y-1/2 cursor-grab items-center justify-center rounded-full border-2 border-gray-200 bg-white shadow-lg group-active:cursor-grabbing dark:border-gray-600 dark:bg-gray-700">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="size-5 rotate-90 text-gray-600 dark:text-gray-300"
@@ -244,174 +254,216 @@ const ImageRestoration: React.FC<ImageRestorationProps> = () => {
             </svg>
           </div>
         </div>
-        <span className="absolute left-2 top-2 rounded bg-black/[50%] px-2 py-1 text-xs text-white">Before</span>
-        <span className="absolute right-2 top-2 rounded bg-black/[50%] px-2 py-1 text-xs text-white">After</span>
+        <span className="absolute left-4 top-4 rounded-lg bg-black/70 px-3 py-2 text-sm font-medium text-white backdrop-blur-sm">Before</span>
+        <span className="absolute right-4 top-4 rounded-lg bg-black/70 px-3 py-2 text-sm font-medium text-white backdrop-blur-sm">After</span>
       </>
     );
   } else {
-    // Default: show example images Before & After slider
+    // Default: show example images Before & After slider with placeholder
     previewContent = (
-      <>
-        <img src={displayBeforeImage} alt="Before" className="absolute left-0 top-0 size-full object-cover" style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }} />
-        <img src={displayAfterImage} alt="After" className="absolute left-0 top-0 size-full object-cover" style={{ clipPath: `inset(0 0 0 ${sliderPosition}%)` }} />
-
-        <input
-          type="range"
-          min="0"
-          max="100"
-          value={sliderPosition}
-          onChange={handleSliderChange}
-          className="absolute inset-0 z-10 size-full cursor-ew-resize opacity-0"
-          aria-label="Image comparison slider"
-        />
-
-        <div
-          className="pointer-events-none absolute inset-y-0 z-20 w-1 bg-white dark:bg-gray-600"
-          style={{ left: `calc(${sliderPosition}% - 2px)` }}
-        >
-          <div className="absolute left-1/2 top-1/2 flex size-8 -translate-x-1/2 -translate-y-1/2 cursor-grab items-center justify-center rounded-full bg-white shadow-md group-active:cursor-grabbing dark:bg-gray-700">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="size-5 rotate-90 text-gray-600 dark:text-gray-300"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
-            </svg>
-          </div>
+      <div className="flex h-full flex-col items-center justify-center px-8 text-center">
+        <div className="mb-4 flex size-16 items-center justify-center rounded-2xl bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800">
+          <svg className="size-8 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
         </div>
-        <span className="absolute left-2 top-2 rounded bg-black/[50%] px-2 py-1 text-xs text-white">Before</span>
-        <span className="absolute right-2 top-2 rounded bg-black/[50%] px-2 py-1 text-xs text-white">After</span>
-      </>
+        <p className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">Upload an image to get started</p>
+        <p className="text-sm text-gray-600 dark:text-gray-400">Your restored image will appear here</p>
+      </div>
     );
   }
 
   return (
-    <div className="mx-auto flex max-w-[1200px] flex-col gap-8 p-4 lg:flex-row">
-      {/* Left Section */}
-      <div className="flex-1 rounded-lg bg-white p-6 shadow-md dark:bg-gray-800">
-        <h2 className="mb-4 text-xl font-semibold text-gray-900 dark:text-white">Restore Image | Flux Kontext App</h2>
-        <p className="mb-6 text-gray-600 dark:text-gray-300">Restore your old photo to a fresh state</p>
-
-        <h2 className="mb-4 text-lg font-semibold text-gray-800 dark:text-white">Image Processing Settings</h2>
-
-        <div className="mb-6">
-          <h3 className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-200">Image (Optional)</h3>
-          <div className="mb-4 flex items-center space-x-2">
-            <button className="rounded-md border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:border-gray-600 dark:text-gray-200 dark:hover:bg-gray-700">URL</button>
-          </div>
-          <div
-            className="mt-1 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pb-6 pt-5 dark:border-gray-600"
-            onDragOver={(e) => e.preventDefault()}
-            onDrop={(e) => {
-              e.preventDefault();
-              if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-                const file = e.dataTransfer.files[0];
-                const reader = new FileReader();
-                reader.onloadend = () => {
-                  setUploadedImageUrl(reader.result as string);
-                  setRestoredImageUrl(null); // Clear processed image on new upload
-                  setError(null); // Clear any previous errors
-                };
-                reader.readAsDataURL(file);
-              }
-            }}
-          >
-            <div className="space-y-1 text-center">
-              <svg
-                className="mx-auto size-12 text-gray-400 dark:text-gray-500"
-                stroke="currentColor"
-                fill="none"
-                viewBox="0 0 48 48"
-                aria-hidden="true"
-              >
-                <path
-                  d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m-4-4l-1.76-1.76a4 4 0 00-5.656 0L17 32M6 20v-8a2 2 0 012-2h8M42 20v-8a2 2 0 00-2-2h-8"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-              <div className="flex text-sm text-gray-600 dark:text-gray-300">
-                <label
-                  htmlFor="file-upload"
-                  className="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500 dark:bg-gray-800 dark:text-indigo-400 dark:hover:text-indigo-300"
-                >
-                  <span>Drag & drop or </span>
-                  <input id="file-upload" name="file-upload" type="file" className="sr-only" onChange={handleFileChange} accept="image/png, image/jpeg, image/jpg, image/webp" />
-                </label>
-                <p className="pl-1">browse</p>
+    <section className="relative py-4">
+      <div className="mx-auto max-w-7xl px-4">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+          {/* Left Section - Controls */}
+          <div className="space-y-6">
+            <div className="rounded-3xl border border-gray-200/50 bg-white/80 p-8 shadow-lg backdrop-blur-sm dark:border-gray-600/50 dark:bg-gray-800/80">
+              <div className="mb-6 flex items-center gap-3">
+                <div className="flex size-8 items-center justify-center rounded-full bg-gradient-to-r from-blue-500 to-purple-500 text-sm font-bold text-white">
+                  1
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                  Upload Your Photo
+                </h3>
               </div>
-              <p className="text-xs text-gray-500 dark:text-gray-400">
-                PNG, JPG, JPEG or WEBP (max 10MB)
-              </p>
+              
+              {/* Upload Area */}
+              <div
+                className="rounded-2xl border-2 border-dashed border-gray-300/60 bg-white/50 p-8 backdrop-blur-sm transition-all duration-300 hover:border-blue-400/60 hover:bg-blue-50/30 dark:border-gray-500/60 dark:bg-gray-800/50 dark:hover:border-blue-400/60 dark:hover:bg-blue-900/20"
+                onDragOver={(e) => e.preventDefault()}
+                onDrop={(e) => {
+                  e.preventDefault();
+                  if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+                    const file = e.dataTransfer.files[0];
+                    const reader = new FileReader();
+                    reader.onloadend = () => {
+                      setUploadedImageUrl(reader.result as string);
+                      setRestoredImageUrl(null);
+                      setError(null);
+                    };
+                    reader.readAsDataURL(file);
+                  }
+                }}
+              >
+                <div className="text-center">
+                  <div className="mx-auto mb-4 flex size-16 items-center justify-center rounded-2xl bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/50 dark:to-purple-900/50">
+                    <svg
+                      className="size-8 text-blue-600 dark:text-blue-400"
+                      stroke="currentColor"
+                      fill="none"
+                      viewBox="0 0 48 48"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m-4-4l-1.76-1.76a4 4 0 00-5.656 0L17 32M6 20v-8a2 2 0 012-2h8M42 20v-8a2 2 0 00-2-2h-8"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </div>
+                  <div className="mb-4">
+                    <label
+                      htmlFor="file-upload"
+                      className="cursor-pointer font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300"
+                    >
+                      <span>Drag & drop your photo here or click to browse</span>
+                      <input 
+                        id="file-upload" 
+                        name="file-upload" 
+                        type="file" 
+                        className="sr-only" 
+                        onChange={handleFileChange} 
+                        accept="image/png, image/jpeg, image/jpg, image/webp" 
+                      />
+                    </label>
+                  </div>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                    PNG, JPG, JPEG or WEBP (max 10MB)
+                  </p>
+                </div>
+              </div>
+              
+              {/* URL Input */}
+              <div className="mt-4">
+                <input
+                  type="text"
+                  placeholder="Or enter image URL"
+                  className="w-full rounded-xl border border-gray-200/50 bg-white/50 px-4 py-3 text-gray-900 backdrop-blur-sm placeholder:text-gray-500 focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400/20 dark:border-gray-600/50 dark:bg-gray-800/50 dark:text-white dark:placeholder:text-gray-400"
+                  onChange={handleUrlChange}
+                  value={uploadedImageUrl || ''}
+                />
+              </div>
+            </div>
+            
+            {/* Settings */}
+            <div className="rounded-3xl border border-gray-200/50 bg-white/80 p-8 shadow-lg backdrop-blur-sm dark:border-gray-600/50 dark:bg-gray-800/80">
+              <h4 className="mb-6 text-lg font-bold text-gray-900 dark:text-white">
+                Settings
+              </h4>
+              
+              {/* Watermark Toggle */}
+              <div className="mb-6 flex items-center justify-between">
+                <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Add Watermark</span>
+                <label htmlFor="watermark-toggle" className="flex cursor-pointer items-center">
+                  <input
+                    type="checkbox"
+                    id="watermark-toggle"
+                    className="peer sr-only"
+                    checked={watermark}
+                    onChange={() => setWatermark(!watermark)}
+                  />
+                  <div className="peer relative h-6 w-11 rounded-full bg-gray-200 after:absolute after:left-[2px] after:top-[2px] after:size-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-blue-800"></div>
+                </label>
+              </div>
+              
+              {/* Generate Button */}
+              <button
+                onClick={handleGenerate}
+                disabled={isLoading || !uploadedImageUrl}
+                className="flex w-full items-center justify-center gap-3 rounded-xl bg-gradient-to-r from-blue-500 to-purple-500 px-6 py-4 font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl disabled:transform-none disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                {isLoading ? (
+                  <>
+                    <div className="size-5 animate-spin rounded-full border-2 border-white/30 border-t-white" />
+                    Processing...
+                  </>
+                ) : (
+                  <>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="size-5"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M4 16l4.586-4.586a2 2 0 012.828 0L20 20m-6-6l2 2m-3-6a3 3 0 11-6 0 3 3 0 016 0z"
+                      />
+                    </svg>
+                    Generate (5 Credits)
+                  </>
+                )}
+              </button>
             </div>
           </div>
-          <input
-            type="text"
-            placeholder="Enter image URL"
-            className="mt-2 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 sm:text-sm"
-            onChange={handleUrlChange}
-            value={uploadedImageUrl || ''} // Bind input value to state for clearing
-          />
-        </div>
 
-        <div className="mb-6">
-          <h3 className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-200">Seed</h3>
-          {/* Assuming Seed is an expandable area, currently a placeholder */}
-          <div className="flex h-10 items-center justify-center rounded-md border border-gray-300 text-gray-400 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-500">
-            Dropdown placeholder
+          {/* Right Section - Preview */}
+          <div className="space-y-6">
+            <div className="rounded-3xl border border-gray-200/50 bg-white/80 p-8 shadow-lg backdrop-blur-sm dark:border-gray-600/50 dark:bg-gray-800/80">
+              <div className="mb-6 flex items-center gap-3">
+                <div className="flex size-8 items-center justify-center rounded-full bg-gradient-to-r from-green-500 to-emerald-500 text-sm font-bold text-white">
+                  2
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                  Result Preview
+                </h3>
+              </div>
+              
+              {error && (
+                <div className="mb-6 rounded-xl border border-red-200/50 bg-red-50/80 p-4 text-red-600 backdrop-blur-sm dark:border-red-700/50 dark:bg-red-900/30 dark:text-red-400">
+                  <div className="flex items-center gap-2">
+                    <svg className="size-5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                    </svg>
+                    <span className="font-medium">Error:</span> {error}
+                  </div>
+                </div>
+              )}
+              
+              <div className="group relative h-[500px] w-full overflow-hidden rounded-2xl bg-gray-50 dark:bg-gray-900">
+                {previewContent}
+              </div>
+              
+              {restoredImageUrl && (
+                <div className="mt-6">
+                  <p className="mb-4 text-sm text-gray-600 dark:text-gray-400">
+                    Drag the slider to compare before and after
+                  </p>
+                  <div className="flex justify-center">
+                    <a
+                      href={restoredImageUrl}
+                      download="restored-image.jpg"
+                      className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-green-500 to-emerald-500 px-6 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                    >
+                      <svg className="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                      </svg>
+                      Download Result
+                    </a>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
-
-        <div className="mb-6 flex items-center justify-between">
-          <h3 className="mr-2 text-sm font-medium text-gray-700 dark:text-gray-200">Watermark</h3>
-          <label htmlFor="watermark-toggle" className="flex cursor-pointer items-center">
-            <input
-              type="checkbox"
-              id="watermark-toggle"
-              className="peer sr-only"
-              checked={watermark}
-              onChange={() => setWatermark(!watermark)}
-            />
-            <div className="peer relative h-6 w-11 rounded-full bg-gray-200 after:absolute after:left-[2px] after:top-[2px] after:size-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-blue-800"></div>
-          </label>
-        </div>
-
-        <button
-          onClick={handleGenerate}
-          className="flex w-full items-center justify-center rounded-md bg-blue-600 px-4 py-3 text-lg font-semibold text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="mr-2 size-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M4 16l4.586-4.586a2 2 0 012.828 0L20 20m-6-6l2 2m-3-6a3 3 0 11-6 0 3 3 0 016 0z"
-            />
-          </svg>
-          Generate 5 Credits
-        </button>
       </div>
-
-      {/* Right Section */}
-      <div className="flex-1 rounded-lg bg-white p-6 shadow-md dark:bg-gray-800">
-        <h2 className="mb-4 text-xl font-semibold text-gray-900 dark:text-white">Flux Kontext Restore Image Result</h2>
-        <p className="mb-6 text-gray-600 dark:text-gray-300">The modified image results will appear here.</p>
-        <p className="mb-4 text-sm text-gray-500 dark:text-gray-400">Result Time 30s - 1min</p>
-
-        <div className="group relative flex h-[500px] w-full items-center justify-center overflow-hidden rounded-md dark:bg-gray-900">
-          {previewContent}
-        </div>
-      </div>
-    </div>
+    </section>
   );
 };
 

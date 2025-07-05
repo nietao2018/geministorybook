@@ -17,9 +17,11 @@ export default function IndexPage({ params: { locale } }: { params: { locale: st
   unstable_setRequestLocale(locale);
 
   return (
-    <>
+    <div className="bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       <HeroLanding />
       {/* <PreviewLanding /> */}
+      <Features />
+
       <TryOnClothing />
 
       <VideoSection />
@@ -28,15 +30,14 @@ export default function IndexPage({ params: { locale } }: { params: { locale: st
       {/* <BentoGrid /> */}
       <DemoList />
       {/* <InfoLanding/> */}
-      <Features />
       {/* <Testimonials /> */}
       <PricingCards />
-      <div className="my-4 flex justify-center">
-        <a href="https://magicbox.tools" target="_blank">
-          <img src="https://magicbox.tools/badge.svg" alt="Featured on MagicBox.tools" width="200" height="54" />
+      <div className="my-8 flex justify-center">
+        <a href="https://magicbox.tools" target="_blank" className="transition-transform hover:scale-105">
+          <img src="https://magicbox.tools/badge.svg" alt="Featured on MagicBox.tools" width="200" height="54" className="rounded-lg shadow-md" />
         </a>
       </div>
       <CTA />
-    </>
+    </div>
   );
 }

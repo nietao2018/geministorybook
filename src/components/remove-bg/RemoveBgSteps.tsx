@@ -23,23 +23,23 @@ const stepData = [
 export default function RemoveBgSteps() {
 
   return (
-    <section className="px-4 py-16 md:py-24">
+    <section className="px-4 py-8">
       <div className="mx-auto max-w-7xl">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
+        <div className="mb-12 text-center">
+          <h2 className="mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-3xl font-bold text-transparent md:text-4xl">
             How It Works
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          <p className="mx-auto max-w-2xl text-lg text-gray-600 dark:text-gray-300">
             Remove image backgrounds in just 3 simple steps. Fast, accurate, and professional results.
           </p>
         </div>
         
         <div className="relative">
           {/* Step Progress Line */}
-          <div className="absolute top-20 left-1/2 transform -translate-x-1/2 w-full max-w-4xl h-0.5 bg-gradient-to-r from-blue-200 via-purple-200 to-blue-200 dark:from-blue-800 dark:via-purple-800 dark:to-blue-800 hidden md:block" />
+          <div className="absolute left-1/2 top-20 hidden h-0.5 w-full max-w-4xl -translate-x-1/2 bg-gradient-to-r from-blue-200 via-purple-200 to-blue-200 dark:from-blue-800 dark:via-purple-800 dark:to-blue-800 md:block" />
           
           {/* Step Content Cards */}
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-3 relative z-10">
+          <div className="relative z-10 grid grid-cols-1 gap-8 md:grid-cols-3">
             {stepData.map((stepItem, idx) => (
               <article
                 key={stepItem.title}
@@ -48,36 +48,36 @@ export default function RemoveBgSteps() {
               >
                 {/* Step Number Circle */}
                 <div className="relative mb-6">
-                  <div className="w-16 h-16 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white font-bold text-xl shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
+                  <div className="flex size-16 items-center justify-center rounded-full bg-gradient-to-r from-blue-500 to-purple-500 text-xl font-bold text-white shadow-lg transition-all duration-300 group-hover:scale-110 group-hover:shadow-xl">
                     {idx + 1}
                   </div>
                   {/* Connecting line for mobile */}
                   {idx < stepData.length - 1 && (
-                    <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0.5 h-8 bg-gradient-to-b from-blue-200 to-purple-200 dark:from-blue-700 dark:to-purple-700 md:hidden" />
+                    <div className="absolute left-1/2 top-full h-8 w-0.5 -translate-x-1/2 bg-gradient-to-b from-blue-200 to-purple-200 dark:from-blue-700 dark:to-purple-700 md:hidden" />
                   )}
                 </div>
                 
                 {/* Step Content */}
-                <div className="bg-white/80 backdrop-blur-sm border border-gray-200/50 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 dark:bg-gray-800/80 dark:border-gray-600/50 w-full">
+                <div className="w-full rounded-2xl border border-gray-200/50 bg-white/80 p-8 shadow-lg backdrop-blur-sm transition-all duration-300 hover:shadow-xl dark:border-gray-600/50 dark:bg-gray-800/80">
                   {/* Step Image */}
-                  <div className="mb-6 relative">
-                    <div className="w-24 h-24 mx-auto rounded-2xl overflow-hidden shadow-md bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-800">
+                  <div className="relative mb-6">
+                    <div className="mx-auto size-24 overflow-hidden rounded-2xl bg-gradient-to-br from-gray-50 to-gray-100 shadow-md dark:from-gray-700 dark:to-gray-800">
                       <img
                         src={stepItem.image}
                         alt={stepItem.title.replace(/Step \d+ /, '') + ' example photo'}
-                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                        className="size-full object-cover transition-transform duration-300 group-hover:scale-110"
                         loading="lazy"
                       />
                     </div>
                   </div>
                   
                   {/* Step Title */}
-                  <h3 className="text-xl font-bold text-gray-800 dark:text-gray-200 mb-3">
+                  <h3 className="mb-3 text-xl font-bold text-gray-800 dark:text-gray-200">
                     {stepItem.title}
                   </h3>
                   
                   {/* Step Description */}
-                  <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                  <p className="leading-relaxed text-gray-600 dark:text-gray-400">
                     {stepItem.description}
                   </p>
                 </div>

@@ -169,20 +169,55 @@ export default function RemoveBgPage({ params }: { params: { locale: string } })
   };
 
   // 渲染客户端组件
-  return <>
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-    />
-    <h1 className="mx-auto my-20 flex max-w-[1200px] items-center justify-center text-center text-4xl font-bold text-gray-800 dark:text-white">
-      Upload an image to remove the background
-    </h1>
-    <ImageUploaderClient />
-    {/* <Powered /> */}
-    <RemoveBgSteps />
-    <RemoveBGFeature />
-    <Features />
-    <Testimonials />
-    <CTA />
-  </>;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+        {/* Hero Section */}
+        <div className="relative overflow-hidden pb-4 pt-16">
+          {/* Background Effects */}
+          <div className="absolute inset-0">
+            <div className="absolute left-1/3 top-0 size-96 rounded-full bg-gradient-to-r from-blue-400/20 to-purple-400/20 blur-3xl" />
+            <div className="absolute bottom-0 right-1/3 size-80 rounded-full bg-gradient-to-r from-purple-400/15 to-pink-400/15 blur-3xl" />
+            <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-blue-50/50 via-white/30 to-transparent dark:from-gray-900/50 dark:via-gray-800/30" />
+          </div>
+          
+          <div className="relative mx-auto max-w-7xl px-4">
+            {/* Breadcrumb Navigation */}
+            <nav className="mb-8 flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
+              <a href="/" className="transition-colors hover:text-blue-600">Home</a>
+              <span className="mx-1">/</span>
+              <span className="font-medium text-gray-900 dark:text-white">
+                {params.locale === 'zh-hans' ? '背景移除' : 'Remove Background'}
+              </span>
+            </nav>
+            
+            {/* Page Header */}
+            <div className="mb-4 text-center">
+              <h1 className="mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-4xl font-bold text-transparent md:text-5xl lg:text-6xl">
+                {params.locale === 'zh-hans' ? 'AI背景移除工具' : 'AI Background Remover'}
+              </h1>
+              <p className="mx-auto max-w-4xl text-xl leading-relaxed text-gray-600 dark:text-gray-300">
+                {params.locale === 'zh-hans' 
+                  ? '使用先进的AI技术，一键移除图片背景。支持人像、产品、动物等各种图片类型，快速获得透明背景图片。'
+                  : 'Remove image backgrounds instantly with advanced AI technology. Supports portraits, products, animals, and more. Get transparent background images in seconds.'
+                }
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        {/* Main Content */}
+        <ImageUploaderClient />
+        <RemoveBgSteps />
+        <RemoveBGFeature />
+        <Features />
+        <Testimonials />
+        <CTA />
+      </div>
+    </>
+  );
 }

@@ -230,10 +230,12 @@ const ImageUploaderClient = () => {
   };
 
   return (
-    <div 
-      className="mx-auto flex min-h-[600px] max-w-5xl flex-col items-center justify-center px-4 py-8"
-      onPaste={handlePaste}
-    >
+    <section className="relative py-4">
+      <div className="mx-auto max-w-7xl px-4">
+        <div 
+          className="mx-auto flex min-h-[600px] max-w-5xl flex-col items-center justify-center"
+          onPaste={handlePaste}
+        >
       <div className="w-full text-center">
 
         {previewUrl ? (
@@ -241,10 +243,10 @@ const ImageUploaderClient = () => {
             <div className="flex flex-col gap-6 lg:flex-row">
               <div className="flex-1">
                 <div className="mb-3 flex items-center justify-center gap-2">
-                  <div className="h-2 w-2 rounded-full bg-blue-500"></div>
+                  <div className="size-2 rounded-full bg-blue-500"></div>
                   <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200">Original</h3>
                 </div>
-                <div className="group relative h-80 w-full overflow-hidden rounded-2xl border border-gray-200/50 bg-white/80 backdrop-blur-sm shadow-lg transition-all duration-300 hover:shadow-xl dark:border-gray-600/50 dark:bg-gray-800/80">
+                <div className="group relative h-80 w-full overflow-hidden rounded-2xl border border-gray-200/50 bg-white/80 shadow-lg backdrop-blur-sm transition-all duration-300 hover:shadow-xl dark:border-gray-600/50 dark:bg-gray-800/80">
                   <Image 
                     src={previewUrl} 
                     alt="Preview image" 
@@ -257,11 +259,11 @@ const ImageUploaderClient = () => {
               {resultUrl && (
                 <div className="flex-1">
                   <div className="mb-3 flex items-center justify-center gap-2">
-                    <div className="h-2 w-2 rounded-full bg-green-500"></div>
+                    <div className="size-2 rounded-full bg-green-500"></div>
                     <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200">Result</h3>
                   </div>
                   <div 
-                    className="group relative h-80 w-full overflow-hidden rounded-2xl border border-gray-200/50 shadow-lg transition-all duration-300 hover:shadow-xl dark:border-gray-600/50 checkerboard-transparent"
+                    className="checkerboard-transparent group relative h-80 w-full overflow-hidden rounded-2xl border border-gray-200/50 shadow-lg transition-all duration-300 hover:shadow-xl dark:border-gray-600/50"
                   >
                     <Image 
                       src={resultUrl} 
@@ -275,9 +277,9 @@ const ImageUploaderClient = () => {
             </div>
             
             {error && (
-              <div className="mt-6 rounded-xl border border-red-200/50 bg-red-50/80 backdrop-blur-sm p-4 text-red-600 dark:border-red-700/50 dark:bg-red-900/30 dark:text-red-400">
+              <div className="mt-6 rounded-xl border border-red-200/50 bg-red-50/80 p-4 text-red-600 backdrop-blur-sm dark:border-red-700/50 dark:bg-red-900/30 dark:text-red-400">
                 <div className="flex items-center gap-2">
-                  <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="size-5" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
                   </svg>
                   {error}
@@ -288,17 +290,17 @@ const ImageUploaderClient = () => {
             <div className="mt-8 flex flex-wrap justify-center gap-3">
               <button 
                 onClick={handleChangeImage}
-                className="group flex items-center gap-2 rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 px-6 py-3 font-medium text-white shadow-lg transition-all duration-300 hover:from-blue-600 hover:to-blue-700 hover:shadow-xl hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="group flex items-center gap-2 rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 px-6 py-3 font-medium text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:from-blue-600 hover:to-blue-700 hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-50"
                 disabled={isProcessing}
               >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 transition-transform group-hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" className="size-5 transition-transform group-hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
                 </svg>
                 Change Image
               </button>
               <button 
                 onClick={handleRemoveBg}
-                className={`group flex items-center gap-2 rounded-xl px-6 py-3 font-medium text-white shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5 disabled:cursor-not-allowed ${
+                className={`group flex items-center gap-2 rounded-xl px-6 py-3 font-medium text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl disabled:cursor-not-allowed ${
                   isProcessing 
                     ? 'bg-gradient-to-r from-gray-400 to-gray-500' 
                     : 'bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700'
@@ -307,7 +309,7 @@ const ImageUploaderClient = () => {
               >
                 {isProcessing ? (
                   <>
-                    <svg className="h-5 w-5 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <svg className="size-5 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                     </svg>
@@ -315,7 +317,7 @@ const ImageUploaderClient = () => {
                   </>
                 ) : (
                   <>
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 transition-transform group-hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="size-5 transition-transform group-hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.121 14.121L19 19m-7-7l7-7m-7 7l-2.879 2.879M12 12L9.121 9.121m0 5.758a3 3 0 10-4.243-4.243 3 3 0 004.243 4.243z" />
                     </svg>
                     Remove Background (5 credits)
@@ -326,9 +328,9 @@ const ImageUploaderClient = () => {
               {resultUrl && (
                 <button 
                   onClick={handleDownload}
-                  className="group flex items-center gap-2 rounded-xl bg-gradient-to-r from-purple-500 to-purple-600 px-6 py-3 font-medium text-white shadow-lg transition-all duration-300 hover:from-purple-600 hover:to-purple-700 hover:shadow-xl hover:-translate-y-0.5"
+                  className="group flex items-center gap-2 rounded-xl bg-gradient-to-r from-purple-500 to-purple-600 px-6 py-3 font-medium text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:from-purple-600 hover:to-purple-700 hover:shadow-xl"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 transition-transform group-hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="size-5 transition-transform group-hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                   </svg>
                   Download Result
@@ -338,13 +340,13 @@ const ImageUploaderClient = () => {
           </div>
         ) : (
           <div 
-            className="group mb-8 flex h-80 w-full cursor-pointer flex-col items-center justify-center rounded-3xl border-2 border-dashed border-gray-300/60 bg-white/70 backdrop-blur-sm p-8 transition-all duration-300 hover:border-blue-400/80 hover:bg-blue-50/30 hover:shadow-xl dark:border-gray-500/60 dark:bg-gray-800/70 dark:hover:border-blue-400/80 dark:hover:bg-blue-900/20"
+            className="group mb-8 flex h-80 w-full cursor-pointer flex-col items-center justify-center rounded-3xl border-2 border-dashed border-gray-300/60 bg-white/70 p-8 backdrop-blur-sm transition-all duration-300 hover:border-blue-400/80 hover:bg-blue-50/30 hover:shadow-xl dark:border-gray-500/60 dark:bg-gray-800/70 dark:hover:border-blue-400/80 dark:hover:bg-blue-900/20"
             onDrop={handleDrop}
             onDragOver={handleDragOver}
             onClick={() => fileInputRef.current?.click()}
           >
-            <div className="mb-6 rounded-full bg-gradient-to-r from-blue-500/90 to-purple-500/90 p-4 shadow-lg transition-transform duration-300 group-hover:scale-110 backdrop-blur-sm">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <div className="mb-6 rounded-full bg-gradient-to-r from-blue-500/90 to-purple-500/90 p-4 shadow-lg backdrop-blur-sm transition-transform duration-300 group-hover:scale-110">
+              <svg xmlns="http://www.w3.org/2000/svg" className="size-12 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
               </svg>
             </div>
@@ -368,13 +370,13 @@ const ImageUploaderClient = () => {
             <div className="flex flex-col items-center gap-3 text-sm text-gray-500 dark:text-gray-500">
               <div className="flex items-center gap-4">
                 <span className="flex items-center gap-1">
-                  <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="size-4" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
                   JPG, PNG, WebP
                 </span>
                 <span className="flex items-center gap-1">
-                  <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="size-4" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
                   Up to 2MB
@@ -394,7 +396,7 @@ const ImageUploaderClient = () => {
               {sampleImages.map((src, index) => (
                 <div 
                   key={index}
-                  className="group cursor-pointer overflow-hidden rounded-2xl border-2 border-gray-200/50 bg-white/80 backdrop-blur-sm shadow-md transition-all duration-300 hover:border-blue-400/80 hover:shadow-lg hover:-translate-y-1 dark:border-gray-600/50 dark:bg-gray-800/80 dark:hover:border-blue-400/80"
+                  className="group cursor-pointer overflow-hidden rounded-2xl border-2 border-gray-200/50 bg-white/80 shadow-md backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-400/80 hover:shadow-lg dark:border-gray-600/50 dark:bg-gray-800/80 dark:hover:border-blue-400/80"
                   onClick={() => setPreviewUrl(src)}
                 >
                   <div className="relative h-32 w-full">
@@ -412,7 +414,7 @@ const ImageUploaderClient = () => {
           </div>
         )}
 
-        <div className="mt-12 rounded-xl bg-white/60 backdrop-blur-sm border border-gray-200/50 p-6 text-center dark:bg-gray-800/60 dark:border-gray-600/50">
+        <div className="mt-12 rounded-xl border border-gray-200/50 bg-white/60 p-6 text-center backdrop-blur-sm dark:border-gray-600/50 dark:bg-gray-800/60">
           <p className="text-sm text-gray-600 dark:text-gray-400">
             By uploading an image you agree to our{' '}
             <a href="#" className="text-blue-600 underline hover:text-blue-700 dark:text-blue-400">
@@ -426,7 +428,9 @@ const ImageUploaderClient = () => {
           </p>
         </div>
       </div>
-    </div>
+        </div>
+      </div>
+    </section>
   );
 };
 
