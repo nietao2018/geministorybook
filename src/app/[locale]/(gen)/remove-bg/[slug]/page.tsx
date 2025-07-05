@@ -14,109 +14,158 @@ export default function RemoveBgDynamicPage({ params }: { params: { slug: string
   const slugLabel = decodeURIComponent(slug || '').replace(/-/g, ' ');
 
   return (
-    <>
-      <nav className="mx-auto mb-8 flex max-w-6xl items-center space-x-2 px-4 text-base text-gray-400 dark:text-gray-400">
-        <Link href="/" className="hover:underline">Home</Link>
+    <div className="bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 min-h-screen">
+      {/* Breadcrumb Navigation */}
+      <nav className="mx-auto flex max-w-7xl items-center space-x-2 px-4 pt-8 text-sm text-gray-500 dark:text-gray-400">
+        <Link href="/" className="hover:text-blue-600 transition-colors">Home</Link>
         <span className="mx-1">/</span>
-        <Link href="/remove-bg" className="hover:underline">Background Remover</Link>
+        <Link href="/remove-bg" className="hover:text-blue-600 transition-colors">Background Remover</Link>
         <span className="mx-1">/</span>
-        <span className="font-bold text-gray-900 dark:text-white">{slugLabel}</span>
+        <span className="font-medium text-gray-900 dark:text-white">{slugLabel}</span>
       </nav>
-      <main className="mx-auto max-w-5xl px-4 py-10">
-        <div className="mx-auto mb-12 max-w-2xl">
-          <h1 className="mb-6 bg-gradient-to-r from-purple-500 via-blue-500 to-pink-500 bg-clip-text text-center text-4xl font-extrabold tracking-wider text-transparent drop-shadow-lg md:text-5xl">
+      
+      <main className="mx-auto max-w-7xl px-4 py-12">
+        {/* Hero Section */}
+        <div className="text-center mb-16">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-6">
             {pageConfig.title}
           </h1>
-          <p className="mb-0 text-center text-xl font-medium leading-relaxed text-gray-500 dark:text-gray-300 md:text-2xl">
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8 leading-relaxed">
             {pageConfig.subTitle}
           </p>
+          
+          <Link
+            href="/remove-bg"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 hover:from-blue-600 hover:to-purple-600"
+          >
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+            Try Background Remove Now
+          </Link>
         </div>
 
-        <a
-          href="/remove-bg"
-          className="mx-auto mb-12 mt-8 block w-fit min-w-[180px] rounded-3xl bg-[#ff4d4d] px-4 py-3 text-center text-base font-extrabold text-white shadow-lg transition-colors duration-200 hover:bg-[#e63b3b] focus:outline-none focus:ring-2 focus:ring-[#ff4d4d] dark:bg-[#ff4d4d] dark:hover:bg-[#e63b3b]"
-        >
-          Try Background Remove Now
-        </a>
-
+        {/* Demo Video Section */}
         {pageConfig.src && (
-          <div className="mx-auto mb-12 flex min-h-[540px] w-full items-center justify-center rounded-3xl border border-gray-200 bg-gradient-to-r from-pink-200 via-blue-100 to-purple-200 p-2 shadow-xl dark:border-gray-700 dark:from-[#2a2323] dark:via-[#232a2a] dark:to-[#2a234d] md:w-[900px] md:p-8">
-            <video src={pageConfig.src} className="max-h-full max-w-full rounded-2xl object-contain" controls autoPlay loop muted />
+          <div className="mb-20">
+            <div className="mx-auto max-w-5xl">
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl bg-white/80 backdrop-blur-sm border border-gray-200/50 dark:bg-gray-800/80 dark:border-gray-600/50">
+                <div className="aspect-video">
+                  <video 
+                    src={pageConfig.src} 
+                    className="w-full h-full object-cover" 
+                    controls 
+                    autoPlay 
+                    loop 
+                    muted 
+                  />
+                </div>
+              </div>
+            </div>
           </div>
         )}
 
-        <div className="space-y-4">
-          {pageConfig.steps.map((step, idx) => {
-            // 定义图片区域不同的背景色
-            const imgBgColors = [
-              'bg-[#ff4d4d] dark:bg-[#2a2323]',
-              'bg-[#4d9fff] dark:bg-[#232a2a]',
-              'bg-[#7dff4d] dark:bg-[#232a23]',
-              'bg-[#b44dff] dark:bg-[#2a234d]'
-            ];
-            const imgBg = imgBgColors[idx % imgBgColors.length];
-            return (
-              <div
-                key={idx}
-                className={`flex flex-col items-center gap-12 rounded-3xl py-12 shadow-lg md:flex-row ${idx % 2 === 1 ? 'md:flex-row-reverse' : ''}`}
-              >
-                {/* 图片区 */}
-                <div className={`flex min-h-[340px] w-full items-center justify-center rounded-3xl p-4 shadow-lg md:w-[520px] md:p-8 ${imgBg}`}>
-                  {step.src ? (
-                    <img
-                      src={step.src}
-                      alt={step.title}
-                      className="max-h-[320px] max-w-full rounded-xl object-contain"
-                    />
-                  ) : (
-                    <div className="flex h-[260px] w-full max-w-[400px] items-center justify-center rounded-xl bg-gray-100 text-gray-400">
-                      No Image
+        {/* Steps Section */}
+        <div className="mb-20">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
+              How It Works
+            </h2>
+            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+              Follow these simple steps to remove backgrounds from your images
+            </p>
+          </div>
+          
+          <div className="space-y-20">
+            {pageConfig.steps.map((step, idx) => {
+              const isEven = idx % 2 === 0;
+              return (
+                <div
+                  key={idx}
+                  className={`flex flex-col lg:flex-row items-center gap-12 ${!isEven ? 'lg:flex-row-reverse' : ''}`}
+                >
+                  {/* Image Section */}
+                  <div className="flex-1 relative">
+                    <div className="relative">
+                      {/* Step Number */}
+                      <div className="absolute -top-4 -left-4 w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg z-10">
+                        {idx + 1}
+                      </div>
+                      
+                      {/* Image Container */}
+                      <div className="bg-white/80 backdrop-blur-sm border border-gray-200/50 rounded-3xl p-8 shadow-lg dark:bg-gray-800/80 dark:border-gray-600/50">
+                        {step.src ? (
+                          <img
+                            src={step.src}
+                            alt={step.title}
+                            className="w-full h-80 object-cover rounded-2xl"
+                          />
+                        ) : (
+                          <div className="w-full h-80 bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl flex items-center justify-center text-gray-400 dark:from-gray-700 dark:to-gray-800">
+                            <svg className="w-16 h-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                          </div>
+                        )}
+                      </div>
                     </div>
-                  )}
+                  </div>
+                  
+                  {/* Content Section */}
+                  <div className="flex-1 text-center lg:text-left">
+                    <h3 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
+                      {step.title}
+                    </h3>
+                    <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+                      {step.subTitle}
+                    </p>
+                  </div>
                 </div>
-                {/* 文案区 */}
-                <div className="flex flex-1 flex-col justify-center">
-                  <h2 className="mb-6 text-4xl font-extrabold leading-tight text-gray-900 dark:text-white">
-                    {step.title}
-                  </h2>
-                  <h3 className="mb-4 text-lg font-medium leading-relaxed text-gray-700 dark:text-gray-200">
-                    {step.subTitle}
-                  </h3>
-                </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
 
         <RemoveBGFeature />
-        <div className="mx-auto mt-16 max-w-4xl">
-          <h2 className="mb-10 bg-gradient-to-r from-purple-500 via-blue-500 to-pink-500 bg-clip-text text-center text-4xl font-extrabold text-transparent dark:from-purple-300 dark:via-blue-300 dark:to-pink-300">
-            Background Remover FAQs
-          </h2>
-          <div className="space-y-6">
+        
+        {/* FAQ Section */}
+        <div className="mt-20">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+              Get answers to common questions about our background removal tool
+            </p>
+          </div>
+          
+          <div className="max-w-4xl mx-auto space-y-6">
             {pageConfig?.faqs?.map((faq, idx) => (
               <div
                 key={idx}
-                className="flex items-start rounded-2xl border border-gray-100 bg-gradient-to-r from-blue-50 via-pink-50 to-yellow-50 p-6 shadow-lg dark:border-zinc-700 dark:from-zinc-800 dark:via-zinc-900 dark:to-zinc-800"
+                className="bg-white/80 backdrop-blur-sm border border-gray-200/50 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 dark:bg-gray-800/80 dark:border-gray-600/50"
               >
-                <div className="mr-4 shrink-0">
-                  <span className="inline-block rounded-lg bg-white p-2 shadow dark:bg-zinc-900">
-                    <svg width="32" height="32" fill="none" viewBox="0 0 32 32">
-                      <rect width="32" height="32" rx="8" fill="#F3F4F6" className="dark:fill-zinc-800" />
-                      <text x="16" y="21" textAnchor="middle" fontSize="18" fill="#9CA3AF">?</text>
-                    </svg>
-                  </span>
-                </div>
-                <div>
-                  <div className="mb-1 text-lg font-bold text-gray-900 dark:text-gray-200">{faq.question}</div>
-                  <div className="text-gray-600 dark:text-gray-400">{faq.answer}</div>
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0">
+                    <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold">
+                      Q
+                    </div>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                      {faq.question}
+                    </h3>
+                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                      {faq.answer}
+                    </p>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
         </div>
       </main>
-    </>
+    </div>
   );
 }
 
