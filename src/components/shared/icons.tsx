@@ -51,11 +51,34 @@ import {
   Palette,
   Sparkles,
   Languages,
+  Scissors,
+  RefreshCw,
+  Shirt,
+  Video,
+  Film,
+  Maximize,
+  Headphones,
+  Mic,
+  Globe,
+  Download,
 } from "lucide-react";
 
 export type Icon = LucideIcon;
 
 export const Icons = {
+  // New icons for feature categories
+  scissors: Scissors,
+  refresh: RefreshCw,
+  shirt: Shirt,
+  video: Video,
+  film: Film,
+  maximize: Maximize,
+  headphones: Headphones,
+  mic: Mic,
+  globe: Globe,
+  download: Download,
+  
+  // Existing icons
   languages: Languages,
   zap: Zap,
   palette: Palette,

@@ -45,50 +45,144 @@ export const infos: InfoLdg[] = [
   }
 ];
 
-export const features: FeatureLdg[] = [
+interface FeatureCategory {
+  id: string;
+  title: string;
+  description: string;
+  icon: string;
+  features: FeatureLdg[];
+}
+
+// Helper function to add new feature categories
+export function addFeatureCategory(category: FeatureCategory): void {
+  featureCategories.push(category);
+}
+
+// Helper function to add feature to existing category
+export function addFeatureToCategory(categoryId: string, feature: FeatureLdg): boolean {
+  const category = featureCategories.find(cat => cat.id === categoryId);
+  if (category) {
+    category.features.push(feature);
+    return true;
+  }
+  return false;
+}
+
+// Helper function to get category by id
+export function getCategoryById(categoryId: string): FeatureCategory | undefined {
+  return featureCategories.find(cat => cat.id === categoryId);
+}
+
+// Helper function to get all category IDs
+export function getCategoryIds(): string[] {
+  return featureCategories.map(cat => cat.id);
+}
+
+export const featureCategories: FeatureCategory[] = [
   {
-    title: "Effortless Customization",
-    description:
-      "Tailor your AI-generated headshots to fit your unique style. Our intuitive tools make it easy to adjust every detail.",
-    link: "/",
-    icon: "sliders", 
+    id: "image-converter",
+    title: "Image Converter",
+    description: "Transform and enhance images with AI-powered tools",
+    icon: "image",
+    features: [
+      {
+        title: "Background Removal",
+        description: "Remove backgrounds from images instantly with AI precision. Perfect for creating professional headshots and product photos.",
+        link: "/remove-bg",
+        icon: "scissors",
+      },
+      {
+        title: "Image Restoration",
+        description: "Restore old or damaged photos with advanced AI algorithms. Bring your memories back to life with stunning clarity.",
+        link: "/image-restoration",
+        icon: "refresh",
+      },
+      {
+        title: "Photo Real Style",
+        description: "Convert your photos into different artistic styles while maintaining photorealistic quality.",
+        link: "/photo-real-style",
+        icon: "palette",
+      },
+      {
+        title: "Try-On Clothing",
+        description: "Virtually try on different clothing items using AI. See how outfits look before you buy.",
+        link: "/try-on-clothing",
+        icon: "shirt",
+      },
+      {
+        title: "Image Resize",
+        description: "The Image Resize feature helps users quickly adjust image dimensions, supporting various ratios and formats, making it convenient for web, social media, and diverse visual design scenarios.",
+        link: "/image-resize",
+        icon: "maximize",
+      },
+    ],
   },
   {
-    title: "Instant Results",
-    description:
-      "Generate stunning headshots in seconds. With the power of AI, you'll never have to wait for professional-quality images.",
-    link: "/",
-    icon: "zap", 
+    id: "video-converter",
+    title: "Video Converter",
+    description: "Process and transform video content with AI",
+    icon: "video",
+    features: [
+      {
+        title: "Video Background Removal",
+        description: "Remove or replace video backgrounds in real-time. Perfect for creating professional video content.",
+        link: "/video-bg-removal",
+        icon: "film",
+      },
+      {
+        title: "Video Enhancement",
+        description: "Enhance video quality with AI upscaling and noise reduction. Make your videos look professional.",
+        link: "/video-enhancement",
+        icon: "maximize",
+      },
+    ],
   },
   {
-    title: "Seamless Integration",
-    description:
-      "Easily incorporate your headshots into your personal or professional profiles, with formats optimized for any platform.",
-    link: "/",
-    icon: "share2", 
-  },
-  {
-    title: "Secure and Private",
-    description:
-      "Your data is safe with us. We prioritize your privacy and ensure that your headshots are securely stored and shared.",
-    link: "/",
-    icon: "shield", 
-  },
-  {
-    title: "AI-Enhanced Creativity",
-    description:
-      "Leverage the power of AI to explore creative possibilities. Experiment with different styles and looks effortlessly.",
-    link: "/",
-    icon: "cpu", 
-  },
-  {
-    title: "Fun and Engaging",
-    description:
-      "Enjoy a playful and engaging experience as you create headshots that are both fun and professional.",
-    link: "/",
-    icon: "smile", 
+    id: "audio-converter",
+    title: "Audio Converter",
+    description: "Transform and enhance audio files with AI",
+    icon: "headphones",
+    features: [
+      {
+        title: "Voice Enhancement",
+        description: "Improve audio quality and remove background noise from voice recordings.",
+        link: "/voice-enhancement",
+        icon: "mic",
+      },
+      {
+        title: "Audio Transcription",
+        description: "Convert speech to text with high accuracy. Perfect for creating subtitles and documentation.",
+        link: "/audio-transcription",
+        icon: "type",
+      },
+    ],
   },
 ];
+
+// Example of how to add a new category (commented out)
+// addFeatureCategory({
+//   id: "text-converter",
+//   title: "Text Converter",
+//   description: "Transform and analyze text content with AI",
+//   icon: "type",
+//   features: [
+//     {
+//       title: "Text Translation",
+//       description: "Translate text between multiple languages with high accuracy.",
+//       link: "/text-translation",
+//       icon: "globe",
+//     },
+//     {
+//       title: "Text Summarization",
+//       description: "Generate concise summaries of long text documents.",
+//       link: "/text-summarization",
+//       icon: "file-text",
+//     },
+//   ],
+// });
+
+// Legacy features for backward compatibility
+export const features: FeatureLdg[] = featureCategories.flatMap(category => category.features);
 
 export const testimonials: TestimonialType[] = [
   {

@@ -1,23 +1,16 @@
-import { siteConfig } from '@/config/site'
+import { sitemapManager, generateSitemapResponse } from '@/lib/sitemap-utils'
 
 export async function GET() {
-  const baseUrl = siteConfig.url || 'http://localhost:3000'
-  const sitemaps = [
+  const sitemapPaths = [
     '/sitemaps/sitemap-remove-bg.xml',
-    '/sitemaps/sitemap-try-on-clothing.xml',
+    '/sitemaps/sitemap-image-resize.xml',
     '/sitemaps/sitemap-image-restoration.xml',
     '/sitemaps/sitemap-photo-real-style.xml',
     '/sitemaps/sitemap-try-on-clothing.xml',
-
-    // 其他 sitemap 路径可继续添加
+    '/sitemaps/sitemap-product-anyshoot.xml',
+    // 可以根据需要添加更多sitemap
   ]
-  const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  ${sitemaps.map(
-    path => `\n    <sitemap>\n      <loc>${baseUrl}${path}</loc>\n      <lastmod>${new Date().toISOString()}</lastmod>\n    </sitemap>\n    `
-  ).join('')}\n</sitemapindex>`
-
-  return new Response(xml, {
-    headers: {
-      'Content-Type': 'application/xml',
-    },
-  })
+  
+  const xml = sitemapManager.generateSitemapIndexXML(sitemapPaths)
+  return generateSitemapResponse(xml)
 } 

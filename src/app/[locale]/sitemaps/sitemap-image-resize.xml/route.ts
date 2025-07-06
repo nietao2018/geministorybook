@@ -1,13 +1,13 @@
 import { sitemapManager, generateSitemapResponse, getContentModificationDate } from '@/lib/sitemap-utils'
-import { config } from '@/components/remove-bg/config'
+import { config } from '@/components/image-resize/config'
 
 export async function GET() {
   const urls = [
     // 主要工具页面 - 高优先级
-    ...sitemapManager.generateMultilingualUrls('/remove-bg', {
+    ...sitemapManager.generateMultilingualUrls('/image-resize', {
       contentType: 'config',
       pageType: 'tool',
-      customDate: getContentModificationDate('remove-bg'),
+      customDate: getContentModificationDate('image-resize'),
       priority: 0.9,
       changefreq: 'monthly'
     }),
@@ -15,10 +15,10 @@ export async function GET() {
     // 所有用例页面 - 中等优先级，基于config配置
     ...config.mainNav.flatMap(item => {
       const slugPath = item.path.replace(/^\//, '');
-      return sitemapManager.generateMultilingualUrls(`/remove-bg/${slugPath}`, {
+      return sitemapManager.generateMultilingualUrls(`/image-resize/${slugPath}`, {
         contentType: 'config',
         pageType: 'config',
-        customDate: getContentModificationDate('remove-bg'),
+        customDate: getContentModificationDate('image-resize'),
         priority: 0.8,
         changefreq: 'monthly'
       });
@@ -27,4 +27,4 @@ export async function GET() {
 
   const xml = sitemapManager.generateSitemapXML(urls);
   return generateSitemapResponse(xml);
-} 
+}
