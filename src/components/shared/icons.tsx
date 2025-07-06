@@ -61,11 +61,32 @@ import {
   Mic,
   Globe,
   Download,
+  Upload,
+  Play,
+  Music,
+  FileAudio,
+  Volume2,
+  Brain,
+  Users,
+  Monitor,
+  Smartphone,
+  Presentation,
+  Activity,
+  Loader2 as Spinner,
 } from "lucide-react";
 
 export type Icon = LucideIcon;
 
 export const Icons = {
+  // Audio and Video icons
+  fileAudio: FileAudio,
+  upload: Upload,
+  play: Play,
+  music: Music,
+  volume2: Volume2,
+  brain: Brain,
+  users: Users,
+  
   // New icons for feature categories
   scissors: Scissors,
   refresh: RefreshCw,
@@ -77,6 +98,13 @@ export const Icons = {
   mic: Mic,
   globe: Globe,
   download: Download,
+  monitor: Monitor,
+  smartphone: Smartphone,
+  presentation: Presentation,
+  activity: Activity,
+  spinner: Spinner,
+  check: Check,
+  camera: Camera,
   
   // Existing icons
   languages: Languages,
@@ -100,7 +128,6 @@ export const Icons = {
   add: Plus,
   avatar: User,
   photo: Image,
-  camera: Camera,
   imageuplus: ImagePlus, 
   imageupload: ImageUp, 
   arrowRight: ArrowRight,
@@ -109,7 +136,6 @@ export const Icons = {
   bookOpen: BookOpen,
   chevronLeft: ChevronLeft,
   chevronRight: ChevronRight,
-  check: Check,
   close: X,
   copy: Copy,
   dashboard: LayoutPanelLeft,
@@ -180,7 +206,6 @@ export const Icons = {
   post: FileText,
   search: Search,
   settings: Settings,
-  spinner: Loader2,
   sun: SunMedium,
   trash: Trash,
   twitter: ({ ...props }: LucideProps) => (

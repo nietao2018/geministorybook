@@ -236,6 +236,10 @@ export const contentModificationDates = {
   'photo-real-style': '2025-07-03T14:00:00Z',
   'try-on-clothing': '2025-07-03T11:00:00Z',
   'image-resize': '2025-07-06T15:30:00Z',
+  'voice-enhancement': '2025-07-06T16:00:00Z',
+  'audio-transcription': '2025-07-06T16:15:00Z',
+  'video-bg-removal': '2025-07-06T16:30:00Z',
+  'video-enhancement': '2025-07-06T16:45:00Z',
   
   // 可以根据实际情况添加更多配置
   // 'blog-post-slug': '2024-01-20T10:00:00Z',
