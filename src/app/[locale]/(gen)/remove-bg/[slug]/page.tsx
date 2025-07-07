@@ -1,10 +1,20 @@
-import { config } from '@/components/remove-bg/config';
+import { getConfig } from '@/components/remove-bg/config';
 import RemoveBGFeature from '@/components/remove-bg/RemoveBGFeature';
 import { notFound } from 'next/navigation';
+import { unstable_setRequestLocale } from 'next-intl/server';
 import Link from "next/link";
 
-export default function RemoveBgDynamicPage({ params }: { params: { slug: string } }) {
-  const { slug } = params;
+export default function RemoveBgDynamicPage({ params }: { params: { slug: string; locale: string } }) {
+  const { slug, locale } = params;
+  
+  unstable_setRequestLocale(locale);
+  
+  if (!['en', 'zh-hans'].includes(locale)) {
+    return notFound();
+  }
+  
+  const isZhHans = locale === 'zh-hans';
+  const config = getConfig(locale);
   // 兼容path前无/和有/的情况
   const pageConfig = config.mainNav.find(item => item.path.replace(/^\//, '') === slug);
 
@@ -17,9 +27,13 @@ export default function RemoveBgDynamicPage({ params }: { params: { slug: string
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       {/* Breadcrumb Navigation */}
       <nav className="mx-auto flex max-w-7xl items-center space-x-2 px-4 pt-8 text-sm text-gray-500 dark:text-gray-400">
-        <Link href="/" className="transition-colors hover:text-blue-600">Home</Link>
+        <Link href={`/${locale}`} className="transition-colors hover:text-blue-600">
+          {isZhHans ? '首页' : 'Home'}
+        </Link>
         <span className="mx-1">/</span>
-        <Link href="/remove-bg" className="transition-colors hover:text-blue-600">Background Remover</Link>
+        <Link href={`/${locale}/remove-bg`} className="transition-colors hover:text-blue-600">
+          {isZhHans ? '背景移除' : 'Background Remover'}
+        </Link>
         <span className="mx-1">/</span>
         <span className="font-medium text-gray-900 dark:text-white">{slugLabel}</span>
       </nav>
@@ -35,13 +49,13 @@ export default function RemoveBgDynamicPage({ params }: { params: { slug: string
           </p>
           
           <Link
-            href="/remove-bg"
+            href={`/${locale}/remove-bg`}
             className="inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-blue-500 to-purple-500 px-8 py-4 font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:from-blue-600 hover:to-purple-600 hover:shadow-xl"
           >
             <svg className="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
             </svg>
-            Try Background Remove Now
+            {isZhHans ? '立即试用背景移除' : 'Try Background Remove Now'}
           </Link>
         </div>
 
@@ -69,10 +83,10 @@ export default function RemoveBgDynamicPage({ params }: { params: { slug: string
         <div className="mb-20">
           <div className="mb-16 text-center">
             <h2 className="mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-3xl font-bold text-transparent md:text-4xl">
-              How It Works
+              {isZhHans ? '使用方法' : 'How It Works'}
             </h2>
             <p className="mx-auto max-w-2xl text-lg text-gray-600 dark:text-gray-300">
-              Follow these simple steps to remove backgrounds from your images
+              {isZhHans ? '按照以下简单步骤移除图片背景' : 'Follow these simple steps to remove backgrounds from your images'}
             </p>
           </div>
           
@@ -132,10 +146,10 @@ export default function RemoveBgDynamicPage({ params }: { params: { slug: string
         <div className="mt-20">
           <div className="mb-12 text-center">
             <h2 className="mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-3xl font-bold text-transparent md:text-4xl">
-              Frequently Asked Questions
+              {isZhHans ? '常见问题' : 'Frequently Asked Questions'}
             </h2>
             <p className="mx-auto max-w-2xl text-lg text-gray-600 dark:text-gray-300">
-              Get answers to common questions about our background removal tool
+              {isZhHans ? '关于我们背景移除工具的常见问题解答' : 'Get answers to common questions about our background removal tool'}
             </p>
           </div>
           
@@ -169,18 +183,27 @@ export default function RemoveBgDynamicPage({ params }: { params: { slug: string
   );
 }
 
-export async function generateMetadata({ params }: { params: { slug: string, locale?: string } }) {
+export async function generateMetadata({ params }: { params: { slug: string; locale: string } }) {
   const { slug, locale } = params;
+  const config = getConfig(locale);
   const pageConfig = config.mainNav.find(item => item.path.replace(/^\//, '') === slug);
   if (!pageConfig || !pageConfig.metaData) return {};
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://headshots.fun';
-  const canonical = `${baseUrl}${locale !='en' ? `/${locale}` : ''}/remove-bg/${slug}`;
+  const canonical = `${baseUrl}/${locale}/remove-bg/${slug}`;
+  
+  // Now using multilingual config
+  const title = pageConfig.metaData.title;
+  const description = pageConfig.metaData.description;
   return {
-    title: pageConfig.metaData.title,
-    description: pageConfig.metaData.description,
+    title,
+    description,
     keywords: pageConfig.metaData.keywords,
     alternates: {
       canonical,
+      languages: {
+        'en': `${baseUrl}/en/remove-bg/${slug}`,
+        'zh-Hans': `${baseUrl}/zh-hans/remove-bg/${slug}`,
+      },
     },
   };
 }
