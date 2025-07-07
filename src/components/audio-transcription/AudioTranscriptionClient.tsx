@@ -128,7 +128,7 @@ export default function AudioTranscriptionClient() {
     if (files && files[0]) {
       handleFileChange(files[0]);
     }
-  }, []);
+  }, [handleFileChange]);
 
   // 处理音频转录
   const handleTranscription = async () => {

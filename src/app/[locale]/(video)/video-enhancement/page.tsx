@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { unstable_setRequestLocale } from 'next-intl/server';
 import VideoEnhancementClient from '@/components/video-enhancement/VideoEnhancementClient';
 import VideoEnhancementSteps from '@/components/video-enhancement/VideoEnhancementSteps';
 import VideoEnhancementFeatures from '@/components/video-enhancement/VideoEnhancementFeatures';
@@ -60,6 +61,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default function VideoEnhancementPage({ params }: PageProps) {
   const { locale } = params;
+  
+  unstable_setRequestLocale(locale);
   
   if (!['en', 'zh-hans'].includes(locale)) {
     return notFound();

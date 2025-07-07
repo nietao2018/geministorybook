@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { unstable_setRequestLocale } from 'next-intl/server';
 import VideoBgRemovalClient from '@/components/video-bg-removal/VideoBgRemovalClient';
 import VideoBgRemovalSteps from '@/components/video-bg-removal/VideoBgRemovalSteps';
 import VideoBgRemovalFeatures from '@/components/video-bg-removal/VideoBgRemovalFeatures';
@@ -60,6 +61,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default function VideoBgRemovalPage({ params }: PageProps) {
   const { locale } = params;
+  
+  unstable_setRequestLocale(locale);
   
   if (!['en', 'zh-hans'].includes(locale)) {
     return notFound();

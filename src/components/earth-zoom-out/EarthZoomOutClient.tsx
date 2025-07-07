@@ -141,7 +141,7 @@ export default function EarthZoomOutClient() {
     } finally {
       setIsProcessing(false);
     }
-  }, [uploadedImage, settings, isZhHans, toast]);
+  }, [uploadedImage, settings, isZhHans, toast, config.component.toasts.framesGenerated.title, config.component.toasts.framesGenerated.description, config.component.toasts.processingFailed.title, config.component.toasts.processingFailed.description]);
 
   // Easing functions
   const getEaseValue = (t: number, easeType: string): number => {

@@ -128,7 +128,7 @@ export default function VideoBgRemovalClient() {
     if (files && files[0]) {
       handleFileChange(files[0]);
     }
-  }, []);
+  }, [handleFileChange]);
 
   // 处理视频背景移除
   const handleBackgroundRemoval = async () => {

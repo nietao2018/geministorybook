@@ -130,7 +130,7 @@ export default function VideoEnhancementClient() {
     if (files && files[0]) {
       handleFileChange(files[0]);
     }
-  }, []);
+  }, [handleFileChange]);
 
   // 处理视频增强
   const handleVideoEnhancement = async () => {

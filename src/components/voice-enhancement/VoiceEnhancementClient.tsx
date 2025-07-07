@@ -116,7 +116,7 @@ export default function VoiceEnhancementClient() {
     if (files && files[0]) {
       handleFileChange(files[0]);
     }
-  }, []);
+  }, [handleFileChange]);
 
   // 处理音频增强
   const handleEnhancement = async () => {
