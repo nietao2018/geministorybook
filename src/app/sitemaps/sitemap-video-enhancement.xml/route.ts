@@ -4,7 +4,7 @@ export async function GET() {
   const urls = [
     // Video Enhancement main pages
     ...sitemapManager.generateMultilingualUrls('/video-enhancement', {
-      contentType: 'config',
+      contentType: 'dynamic',
       pageType: 'tool',
       customDate: getContentModificationDate('video-enhancement')
     }),

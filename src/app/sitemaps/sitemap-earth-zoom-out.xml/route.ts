@@ -4,7 +4,7 @@ export async function GET() {
   const urls = [
     // Earth Zoom Out main pages
     ...sitemapManager.generateMultilingualUrls('/earth-zoom-out', {
-      contentType: 'config',
+      contentType: 'dynamic',
       pageType: 'tool',
       customDate: getContentModificationDate('earth-zoom-out')
     }),

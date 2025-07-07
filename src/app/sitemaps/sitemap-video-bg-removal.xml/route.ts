@@ -4,7 +4,7 @@ export async function GET() {
   const urls = [
     // Video Background Removal main pages
     ...sitemapManager.generateMultilingualUrls('/video-bg-removal', {
-      contentType: 'config',
+      contentType: 'dynamic',
       pageType: 'tool',
       customDate: getContentModificationDate('video-bg-removal')
     }),

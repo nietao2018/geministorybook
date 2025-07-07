@@ -4,7 +4,7 @@ export async function GET() {
   const urls = [
     // Audio Transcription main pages
     ...sitemapManager.generateMultilingualUrls('/audio-transcription', {
-      contentType: 'config',
+      contentType: 'dynamic',
       pageType: 'tool',
       customDate: getContentModificationDate('audio-transcription')
     }),
