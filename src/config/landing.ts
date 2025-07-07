@@ -135,6 +135,12 @@ export const featureCategories: FeatureCategory[] = [
         link: "/video-enhancement",
         icon: "maximize",
       },
+      {
+        title: "Earth Zoom Out",
+        description: "Transform any image into stunning Earth zoom out animation. Smooth zoom from surface close-up to space perspective, creating cinematic visual effects.",
+        link: "/earth-zoom-out",
+        icon: "globe",
+      },
     ],
   },
   {

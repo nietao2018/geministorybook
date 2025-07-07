@@ -73,6 +73,8 @@ import {
   Presentation,
   Activity,
   Loader2 as Spinner,
+  Pause,
+  RotateCcw,
 } from "lucide-react";
 
 export type Icon = LucideIcon;
@@ -103,6 +105,8 @@ export const Icons = {
   presentation: Presentation,
   activity: Activity,
   spinner: Spinner,
+  pause: Pause,
+  rotateCounterClockwise: RotateCcw,
   check: Check,
   camera: Camera,
   

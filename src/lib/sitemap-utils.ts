@@ -240,6 +240,7 @@ export const contentModificationDates = {
   'audio-transcription': '2025-07-06T16:15:00Z',
   'video-bg-removal': '2025-07-06T16:30:00Z',
   'video-enhancement': '2025-07-06T16:45:00Z',
+  'earth-zoom-out': '2025-07-07T15:00:00Z',
   
   // 可以根据实际情况添加更多配置
   // 'blog-post-slug': '2024-01-20T10:00:00Z',
