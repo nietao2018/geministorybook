@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState, useRef, useEffect, useCallback } from "react";
+import React, { useState, useRef, useEffect, useCallback, useContext } from "react";
 import { useParams } from 'next/navigation';
+import { ModalContext } from "@/components/modals/providers";
 import { Icons } from "@/components/shared/icons";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
@@ -9,22 +10,23 @@ import { useToast } from "@/components/ui/use-toast";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { earthZoomOutConfig } from "@/config/earth-zoom-out";
+import { toast as sonnerToast } from "sonner";
 
 export default function EarthZoomOutClient() {
   const params = useParams();
   const isZhHans = params.locale === 'zh-hans';
   const config = isZhHans ? earthZoomOutConfig.zh : earthZoomOutConfig.en;
   const { toast } = useToast();
+  const { setShowSignInModal } = useContext(ModalContext);
   
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const animationRef = useRef<number | null>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [isPaused, setIsPaused] = useState(false);
   const [uploadedImage, setUploadedImage] = useState<string | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
-  const [processingProgress, setProcessingProgress] = useState(0);
-  const [zoomFrames, setZoomFrames] = useState<string[]>([]);
+  const [resultVideoUrl, setResultVideoUrl] = useState<string | null>(null);
+  const [predictionId, setPredictionId] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [isDragOver, setIsDragOver] = useState(false);
   
   // Animation parameters
   const [settings, setSettings] = useState({
@@ -37,18 +39,9 @@ export default function EarthZoomOutClient() {
     centerY: 0.5
   });
 
-  // Animation state
-  const [animationState, setAnimationState] = useState({
-    currentFrame: 0,
-    zoom: 1,
-    time: 0
-  });
 
-  // Handle image upload
-  const handleImageUpload = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (!file) return;
-
+  // Handle file selection
+  const handleFileSelect = useCallback((file: File) => {
     if (!file.type.startsWith('image/')) {
       toast({
         title: config.component.toasts.invalidFormat.title,
@@ -58,154 +51,191 @@ export default function EarthZoomOutClient() {
       return;
     }
 
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      const result = e.target?.result as string;
-      setUploadedImage(result);
-      toast({
-        title: config.component.toasts.uploadSuccess.title,
-        description: config.component.toasts.uploadSuccess.description,
-      });
-    };
-    reader.readAsDataURL(file);
+    setUploadedImage(URL.createObjectURL(file));
+    setResultVideoUrl(null);
+    setError(null);
+    toast({
+      title: config.component.toasts.uploadSuccess.title,
+      description: config.component.toasts.uploadSuccess.description,
+    });
   }, [config.component.toasts.invalidFormat.title, config.component.toasts.invalidFormat.description, config.component.toasts.uploadSuccess.title, config.component.toasts.uploadSuccess.description, toast]);
 
-  // Generate zoom frames from uploaded image
-  const generateZoomFrames = useCallback(async () => {
-    if (!uploadedImage) return;
-    
-    setIsProcessing(true);
-    setProcessingProgress(0);
-    setZoomFrames([]);
-    
+  // Handle image upload
+  const handleImageUpload = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) handleFileSelect(file);
+  }, [handleFileSelect]);
+
+  // Handle drag events
+  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
+
+  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragOver(false);
+    const file = e.dataTransfer.files?.[0];
+    if (file && file.type.startsWith("image/")) {
+      handleFileSelect(file);
+    }
+  };
+
+  const handleDragEnter = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragOver(true);
+  };
+
+  const handleDragLeave = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragOver(false);
+  };
+
+  // Function to poll for generation results
+  const pollPredictionResult = useCallback(async (id: string) => {
     try {
-      const img = new Image();
-      await new Promise((resolve, reject) => {
-        img.onload = resolve;
-        img.onerror = reject;
-        img.src = uploadedImage;
+      const response = await fetch(`/api/prediction/${id}/get`, {
+        method: 'GET',
+        credentials: 'include',
       });
       
-      const canvas = document.createElement('canvas');
-      const ctx = canvas.getContext('2d')!;
-      
-      const frames: string[] = [];
-      const { frameCount, zoomLevels, centerX, centerY } = settings;
-      
-      // Calculate zoom progression
-      for (let i = 0; i < frameCount; i++) {
-        const progress = i / (frameCount - 1);
-        const easeProgress = getEaseValue(progress, settings.easeType);
-        const zoomLevel = 1 + (zoomLevels - 1) * easeProgress;
-        
-        // Calculate crop dimensions
-        const cropWidth = img.width / zoomLevel;
-        const cropHeight = img.height / zoomLevel;
-        const cropX = (img.width * centerX) - (cropWidth / 2);
-        const cropY = (img.height * centerY) - (cropHeight / 2);
-        
-        // Set canvas size
-        canvas.width = Math.min(800, img.width);
-        canvas.height = Math.min(600, img.height);
-        
-        // Clear canvas
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
-        // Draw cropped and scaled image
-        ctx.drawImage(
-          img,
-          Math.max(0, cropX), Math.max(0, cropY),
-          Math.min(cropWidth, img.width), Math.min(cropHeight, img.height),
-          0, 0,
-          canvas.width, canvas.height
-        );
-        
-        frames.push(canvas.toDataURL('image/jpeg', 0.9));
-        setProcessingProgress((i + 1) / frameCount * 100);
-        
-        // Allow UI to update
-        await new Promise(resolve => setTimeout(resolve, 10));
+      if (response.status === 401) {
+        setShowSignInModal(true);
+        return;
       }
       
-      setZoomFrames(frames);
-      toast({
-        title: config.component.toasts.framesGenerated.title,
-        description: config.component.toasts.framesGenerated.description.replace('{count}', frames.length.toString()),
-      });
-    } catch (error) {
+      if (!response.ok) {
+        throw new Error(`Failed to get prediction: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      
+      if (data.status === 'completed' && data.videoUrl) {
+        // Generation successful, set result video
+        setResultVideoUrl(data.videoUrl);
+        setIsProcessing(false);
+        toast({
+          title: config.component.toasts.framesGenerated.title,
+          description: config.component.toasts.framesGenerated.description,
+        });
+      } else if (data.status === 'failed') {
+        // Generation failed
+        setError('Video processing failed: ' + (data.error || 'Unknown error'));
+        setIsProcessing(false);
+        toast({
+          title: config.component.toasts.processingFailed.title,
+          description: config.component.toasts.processingFailed.description,
+          variant: "destructive",
+        });
+      } else if (['processing', 'starting', 'pending'].includes(data.status)) {
+        // Continue polling
+        setTimeout(() => pollPredictionResult(id), 2000);
+      }
+    } catch (err) {
+      console.error('Error polling for result:', err);
+      setError('Error checking processing status');
+      setIsProcessing(false);
       toast({
         title: config.component.toasts.processingFailed.title,
         description: config.component.toasts.processingFailed.description,
         variant: "destructive",
       });
-    } finally {
-      setIsProcessing(false);
     }
-  }, [uploadedImage, settings, isZhHans, toast, config.component.toasts.framesGenerated.title, config.component.toasts.framesGenerated.description, config.component.toasts.processingFailed.title, config.component.toasts.processingFailed.description]);
+  }, [setShowSignInModal, config.component.toasts.framesGenerated.title, config.component.toasts.framesGenerated.description, config.component.toasts.processingFailed.title, config.component.toasts.processingFailed.description, toast]);
 
-  // Easing functions
-  const getEaseValue = (t: number, easeType: string): number => {
-    switch (easeType) {
-      case 'ease-in':
-        return t * t;
-      case 'ease-out':
-        return 1 - (1 - t) * (1 - t);
-      case 'ease-in-out':
-        return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
-      default:
-        return t; // linear
-    }
-  };
+  // Generate zoom video using API
+  const generateZoomVideo = useCallback(async () => {
+    if (!uploadedImage) return;
 
-  // Download frames as GIF or video
-  const downloadAnimation = useCallback(async () => {
-    if (zoomFrames.length === 0) return;
-    
-    // For now, just download the first and last frame
-    const link = document.createElement('a');
-    link.download = 'zoom-animation-frames.zip';
-    
-    toast({
-      title: isZhHans ? "下载功能开发中" : "Download Feature Coming Soon",
-      description: isZhHans ? "暂时支持预览，下载功能即将上线" : "Preview available, download feature coming soon",
-    });
-  }, [zoomFrames, isZhHans, toast]);
+    try {
+      setIsProcessing(true);
+      setError(null);
+      setResultVideoUrl(null);
 
-  // Animation loop for playing generated frames
-  const animate = useCallback(() => {
-    if (!isPlaying || zoomFrames.length === 0) return;
-
-    const frameInterval = settings.animationDuration / zoomFrames.length;
-    
-    setAnimationState(prev => {
-      const nextFrame = (prev.currentFrame + 1) % zoomFrames.length;
-      const newTime = prev.time + frameInterval;
-      
-      if (nextFrame === 0 && prev.currentFrame !== 0) {
-        // Animation completed one cycle
-        setIsPlaying(false);
-        toast({
-          title: isZhHans ? "动画完成" : "Animation Complete",
-          description: isZhHans ? "图片缩放动画已完成" : "Image zoom animation completed",
+      // Convert URL to base64
+      let imageBase64 = uploadedImage;
+      if (uploadedImage.startsWith('blob:')) {
+        // If it's a blob URL, convert to base64
+        const response = await fetch(uploadedImage);
+        const blob = await response.blob();
+        imageBase64 = await new Promise<string>((resolve) => {
+          const reader = new FileReader();
+          reader.onloadend = () => {
+            if (reader.result) {
+              resolve(reader.result as string);
+            } else {
+              resolve('');
+            }
+          };
+          reader.readAsDataURL(blob);
         });
-        return { currentFrame: 0, zoom: 1, time: 0 };
       }
       
-      return {
-        currentFrame: nextFrame,
-        zoom: 1 + (settings.zoomLevels - 1) * (nextFrame / zoomFrames.length),
-        time: newTime
-      };
-    });
-    
-    const timeoutId = setTimeout(() => {
-      if (isPlaying) {
-        animationRef.current = requestAnimationFrame(animate);
+      // Prepare image data, remove base64 prefix
+      const imageData = imageBase64.startsWith('data:') ? imageBase64.split(',')[1] : imageBase64;
+
+      // Call API to generate earth zoom out video
+      const response = await fetch('/api/replicate/create', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+        body: JSON.stringify({
+          input: {
+            image: imageData,
+            input_image: `data:image/jpeg;base64,${imageData}`,
+            zoom_speed: settings.zoomSpeed,
+            zoom_levels: settings.zoomLevels,
+            frame_count: settings.frameCount,
+            animation_duration: settings.animationDuration,
+            ease_type: settings.easeType,
+            center_x: settings.centerX,
+            center_y: settings.centerY
+          },
+          useCredit: 20, // Earth zoom out costs 10 credits
+          model: 'earthZoomOut',
+          type: 'model'
+        }),
+      });
+
+      if (response.status === 401) {
+        setShowSignInModal(true);
+        return;
       }
-    }, frameInterval);
-    
-    return () => clearTimeout(timeoutId);
-  }, [isPlaying, zoomFrames, settings, isZhHans, toast]);
+      
+      if (response.status === 201) {
+        setIsProcessing(false);
+        sonnerToast.error(isZhHans ? "积分不足，请购买更多积分。" : "Insufficient credits, please purchase more.");
+        return;
+      }
+
+      await new Promise(resolve => setTimeout(resolve, 60000))
+
+      if (!response.ok) {
+        throw new Error(`API call failed: ${response.status}`);
+      }
+
+      const data = await response.json();
+      if (data.id) {
+        setPredictionId(data.id);
+        await pollPredictionResult(data.id);
+      }
+    } catch (error) {
+      console.error('Error generating zoom video:', error);
+      setError('Failed to generate zoom video');
+      setIsProcessing(false);
+      toast({
+        title: config.component.toasts.processingFailed.title,
+        description: config.component.toasts.processingFailed.description,
+        variant: "destructive",
+      });
+    }
+  }, [uploadedImage, settings, setShowSignInModal, pollPredictionResult, isZhHans, config.component.toasts.processingFailed.title, config.component.toasts.processingFailed.description, toast]);
+
 
   // Render current frame to canvas
   const renderCurrentFrame = useCallback(() => {
@@ -219,14 +249,8 @@ export default function EarthZoomOutClient() {
     ctx.fillStyle = '#000';
     ctx.fillRect(0, 0, width, height);
 
-    if (zoomFrames.length > 0) {
-      const currentFrameImage = new Image();
-      currentFrameImage.onload = () => {
-        ctx.drawImage(currentFrameImage, 0, 0, width, height);
-      };
-      currentFrameImage.src = zoomFrames[animationState.currentFrame] || zoomFrames[0];
-    } else if (uploadedImage) {
-      // Show original image if no frames generated yet
+    if (uploadedImage) {
+      // Show original image
       const img = new Image();
       img.onload = () => {
         const scale = Math.min(width / img.width, height / img.height);
@@ -247,54 +271,13 @@ export default function EarthZoomOutClient() {
       ctx.textAlign = 'center';
       ctx.font = '16px sans-serif';
       ctx.fillText(
-        isZhHans ? '上传图片开始制作缩放动画' : 'Upload an image to create zoom animation',
+        isZhHans ? '上传图片开始制作地球缩放视频' : 'Upload an image to create earth zoom video',
         width / 2,
         height / 2
       );
     }
-  }, [zoomFrames, animationState.currentFrame, uploadedImage, isZhHans]);
+  }, [uploadedImage, isZhHans]);
 
-  // Start animation
-  const startAnimation = () => {
-    if (zoomFrames.length === 0) {
-      toast({
-        title: isZhHans ? "请先生成动画帧" : "Please Generate Frames First",
-        description: isZhHans ? "需要先上传图片并生成动画帧" : "Upload an image and generate frames first",
-        variant: "destructive",
-      });
-      return;
-    }
-    
-    setIsPlaying(true);
-    setIsPaused(false);
-    setAnimationState({ currentFrame: 0, zoom: 1, time: 0 });
-    
-    toast({
-      title: isZhHans ? "动画开始" : "Animation Started",
-      description: isZhHans ? "图片缩放动画已开始" : "Image zoom animation started",
-    });
-  };
-
-  // Pause/Resume animation
-  const togglePause = () => {
-    setIsPaused(!isPaused);
-    if (!isPaused) {
-      setIsPlaying(false);
-    } else {
-      setIsPlaying(true);
-    }
-  };
-
-  // Reset animation
-  const resetAnimation = () => {
-    setIsPlaying(false);
-    setIsPaused(false);
-    setAnimationState({ currentFrame: 0, zoom: 1, time: 0 });
-    
-    if (animationRef.current) {
-      cancelAnimationFrame(animationRef.current);
-    }
-  };
 
   // Handle canvas resize
   useEffect(() => {
@@ -317,89 +300,15 @@ export default function EarthZoomOutClient() {
     };
   }, []);
 
-  // Animation loop effect
-  useEffect(() => {
-    if (isPlaying && !isPaused && zoomFrames.length > 0) {
-      animationRef.current = requestAnimationFrame(animate);
-    }
-
-    return () => {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
-    };
-  }, [isPlaying, isPaused, animate, zoomFrames]);
-
   // Initial render and update on changes
   useEffect(() => {
     renderCurrentFrame();
-  }, [renderCurrentFrame, animationState.currentFrame, uploadedImage, zoomFrames]);
+  }, [renderCurrentFrame, uploadedImage]);
 
   return (
     <section className="w-full py-16">
       <div className="mx-auto max-w-7xl px-4">
         <div className="grid gap-8 lg:grid-cols-3">
-          {/* Canvas Area */}
-          <div className="lg:col-span-2">
-            <Card className="overflow-hidden">
-              <CardHeader>
-                <CardTitle>{isZhHans ? "图片缩放预览" : "Image Zoom Preview"}</CardTitle>
-                <CardDescription>
-                  {isZhHans ? "预览您的图片缩放动画效果" : "Preview your image zoom animation effect"}
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="p-0">
-                <div className="relative">
-                  <canvas
-                    ref={canvasRef}
-                    className="h-96 w-full bg-black lg:h-[500px]"
-                    style={{ display: 'block' }}
-                  />
-                  
-                  {/* Animation Info Overlay */}
-                  {(zoomFrames.length > 0 || uploadedImage) && (
-                    <div className="absolute bottom-4 left-4 rounded-lg bg-black/60 p-3 text-white backdrop-blur-sm">
-                      <div className="text-sm">
-                        <div>{isZhHans ? "缩放级别" : "Zoom Level"}: {animationState.zoom.toFixed(2)}x</div>
-                        <div>{isZhHans ? "当前帧" : "Current Frame"}: {animationState.currentFrame + 1}/{zoomFrames.length || 1}</div>
-                        <div>{isZhHans ? "动画时间" : "Time"}: {animationState.time.toFixed(1)}s</div>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Play Controls Overlay */}
-                  <div className="absolute bottom-4 right-4 flex space-x-2">
-                    <Button
-                      onClick={startAnimation}
-                      disabled={isPlaying && !isPaused}
-                      size="sm"
-                      className="bg-blue-500 hover:bg-blue-600"
-                    >
-                      <Icons.play className="size-4" />
-                    </Button>
-                    
-                    <Button
-                      onClick={togglePause}
-                      disabled={!isPlaying && !isPaused}
-                      size="sm"
-                      className="bg-yellow-500 hover:bg-yellow-600"
-                    >
-                      {isPaused ? <Icons.play className="size-4" /> : <Icons.pause className="size-4" />}
-                    </Button>
-                    
-                    <Button
-                      onClick={resetAnimation}
-                      size="sm"
-                      className="bg-red-500 hover:bg-red-600"
-                    >
-                      <Icons.rotateCounterClockwise className="size-4" />
-                    </Button>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-
           {/* Controls Panel */}
           <div className="space-y-6">
             {/* Image Upload */}
@@ -407,36 +316,70 @@ export default function EarthZoomOutClient() {
               <CardHeader>
                 <CardTitle>{isZhHans ? "上传地表图片" : "Upload Earth Surface Image"}</CardTitle>
                 <CardDescription>
-                  {isZhHans ? "上传一张图片作为地球表面，创建从近距离到太空的缩放动画" : "Upload an image as Earth surface to create zoom-out animation from close-up to space"}
+                  {isZhHans ? "上传一张图片作为地球表面，创建从近距离到太空的缩放视频" : "Upload an image as Earth surface to create zoom-out video from close-up to space"}
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                  <input
-                    type="file"
-                    ref={fileInputRef}
-                    onChange={handleImageUpload}
-                    accept="image/*"
-                    className="hidden"
-                  />
-                  
-                  <Button
-                    onClick={() => fileInputRef.current?.click()}
-                    className="w-full"
-                    variant="outline"
+                  {/* Drag and Drop Area */}
+                  <div 
+                    className={`relative flex h-40 items-center justify-center rounded-xl border-2 border-dashed transition-all duration-200 ${
+                      isDragOver 
+                        ? 'border-blue-500 bg-blue-50/30 dark:bg-blue-900/20' 
+                        : 'border-gray-300/60 bg-gray-50/50 hover:border-blue-400/60 hover:bg-blue-50/30 dark:border-gray-500/60 dark:bg-gray-800/50 dark:hover:border-blue-400/60 dark:hover:bg-blue-900/20'
+                    }`}
+                    onDragOver={handleDragOver}
+                    onDrop={handleDrop}
+                    onDragEnter={handleDragEnter}
+                    onDragLeave={handleDragLeave}
                   >
-                    <Icons.upload className="mr-2 size-4" />
-                    {isZhHans ? "选择图片" : "Choose Image"}
-                  </Button>
-                  
-                  {uploadedImage && (
-                    <div className="text-sm text-green-600">
-                      {isZhHans ? "地表图片已上传成功" : "Earth surface image uploaded successfully"}
-                    </div>
-                  )}
+                    {uploadedImage ? (
+                      <div className="relative size-full">
+                        <img 
+                          src={uploadedImage} 
+                          alt="Earth surface" 
+                          className="size-full rounded-lg object-cover" 
+                        />
+                        <Button
+                          variant="destructive"
+                          size="sm"
+                          className="absolute right-2 top-2 size-6 p-0"
+                          onClick={() => {
+                            setUploadedImage(null);
+                            setResultVideoUrl(null);
+                            setError(null);
+                          }}
+                        >
+                          <Icons.close className="size-3" />
+                        </Button>
+                      </div>
+                    ) : (
+                      <label 
+                        className="group flex size-full cursor-pointer flex-col items-center justify-center"
+                        onClick={() => fileInputRef.current?.click()}
+                      >
+                        <div className="mb-2 flex size-12 items-center justify-center rounded-xl bg-gradient-to-r from-blue-100 to-purple-100 transition-colors group-hover:scale-105 dark:from-blue-900/50 dark:to-purple-900/50">
+                          <Icons.upload className="size-6 text-blue-600 dark:text-blue-400" />
+                        </div>
+                        <span className="mb-1 font-medium text-gray-900 dark:text-white">
+                          {isZhHans ? "拖拽图片到此处" : "Drop image here"}
+                        </span>
+                        <span className="text-sm text-gray-600 dark:text-gray-400">
+                          {isZhHans ? "或点击选择文件" : "or click to browse"}
+                        </span>
+                        <input
+                          type="file"
+                          accept="image/*"
+                          ref={fileInputRef}
+                          onChange={handleImageUpload}
+                          className="hidden"
+                        />
+                      </label>
+                    )}
+                  </div>
                   
                   <Button
-                    onClick={generateZoomFrames}
+                    onClick={generateZoomVideo}
                     disabled={!uploadedImage || isProcessing}
                     className="w-full bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600"
                   >
@@ -448,203 +391,37 @@ export default function EarthZoomOutClient() {
                     ) : (
                       <>
                         <Icons.zap className="mr-2 size-4" />
-                        {isZhHans ? "生成地球缩放帧" : "Generate Earth Zoom Frames"}
+                        {isZhHans ? "生成地球缩放视频 (20积分)" : "Generate Earth Zoom Video (20 credits)"}
                       </>
                     )}
                   </Button>
-                  
-                  {isProcessing && (
-                    <Progress value={processingProgress} className="w-full" />
-                  )}
                 </div>
               </CardContent>
             </Card>
 
-            {/* Animation Controls */}
+
+
+            {/* Generation Status */}
             <Card>
               <CardHeader>
-                <CardTitle>{isZhHans ? "动画控制" : "Animation Controls"}</CardTitle>
+                <CardTitle>{isZhHans ? "生成状态" : "Generation Status"}</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="space-y-4">
-                  <Button
-                    onClick={startAnimation}
-                    disabled={isPlaying && !isPaused}
-                    className="w-full bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600"
-                  >
-                    {isPlaying && !isPaused ? (
-                      <>
-                        <Icons.spinner className="mr-2 size-4 animate-spin" />
-                        {isZhHans ? "播放中..." : "Playing..."}
-                      </>
-                    ) : (
-                      <>
-                        <Icons.play className="mr-2 size-4" />
-                        {isZhHans ? "开始动画" : "Start Animation"}
-                      </>
-                    )}
-                  </Button>
-
-                  <div className="flex space-x-2">
-                    <Button
-                      onClick={togglePause}
-                      disabled={!isPlaying && !isPaused}
-                      className="flex-1"
-                      variant="outline"
-                    >
-                      {isPaused ? <Icons.play className="size-4" /> : <Icons.pause className="size-4" />}
-                    </Button>
-                    
-                    <Button
-                      onClick={resetAnimation}
-                      className="flex-1"
-                      variant="outline"
-                    >
-                      <Icons.rotateCounterClockwise className="size-4" />
-                    </Button>
-                  </div>
-                  
-                  <Button
-                    onClick={downloadAnimation}
-                    disabled={zoomFrames.length === 0}
-                    className="w-full"
-                    variant="outline"
-                  >
-                    <Icons.download className="mr-2 size-4" />
-                    {isZhHans ? "下载动画" : "Download Animation"}
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Animation Settings */}
-            <Card>
-              <CardHeader>
-                <CardTitle>{isZhHans ? "动画设置" : "Animation Settings"}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  <div>
-                    <label className="mb-2 block text-sm font-medium">
-                      {isZhHans ? "缩放级别" : "Zoom Levels"}: {settings.zoomLevels}x
-                    </label>
-                    <Slider
-                      value={[settings.zoomLevels]}
-                      onValueChange={([value]) => setSettings(prev => ({ ...prev, zoomLevels: value }))}
-                      min={2}
-                      max={20}
-                      step={1}
-                      className="w-full"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="mb-2 block text-sm font-medium">
-                      {isZhHans ? "帧数" : "Frame Count"}: {settings.frameCount}
-                    </label>
-                    <Slider
-                      value={[settings.frameCount]}
-                      onValueChange={([value]) => setSettings(prev => ({ ...prev, frameCount: value }))}
-                      min={10}
-                      max={60}
-                      step={5}
-                      className="w-full"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="mb-2 block text-sm font-medium">
-                      {isZhHans ? "动画时长" : "Animation Duration"}: {settings.animationDuration}ms
-                    </label>
-                    <Slider
-                      value={[settings.animationDuration]}
-                      onValueChange={([value]) => setSettings(prev => ({ ...prev, animationDuration: value }))}
-                      min={1000}
-                      max={10000}
-                      step={500}
-                      className="w-full"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="mb-2 block text-sm font-medium">
-                      {isZhHans ? "缩放中心 X" : "Zoom Center X"}: {settings.centerX.toFixed(2)}
-                    </label>
-                    <Slider
-                      value={[settings.centerX]}
-                      onValueChange={([value]) => setSettings(prev => ({ ...prev, centerX: value }))}
-                      min={0}
-                      max={1}
-                      step={0.01}
-                      className="w-full"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="mb-2 block text-sm font-medium">
-                      {isZhHans ? "缩放中心 Y" : "Zoom Center Y"}: {settings.centerY.toFixed(2)}
-                    </label>
-                    <Slider
-                      value={[settings.centerY]}
-                      onValueChange={([value]) => setSettings(prev => ({ ...prev, centerY: value }))}
-                      min={0}
-                      max={1}
-                      step={0.01}
-                      className="w-full"
-                    />
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Easing Type */}
-            <Card>
-              <CardHeader>
-                <CardTitle>{isZhHans ? "动画缓动" : "Animation Easing"}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <select
-                  value={settings.easeType}
-                  onChange={(e) => setSettings(prev => ({ ...prev, easeType: e.target.value }))}
-                  className="w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:outline-none"
-                >
-                  <option value="linear">{isZhHans ? "线性" : "Linear"}</option>
-                  <option value="ease-in">{isZhHans ? "缓入" : "Ease In"}</option>
-                  <option value="ease-out">{isZhHans ? "缓出" : "Ease Out"}</option>
-                  <option value="ease-in-out">{isZhHans ? "缓入缓出" : "Ease In-Out"}</option>
-                </select>
-              </CardContent>
-            </Card>
-
-            {/* Animation Status */}
-            <Card>
-              <CardHeader>
-                <CardTitle>{isZhHans ? "动画状态" : "Animation Status"}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-2 text-sm">
+                <div className="space-y-3 text-sm">
                   <div className="flex justify-between">
                     <span>{isZhHans ? "状态" : "Status"}:</span>
                     <span className={`font-medium ${
-                      isPlaying ? 'text-green-600' : isPaused ? 'text-yellow-600' : 'text-gray-600'
+                      isProcessing ? 'text-yellow-600' : 
+                      resultVideoUrl ? 'text-green-600' : 
+                      error ? 'text-red-600' : 'text-gray-600'
                     }`}>
-                      {isPlaying ? (isZhHans ? '播放中' : 'Playing') : 
-                       isPaused ? (isZhHans ? '暂停' : 'Paused') : 
-                       (isZhHans ? '停止' : 'Stopped')}
+                      {isProcessing ? (isZhHans ? '生成中' : 'Processing') : 
+                       resultVideoUrl ? (isZhHans ? '已完成' : 'Completed') : 
+                       error ? (isZhHans ? '失败' : 'Failed') :
+                       (isZhHans ? '就绪' : 'Ready')}
                     </span>
                   </div>
-                  <div className="flex justify-between">
-                    <span>{isZhHans ? "帧数" : "Frames"}:</span>
-                    <span className="font-medium text-blue-600">
-                      {zoomFrames.length}
-                    </span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>{isZhHans ? "进度" : "Progress"}:</span>
-                    <span className="font-medium text-green-600">
-                      {zoomFrames.length > 0 ? ((animationState.currentFrame / zoomFrames.length) * 100).toFixed(1) : 0}%
-                    </span>
-                  </div>
+                  
                   <div className="flex justify-between">
                     <span>{isZhHans ? "图片" : "Image"}:</span>
                     <span className={`font-medium ${
@@ -653,6 +430,124 @@ export default function EarthZoomOutClient() {
                       {uploadedImage ? (isZhHans ? '已上传' : 'Uploaded') : (isZhHans ? '未上传' : 'Not uploaded')}
                     </span>
                   </div>
+                  
+                  <div className="flex justify-between">
+                    <span>{isZhHans ? "视频" : "Video"}:</span>
+                    <span className={`font-medium ${
+                      resultVideoUrl ? 'text-green-600' : 'text-gray-400'
+                    }`}>
+                      {resultVideoUrl ? (isZhHans ? '已生成' : 'Generated') : (isZhHans ? '未生成' : 'Not generated')}
+                    </span>
+                  </div>
+                  
+                  {predictionId && (
+                    <div className="flex justify-between">
+                      <span>{isZhHans ? "任务ID" : "Task ID"}:</span>
+                      <span className="font-mono text-xs text-gray-500">
+                        {predictionId.slice(0, 8)}...
+                      </span>
+                    </div>
+                  )}
+                  
+                  <div className="flex justify-between">
+                    <span>{isZhHans ? "消耗积分" : "Credits Cost"}:</span>
+                    <span className="font-medium text-blue-600">
+                      20 {isZhHans ? "积分" : "credits"}
+                    </span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Video Preview Area */}
+          <div className="lg:col-span-2">
+            <Card className="overflow-hidden">
+              <CardHeader>
+                <CardTitle>{isZhHans ? "地球缩放视频预览" : "Earth Zoom Video Preview"}</CardTitle>
+                <CardDescription>
+                  {resultVideoUrl 
+                    ? (isZhHans ? "您的地球缩放视频已生成完成" : "Your earth zoom video has been generated")
+                    : (isZhHans ? "上传图片并生成地球缩放视频" : "Upload an image to generate earth zoom video")
+                  }
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="p-0">
+                <div className="relative">
+                  {/* Video Player or Canvas */}
+                  {resultVideoUrl ? (
+                    <div className="relative h-96 w-full lg:h-[500px]">
+                      <video
+                        controls
+                        className="size-full object-contain"
+                        src={resultVideoUrl}
+                        poster={uploadedImage || undefined}
+                      >
+                        {isZhHans ? "您的浏览器不支持视频播放" : "Your browser does not support video playback"}
+                      </video>
+                      
+                      {/* Download Button Overlay */}
+                      <Button
+                        onClick={() => {
+                          const link = document.createElement('a');
+                          link.href = resultVideoUrl;
+                          link.download = 'earth-zoom-out-video.mp4';
+                          document.body.appendChild(link);
+                          link.click();
+                          document.body.removeChild(link);
+                        }}
+                        size="sm"
+                        className="absolute right-4 top-4 bg-blue-500 hover:bg-blue-600"
+                      >
+                        <Icons.download className="mr-2 size-4" />
+                        {isZhHans ? "下载视频" : "Download Video"}
+                      </Button>
+                    </div>
+                  ) : (
+                    <canvas
+                      ref={canvasRef}
+                      className="h-96 w-full bg-black lg:h-[500px]"
+                      style={{ display: 'block' }}
+                    />
+                  )}
+                  
+                  {/* Processing Overlay */}
+                  {isProcessing && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+                      <div className="space-y-4 text-center text-white">
+                        <div className="mx-auto flex size-16 items-center justify-center rounded-full bg-gradient-to-r from-blue-500 to-purple-500">
+                          <Icons.spinner className="size-8 animate-spin" />
+                        </div>
+                        <div className="space-y-2">
+                          <p className="font-medium">{isZhHans ? "正在生成地球缩放视频..." : "Generating earth zoom video..."}</p>
+                          <p className="text-sm text-gray-300">{isZhHans ? "请稍候，这可能需要几分钟" : "Please wait, this may take a few minutes"}</p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Error Overlay */}
+                  {error && !isProcessing && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-red-500/20 backdrop-blur-sm">
+                      <div className="space-y-4 text-center text-white">
+                        <div className="mx-auto flex size-16 items-center justify-center rounded-full bg-red-500">
+                          <Icons.close className="size-8" />
+                        </div>
+                        <div className="space-y-2">
+                          <p className="font-medium">{isZhHans ? "生成失败" : "Generation Failed"}</p>
+                          <p className="text-sm">{error}</p>
+                          <Button
+                            onClick={() => setError(null)}
+                            size="sm"
+                            variant="outline"
+                            className="mt-2"
+                          >
+                            {isZhHans ? "重试" : "Retry"}
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </CardContent>
             </Card>

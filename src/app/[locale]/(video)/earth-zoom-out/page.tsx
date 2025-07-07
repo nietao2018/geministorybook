@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { unstable_setRequestLocale } from 'next-intl/server';
 import EarthZoomOutClient from '@/components/earth-zoom-out/EarthZoomOutClient';
+import UseCases from '@/components/earth-zoom-out/UseCases';
 import { earthZoomOutConfig } from '@/config/earth-zoom-out';
 
 interface PageProps {
@@ -124,8 +125,13 @@ export default function EarthZoomOutPage({ params }: PageProps) {
           </div>
         </section>
 
+        
+
         {/* Image Zoom Animation Tool */}
         <EarthZoomOutClient />
+
+        {/* Use Cases Section */}
+        <UseCases locale={locale} />
 
         {/* Features Section */}
         <section className="py-16">
