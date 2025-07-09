@@ -236,6 +236,7 @@ export const contentModificationDates = {
   'photo-real-style': '2025-07-03T14:00:00Z',
   'try-on-clothing': '2025-07-03T11:00:00Z',
   'image-resize': '2025-07-06T15:30:00Z',
+  'image-compressor': '2025-07-09T20:00:00Z',
   'voice-enhancement': '2025-07-06T16:00:00Z',
   'text-to-speech': '2025-07-09T18:00:00Z',
   'audio-transcription': '2025-07-06T16:15:00Z',

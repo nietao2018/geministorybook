@@ -4,6 +4,7 @@ export async function GET() {
   const sitemapPaths = [
     '/sitemaps/sitemap-remove-bg.xml',
     '/sitemaps/sitemap-image-resize.xml',
+    '/sitemaps/sitemap-image-compressor.xml',
     '/sitemaps/sitemap-image-restoration.xml',
     '/sitemaps/sitemap-photo-real-style.xml',
     '/sitemaps/sitemap-try-on-clothing.xml',

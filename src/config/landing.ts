@@ -115,6 +115,12 @@ export const featureCategories: FeatureCategory[] = [
         link: "/image-resize",
         icon: "maximize",
       },
+      {
+        title: "Image Compressor",
+        description: "Compress images with advanced AI technology while maintaining quality. Reduce file sizes significantly for JPG, PNG, WebP formats.",
+        link: "/image-compressor",
+        icon: "archive",
+      },
     ],
   },
   {
