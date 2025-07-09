@@ -161,6 +161,12 @@ export const featureCategories: FeatureCategory[] = [
         link: "/audio-transcription",
         icon: "type",
       },
+      {
+        title: "Text to Speech",
+        description: "Convert text to natural-sounding speech with AI voices. Support multiple languages and voice styles.",
+        link: "/text-to-speech",
+        icon: "volume2",
+      },
     ],
   },
 ];

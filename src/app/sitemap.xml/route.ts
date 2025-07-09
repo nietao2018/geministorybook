@@ -9,6 +9,7 @@ export async function GET() {
     '/sitemaps/sitemap-try-on-clothing.xml',
     '/sitemaps/sitemap-product-anyshoot.xml',
     '/sitemaps/sitemap-voice-enhancement.xml',
+    '/sitemaps/sitemap-text-to-speech.xml',
     '/sitemaps/sitemap-audio-transcription.xml',
     '/sitemaps/sitemap-video-bg-removal.xml',
     '/sitemaps/sitemap-video-enhancement.xml',
