@@ -15,6 +15,7 @@ export async function GET() {
     '/sitemaps/sitemap-video-bg-removal.xml',
     '/sitemaps/sitemap-video-enhancement.xml',
     '/sitemaps/sitemap-earth-zoom-out.xml',
+    '/sitemaps/sitemap-kontext-komposer.xml',
     // 可以根据需要添加更多sitemap
   ]
   
