@@ -121,6 +121,12 @@ export const featureCategories: FeatureCategory[] = [
         link: "/image-compressor",
         icon: "archive",
       },
+      {
+        title: "Kontext Komposer",
+        description: "Revolutionary FLUX.1 Kontext Komposer for intelligent image editing. Simply tell our AI what to change - no complex tools needed. Context-aware editing, character consistency, and multimodal composition.",
+        link: "/kontext-komposer",
+        icon: "edit",
+      },
     ],
   },
   {

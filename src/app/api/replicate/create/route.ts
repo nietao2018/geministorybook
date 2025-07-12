@@ -9,7 +9,8 @@ const Version = {
   removeBg:  "95fcc2a26d3899cd6c2691c900465aaeff466285a65c14638cc5f36f34befaf1"
 }
 const MODEL = {
-  photoRealStyle: "black-forest-labs/flux-kontext-pro"
+  photoRealStyle: "black-forest-labs/flux-kontext-pro",
+  kontextKomposer: "black-forest-labs/flux-kontext-pro"
 }
 
 export async function POST(request: NextRequest) {

@@ -87,7 +87,7 @@ export default function VideoEnhancementClient() {
   };
 
   // 处理文件选择
-  const handleFileChange = async (file: File) => {
+  const handleFileChange = useCallback(async (file: File) => {
     if (!validateVideoFile(file)) return;
 
     try {
@@ -108,7 +108,7 @@ export default function VideoEnhancementClient() {
         variant: "destructive",
       });
     }
-  };
+  }, [isZhHans, toast]);
 
   // 拖拽处理
   const handleDrag = useCallback((e: React.DragEvent) => {

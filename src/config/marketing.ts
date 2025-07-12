@@ -27,6 +27,10 @@ export const marketingConfig: MarketingConfig = {
       href: "/remove-bg",
     },
     {
+      title: "kontext-komposer",
+      href: "/kontext-komposer",
+    },
+    {
       title: "pricing",
       href: "/pricing",
     },
