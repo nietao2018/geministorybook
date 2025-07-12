@@ -5,6 +5,7 @@ import {
   BookOpen,
   Camera,
   Check,
+  ChevronDown,
   ChevronLeft,
   ChevronRight,
   Copy,
@@ -75,6 +76,8 @@ import {
   Loader2 as Spinner,
   Pause,
   RotateCcw,
+  Archive,
+  Edit,
 } from "lucide-react";
 
 export type Icon = LucideIcon;
@@ -109,6 +112,8 @@ export const Icons = {
   rotateCounterClockwise: RotateCcw,
   check: Check,
   camera: Camera,
+  archive: Archive,
+  edit: Edit,
   
   // Existing icons
   languages: Languages,
@@ -138,6 +143,7 @@ export const Icons = {
   arrowUpRight: ArrowUpRight,
   billing: CreditCard,
   bookOpen: BookOpen,
+  chevronDown: ChevronDown,
   chevronLeft: ChevronLeft,
   chevronRight: ChevronRight,
   close: X,

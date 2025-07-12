@@ -46,6 +46,7 @@ export type NavItem = {
   authorizeOnly?: UserRole;
   icon?: keyof typeof Icons;
   target?: "_blank" | "_self";
+  children?: NavItem[];
 };
 
 export type MainNavItem = NavItem;

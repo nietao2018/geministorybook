@@ -16,6 +16,12 @@ import { Icons } from "@/components/shared/icons";
 import MaxWidthWrapper from "@/components/shared/max-width-wrapper";
 import LocaleSwitcher from "@/components/locale/locale-switcher";
 import { useTranslations } from "next-intl";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 interface NavBarProps {
   scroll?: boolean;
@@ -54,20 +60,62 @@ export function NavBar({ scroll = false }: NavBarProps) {
           {links && links.length > 0 ? (
             <nav className="hidden gap-1 md:flex">
               {links.map((item, index) => (
-                <Link
-                  key={index}
-                  href={item.disabled ? "#" : item.href}
-                  prefetch={true}
-                  className={cn(
-                    "flex items-center rounded-xl px-4 py-2 text-sm font-medium transition-all duration-200 hover:bg-blue-50/80 hover:text-blue-600 dark:hover:bg-blue-900/30 dark:hover:text-blue-400",
-                    item.href.startsWith(`/${selectedLayout}`)
-                      ? "bg-gradient-to-r from-blue-100 to-purple-100 text-blue-600 shadow-sm dark:from-blue-900/50 dark:to-purple-900/50 dark:text-blue-400"
-                      : "text-gray-600 dark:text-gray-300",
-                    item.disabled && "cursor-not-allowed opacity-50",
-                  )}
-                >
-                  {t(item.title)}
-                </Link>
+                item.children ? (
+                  <DropdownMenu key={index}>
+                    <DropdownMenuTrigger asChild>
+                      <button
+                        className={cn(
+                          "flex items-center gap-1 rounded-xl px-4 py-2 text-sm font-medium transition-all duration-200 hover:bg-blue-50/80 hover:text-blue-600 dark:hover:bg-blue-900/30 dark:hover:text-blue-400",
+                          "text-gray-600 dark:text-gray-300",
+                          item.disabled && "cursor-not-allowed opacity-50",
+                        )}
+                      >
+                        {t(item.title)}
+                        <Icons.chevronDown className="size-4" />
+                      </button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent 
+                      align="start" 
+                      className="w-64 rounded-xl border border-gray-200/50 bg-white/95 p-2 shadow-xl backdrop-blur-lg"
+                    >
+                      {item.children.map((child, childIndex) => (
+                        <DropdownMenuItem key={childIndex} asChild className="p-0">
+                          <Link
+                            href={child.href}
+                            className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 transition-all duration-200 hover:bg-blue-50/80 hover:text-blue-600"
+                          >
+                            {child.icon && (
+                              <div className="flex size-8 items-center justify-center rounded-lg bg-gradient-to-r from-blue-100 to-purple-100">
+                                {(() => {
+                                  const IconComponent = Icons[child.icon as keyof typeof Icons];
+                                  return IconComponent ? <IconComponent className="size-4 text-blue-600" /> : null;
+                                })()}
+                              </div>
+                            )}
+                            <div className="flex flex-col">
+                              <span className="font-medium">{t(child.title)}</span>
+                            </div>
+                          </Link>
+                        </DropdownMenuItem>
+                      ))}
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                ) : (
+                  <Link
+                    key={index}
+                    href={item.disabled ? "#" : item.href}
+                    prefetch={true}
+                    className={cn(
+                      "flex items-center rounded-xl px-4 py-2 text-sm font-medium transition-all duration-200 hover:bg-blue-50/80 hover:text-blue-600 dark:hover:bg-blue-900/30 dark:hover:text-blue-400",
+                      item.href.startsWith(`/${selectedLayout}`)
+                        ? "bg-gradient-to-r from-blue-100 to-purple-100 text-blue-600 shadow-sm dark:from-blue-900/50 dark:to-purple-900/50 dark:text-blue-400"
+                        : "text-gray-600 dark:text-gray-300",
+                      item.disabled && "cursor-not-allowed opacity-50",
+                    )}
+                  >
+                    {t(item.title)}
+                  </Link>
+                )
               ))}
             </nav>
           ) : null}
