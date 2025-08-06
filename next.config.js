@@ -25,7 +25,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "s.headshots.fun",
+        hostname: "cdn.geministorybook.info",
       },
       {
         protocol: "https",

@@ -282,4 +282,4 @@ export const styles = [
     },
 ];
 
-export const domainPath = "https://s.headshots.fun/options-img";
+export const domainPath = "https://cdn.geministorybook.info/images";

@@ -61,11 +61,11 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
           <div className="text-left text-sm text-muted-foreground">
             <span className="font-medium">{t('built_by')}{" "}</span>
             <Link
-              href="https://Converters.pro/?from=opensource-footer"
+              href="https://geministorybook.info/?from=opensource-footer"
               target="_blank"
               className="font-medium underline underline-offset-4"
             >
-              Converters.pro
+              geministorybook.info
             </Link>
             {/* <span className="mr-2"> , </span>
 

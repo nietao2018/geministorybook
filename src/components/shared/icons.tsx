@@ -1,5 +1,6 @@
 import {
   AlertTriangle,
+  ArrowDown,
   ArrowRight,
   ArrowUpRight,
   BookOpen,
@@ -139,6 +140,7 @@ export const Icons = {
   photo: Image,
   imageuplus: ImagePlus, 
   imageupload: ImageUp, 
+  arrowDown: ArrowDown,
   arrowRight: ArrowRight,
   arrowUpRight: ArrowUpRight,
   billing: CreditCard,

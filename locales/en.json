@@ -8,7 +8,7 @@
     "sign_in_with_linkedin": "Sign In with LinkedIn",
     "back": "Back",
     "welcome_back": "Welcome back",
-    "use_email_to_sign_in": "Use email to sign in to your Converters.pro account",
+    "use_email_to_sign_in": "Use email to sign in to your geministorybook.info account",
     "don't_have_an_account": "Don't have an account?",
     "sign_up": "Sign Up",
     "email": "Email",
@@ -55,7 +55,7 @@
       "photo-real-style": "Photo-Real-Style",
       "remove-bg": "Remove-BG",
       "PixMiller": "PixMiller",
-      "HeadShots fun": "Converters.pro",
+      "HeadShots fun": "geministorybook.info",
       "Ullr AI Lab": "Ullr AI Lab",
       "Pricing": "Pricing",
       "Styles": "Styles",
@@ -67,29 +67,101 @@
   },
   "HeroLanding": {
     "make-photo-successful": "Make Your Photo Successful First!",
-    "fun_pro_for_every_occasion": "AI Marketing video drive Business Success at",
-    "headshots_fun": "Converters.pro",
-    "get_unique_portraits": "Get unique and professional level videos in just <bold>10 seconds</bold> using the fastest AI at Converters.pro. Only <bold>1/20</bold> the price of traditional video production.",
+    "fun_pro_for_every_occasion": "AI-powered zodiac storytelling at",
+    "headshots_fun": "geministorybook.info",
+    "get_unique_portraits": "Create unique and personalized Gemini stories in just <bold>minutes</bold> using advanced AI at geministorybook.info. Discover the magic of <bold>personalized</bold> zodiac storytelling.",
     "get_your_headshots": "Get marketing  videos"
+  },
+  "GeminiStorybook": {
+    "title": "Gemini Storybook",
+    "subtitle": "Explore the mystical world of Gemini and craft your own zodiac stories with AI technology.",
+    "description": "Each story is a unique stellar legend crafted just for you.",
+    "start_creating": "Start Creating Story",
+    "explore_gallery": "Explore Story Gallery",
+    "hero": {
+      "ai_story_generation": "AI Story Generation",
+      "ai_story_description": "Intelligent creation of personalized Gemini stories",
+      "zodiac_matching": "Zodiac Matching", 
+      "zodiac_description": "Explore the bond between Gemini and other zodiac signs",
+      "visual_presentation": "Visual Presentation",
+      "visual_description": "Stunning starry sky visual experience",
+      "scroll_down": "Scroll down"
+    },
+    "features": {
+      "title": "Gemini Exclusive Features",
+      "subtitle": "Story creation features tailor-made for Gemini, making every story full of wisdom and change",
+      "dual_personality": "Dual Personality Exploration",
+      "dual_personality_desc": "Deeply understand the dual personality traits of Gemini, creating stories that reflect inner conflict and harmony",
+      "wisdom_dialogue": "Wisdom Dialogue Generation", 
+      "wisdom_dialogue_desc": "Use AI technology to generate philosophical inner dialogues, showcasing Gemini's thinking ability",
+      "change_themes": "Change-themed Stories",
+      "change_themes_desc": "Create dynamic stories around themes of change, adaptation, and growth that match Gemini traits",
+      "multi_role": "Multi-role Interaction",
+      "multi_role_desc": "Show multiple identities and role transitions in stories, reflecting Gemini's multifaceted nature",
+      "zodiac_fortune": "Zodiac Fortune Integration",
+      "zodiac_fortune_desc": "Skillfully integrate Gemini's zodiac characteristics and fortune predictions into story plots",
+      "knowledge_quest": "Knowledge Quest Journey",
+      "knowledge_quest_desc": "Create adventure stories themed on learning, exploration, and discovery to satisfy Gemini's curiosity",
+      "explore_more": "Explore More Features"
+    },
+    "showcase": {
+      "title": "Story",
+      "title_highlight": "Case Studies",
+      "subtitle": "Explore AI-created Gemini-themed stories and feel the charm of your zodiac sign",
+      "story1_title": "The Two Me in the Mirror",
+      "story1_excerpt": "In front of the morning mirror, she saw two completely different selves. One yearning for adventure, one pursuing stability...",
+      "story1_mood": "Philosophy",
+      "story2_title": "Choice Under the Stars",
+      "story2_excerpt": "Under the guidance of the Gemini constellation, he faced a major life choice. Should he follow his heart or listen to reason...",
+      "story2_mood": "Growth", 
+      "story3_title": "The Art of Conversation",
+      "story3_excerpt": "She had the gift of communicating with anyone, but tonight, she had to learn to talk to another self deep within...",
+      "story3_mood": "Insight",
+      "read_full_story": "Read Full Story",
+      "zodiac_traits": "Gemini Traits",
+      "traits_description": "These traits will be skillfully woven into your personalized stories",
+      "trait_communication": "Good at Communication",
+      "trait_quick_thinking": "Quick Thinking",
+      "trait_adaptable": "Highly Adaptable", 
+      "trait_curious": "Strong Curiosity",
+      "trait_dual_nature": "Dual Personality",
+      "trait_innovative": "Innovative Thinking",
+      "create_my_story": "Create My Gemini Story"
+    },
+    "cta": {
+      "title": "Ready to Start Your",
+      "title_highlight": "Zodiac Story Journey?",
+      "description": "Let AI create personalized stories for Gemini,",
+      "description2": "discover your true self through change and wisdom.",
+      "feature1": "Start Creating Now",
+      "feature2": "AI Smart Generation", 
+      "feature3": "Personalized Customization",
+      "start_creating": "Start Creating My Story",
+      "browse_gallery": "Browse Story Gallery",
+      "bottom_text": "Join thousands of Gemini users to explore the charm of zodiac stories together",
+      "free_start": "100% Free to Start",
+      "privacy_protected": "Privacy Protected",
+      "unlimited_creation": "Unlimited Creation"
+    }
   },
   "Testimonials": {
     "label": "Testimonials",
     "title": "What our clients are sharing.",
     "subtitle": "Discover the glowing feedback from our delighted customers worldwide.",
     "reviews": {
-      "1": "Converters.pro has revolutionized our marketing strategy. The AI-generated videos are not only cost-effective but also incredibly engaging, saving us countless hours of production time.",
-      "2": "The speed and quality of videos from Converters.pro are remarkable. We can now create professional marketing content in minutes instead of days.",
-      "3": "Converters.pro has transformed how we approach social media marketing. The AI-generated videos are perfect for our daily content needs and consistently drive engagement.",
-      "4": "As a startup founder, Converters.pro has been a game-changer. We can now produce high-quality marketing videos at a fraction of the cost of traditional production.",
-      "5": "The versatility of Converters.pro is impressive. Whether it's product demos or social ads, the AI consistently delivers professional-quality videos that resonate with our audience.",
-      "6": "Our marketing team's productivity has skyrocketed since using Converters.pro. The AI video generation tool helps us create content for multiple platforms in record time.",
-      "7": "The ROI we've seen with Converters.pro is outstanding. The AI-generated videos perform just as well as our traditionally produced content, at a fraction of the cost.",
-      "8": "What impresses me most about Converters.pro is how it maintains brand consistency across all generated videos while still keeping the content fresh and engaging."
+      "1": "geministorybook.info has revolutionized how we connect with our Gemini traits. The AI-generated stories are not only deeply personal but also incredibly insightful, helping us understand ourselves better.",
+      "2": "The depth and quality of stories from geministorybook.info are remarkable. We can now explore our Gemini nature through personalized narratives in just minutes.",
+      "3": "geministorybook.info has transformed how we understand our dual nature. The AI-generated stories perfectly capture the complexity of being a Gemini.",
+      "4": "As a Gemini seeking self-discovery, geministorybook.info has been a game-changer. The personalized stories help me embrace both sides of my personality.",
+      "5": "The versatility of geministorybook.info is impressive. Whether exploring relationships or personal growth, the AI consistently delivers stories that resonate with my Gemini soul.",
+      "6": "My understanding of myself has deepened since using geministorybook.info. The AI storytelling helps me navigate the beautiful complexity of being a Gemini.",
+      "7": "The insights I've gained from geministorybook.info are outstanding. The AI-generated stories reveal aspects of my Gemini nature I never fully appreciated.",
+      "8": "What impresses me most about geministorybook.info is how it captures the essence of Gemini traits while creating unique, personal narratives for each user."
     }
   },
   "InfoLanding": {
-    "title": "Smart Video Marketing",
-    "description": "Unlock the power of video marketing with Converters.pro. Transform simple ideas into engaging AI-generated video content that perfectly represents your brand value.",
+    "title": "Smart Zodiac Storytelling",
+    "description": "Unlock the power of personalized storytelling with geministorybook.info. Transform your Gemini traits into engaging AI-generated stories that perfectly represent your unique duality.",
     "list": {
       "title": {
         "1": "Rapid Creation",
@@ -105,7 +177,7 @@
   },
   "Features": {
     "title": "Explore Our Features",
-    "subtitle": "Unleash your marketing potential with AI-powered tools designed to create impactful videos for your business.",
+    "subtitle": "Unleash your Gemini potential with AI-powered storytelling designed to create meaningful narratives for your personal journey.",
     "features": {
       "1": {
         "title": "Image Restoration",
@@ -148,7 +220,7 @@
     "instantAIMagicDescription": "Our advanced AI transforms your content into professional marketing videos in seconds.",
     "quickAndEasyProcess": "Quick & Easy Process",
     "createFunAndProHeadshotsIn3SimpleSteps": "Create Professional Marketing Videos in 3 Simple Steps",
-    "experienceTheFastestAITechnologyAtHeadShotsFunForStunningPersonalizedHeadshotsPerfectForEveryOccasion": "Experience the fastest AI video generation technology at Converters.pro for stunning, personalized marketing videos perfect for every business need."
+    "experienceTheFastestAITechnologyAtHeadShotsFunForStunningPersonalizedHeadshotsPerfectForEveryOccasion": "Experience advanced AI storytelling technology at geministorybook.info for stunning, personalized Gemini stories perfect for every moment of self-discovery."
   },
   "CTA": {
     "title": "Transform Your Marketing!",
@@ -156,7 +228,7 @@
     "button": "Get Started",
     "cool_button": "Create Your Marketing Video Now!",
     "cool_title": "Instant Professional Marketing Videos with AI",
-    "cool_description": "Experience Converters.pro! Create compelling marketing videos in seconds, no production team needed."
+    "cool_description": "Experience geministorybook.info! Create compelling Gemini stories in minutes, no writing experience needed."
   },
   "BentoGrid": {
     "customizable_prompts": "Customizable Prompts",
@@ -365,8 +437,8 @@
     "subtitle": "Frequently asked questions about our pricing.",
     "qa": [
       [
-        "What is Converters.pro?",
-        "Converters.pro is an AI-powered platform that allows you to create professional marketing videos quickly and easily, perfect for any business marketing needs."
+        "What is geministorybook.info?",
+        "geministorybook.info is an AI-powered storytelling platform that helps you create personalized zodiac stories that explore your unique Gemini traits and dual nature."
       ],
       [
         "How does the credit system work?",
@@ -396,7 +468,7 @@
   },
   "BlogPage": {
     "blog": "Blog",
-    "description": "Latest news and updates from Converters.pro",
+    "description": "Latest news and updates from geministorybook.info",
     "categories": "Categories",
     "all": "All",
     "news": "News",

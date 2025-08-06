@@ -8,7 +8,7 @@
     "sign_in_with_linkedin": "使用 LinkedIn 账号登录",
     "back": "返回",
     "welcome_back": "欢迎回来",
-    "use_email_to_sign_in": "使用邮箱登录您的 Converters.pro 账号",
+    "use_email_to_sign_in": "使用邮箱登录您的 geministorybook.info 账号",
     "don't_have_an_account": "还没有账号？",
     "sign_up": "注册",
     "email": "电子邮件",
@@ -55,7 +55,7 @@
       "photo-real-style": "动漫转真实",
       "remove-bg": "背景移除",
       "PixMiller": "PixMiller",
-      "HeadShots fun": "Converters.pro",
+      "HeadShots fun": "geministorybook.info",
       "Ullr AI Lab": "Ullr AI Lab",
       "Pricing": "定价",
       "Styles": "风格",
@@ -67,29 +67,101 @@
   },
   "HeroLanding": {
     "make-photo-successful": "让您的视频营销成功！",
-    "fun_pro_for_every_occasion": "在 Converters.pro 实现AI营销视频驱动业务成功",
-    "headshots_fun": "Converters.pro",
-    "get_unique_portraits": "仅需<bold>10秒</bold>即可获得独特的专业级视频。价格仅为传统视频制作的<bold>1/20</bold>。",
+    "fun_pro_for_every_occasion": "在 geministorybook.info 体验AI双子座故事创作",
+    "headshots_fun": "geministorybook.info",
+    "get_unique_portraits": "仅需<bold>几分钟</bold>即可获得独特的个性化双子座故事。发现<bold>专属于你</bold>的星座传说魅力。",
     "get_your_headshots": "获取营销视频"
+  },
+  "GeminiStorybook": {
+    "title": "双子座故事书",
+    "subtitle": "探索双子座的奇幻世界，用 AI 技术编织属于你的星座故事。",
+    "description": "每个故事都是独一无二的星空传说。",
+    "start_creating": "开始创作故事",
+    "explore_gallery": "探索故事画廊",
+    "hero": {
+      "ai_story_generation": "AI 故事生成",
+      "ai_story_description": "智能创作个性化双子座故事",
+      "zodiac_matching": "星座配对",
+      "zodiac_description": "探索双子座与其他星座的缘分",
+      "visual_presentation": "视觉呈现",
+      "visual_description": "美轮美奂的星空视觉体验",
+      "scroll_down": "向下滚动"
+    },
+    "features": {
+      "title": "双子座专属功能",
+      "subtitle": "专为双子座量身定制的故事创作功能，让每个故事都充满智慧与变化的魅力",
+      "dual_personality": "双重人格探索",
+      "dual_personality_desc": "深入了解双子座的双重性格特质，创作反映内心冲突与和谐的故事",
+      "wisdom_dialogue": "智慧对话生成",
+      "wisdom_dialogue_desc": "利用 AI 技术生成富有哲理的内在对话，展现双子座的思辨能力",
+      "change_themes": "变化主题故事",
+      "change_themes_desc": "围绕变化、适应、成长等主题，创作符合双子座特质的动态故事",
+      "multi_role": "多角色互动",
+      "multi_role_desc": "在故事中展现多重身份和角色转换，体现双子座的多面性",
+      "zodiac_fortune": "星座运势融入",
+      "zodiac_fortune_desc": "将双子座的星座特征和运势预测巧妙融入故事情节中",
+      "knowledge_quest": "知识探求之旅",
+      "knowledge_quest_desc": "创作以学习、探索、发现为主题的冒险故事，满足双子座的好奇心",
+      "explore_more": "探索更多功能"
+    },
+    "showcase": {
+      "title": "故事",
+      "title_highlight": "案例展示",
+      "subtitle": "探索由 AI 创作的双子座主题故事，感受属于你的星座魅力",
+      "story1_title": "镜中的两个我",
+      "story1_excerpt": "清晨的镜子前，她看到了两个截然不同的自己。一个渴望冒险，一个追求安稳...",
+      "story1_mood": "哲思",
+      "story2_title": "星空下的选择",
+      "story2_excerpt": "在双子星座的指引下，他面临着人生的重大抉择。是跟随内心的声音，还是听从理智的建议...",
+      "story2_mood": "成长",
+      "story3_title": "对话的艺术",
+      "story3_excerpt": "她拥有与任何人交流的天赋，但今晚，她要学会与内心深处的另一个自己对话...",
+      "story3_mood": "感悟",
+      "read_full_story": "阅读完整故事",
+      "zodiac_traits": "双子座特质",
+      "traits_description": "这些特质将巧妙地融入到你的专属故事中",
+      "trait_communication": "善于沟通",
+      "trait_quick_thinking": "思维敏捷",
+      "trait_adaptable": "适应性强",
+      "trait_curious": "好奇心强",
+      "trait_dual_nature": "双重性格",
+      "trait_innovative": "创新思维",
+      "create_my_story": "创建我的双子座故事"
+    },
+    "cta": {
+      "title": "准备好开启你的",
+      "title_highlight": "星座故事之旅了吗？",
+      "description": "让 AI 为你量身定制属于双子座的专属故事，",
+      "description2": "在变化与智慧中发现真实的自己。",
+      "feature1": "即刻开始创作",
+      "feature2": "AI 智能生成",
+      "feature3": "个性化定制",
+      "start_creating": "开始创作我的故事",
+      "browse_gallery": "浏览故事画廊",
+      "bottom_text": "加入数千名双子座用户，一起探索星座故事的魅力",
+      "free_start": "100% 免费开始",
+      "privacy_protected": "隐私保护",
+      "unlimited_creation": "无限创作"
+    }
   },
   "Testimonials": {
     "label": "精选评价",
     "title": "我们的客户正在分享推荐",
     "subtitle": "发现来自全球满意客户的热情反馈。",
     "reviews": {
-      "1": "Converters.pro 完全改变了我的营销工作流程。AI 工具不仅高效，而且使用起来很有趣，使视频创作过程既专业又愉快。",
-      "2": "Converters.pro 让我为所有社交媒体活动创建专业视频变得超级简单。",
-      "3": "Converters.pro 通过提供与我品牌风格完美匹配的专业质量视频，显著提升了我的品牌工作。",
-      "4": "为我的创业公司创建营销视频从未如此简单和愉快。Converters.pro 在保持轻松有趣的过程中提供了出色的结果。",
-      "5": "我喜欢 Converters.pro 如何平衡创意和专业性。AI 工具的灵活性让我能够设计既有趣又完全适合我创意项目的视频。",
-      "6": "Converters.pro 的效率和质量都非常出色。我能够在几秒钟内创建出工作室级别的视频，而且这个过程出乎意料地愉快。",
-      "7": "Converters.pro 已成为我们营销活动的宝贵工具。AI 生成的视频不仅专业，而且具有独特的创意元素，使我们的内容脱颖而出。",
-      "8": "Converters.pro 的质量和速度令人印象深刻。我能够在几秒钟内创建出看起来像是专业制作的营销视频。"
+      "1": "geministorybook.info 完全改变了我的自我探索过程。AI 故事创作工具不仅高效，而且使用起来很有趣，让探索双子座特质的过程既深刻又愉快。",
+      "2": "geministorybook.info 让我创建个性化的双子座故事变得超级简单，帮助我更好地理解自己的双重性格。",
+      "3": "geministorybook.info 通过提供完美反映我双子座特质的个性化故事，显著提升了我的自我认知。",
+      "4": "探索我的双子座天性从未如此简单和愉快。geministorybook.info 在保持轻松有趣的过程中提供了深刻的自我洞察。",
+      "5": "我喜欢 geministorybook.info 如何平衡创意和深度。AI 故事工具的灵活性让我能够创造既有趣又完全反映我双子座特质的个性化故事。",
+      "6": "geministorybook.info 的效率和深度都非常出色。我能够在几秒钟内创建出深刻的个性化故事，而且这个过程出乎意料地愉快。",
+      "7": "geministorybook.info 已成为我们自我探索的宝贵工具。AI 生成的故事不仅深刻，而且具有独特的内省元素，使我们的自我认知脱颖而出。",
+      "8": "geministorybook.info 的深度和速度令人印象深刻。我能够在几秒钟内创建出看起来像是专业制作的个性化故事。"
     }
   },
   "InfoLanding": {
     "title": "激发您的创造力",
-    "description": "通过Converters.pro 释放您头像的乐趣和潜力。将简单的快照转变为反映真实自我的迷人 AI 增强图像。",
+    "description": "通过geministorybook.info 释放您双子座的乐趣和潜力。将简单的体验转变为反映真实双重性格的迷人 AI 故事。",
     "list": {
       "title": {
         "1": "轻松创作",
@@ -148,7 +220,7 @@
     "instantAIMagicDescription": "先进 AI 技术，数秒内生成专业营销视频，随时展现品牌魅力。",
     "quickAndEasyProcess": "三步轻松完成",
     "createFunAndProHeadshotsIn3SimpleSteps": "三步轻松创建专业营销视频",
-    "experienceTheFastestAITechnologyAtHeadShotsFunForStunningPersonalizedHeadshotsPerfectForEveryOccasion": "体验 Converters.pro 超快的 AI 技术，打造适合各种场合的个性化营销视频。"
+    "experienceTheFastestAITechnologyAtHeadShotsFunForStunningPersonalizedHeadshotsPerfectForEveryOccasion": "体验 geministorybook.info 超快的 AI 技术，打造适合各种情境的个性化双子座故事。"
   },
   "CTA": {
     "title": "让营销更出彩！",
@@ -156,7 +228,7 @@
     "button": "立即体验",
     "cool_button": "立即创作您的营销视频！",
     "cool_title": "AI 智能，瞬间为您创造专业营销视频",
-    "cool_description": "几秒钟内创建令人惊叹的专业营销视频，无需专业团队。体验 Converters.pro！"
+    "cool_description": "几秒钟内创建令人惊叹的个性化双子座故事，无需专业心理咨询。体验 geministorybook.info！"
   },
   "BentoGrid": {
     "customizable_prompts": "自定义提示",
@@ -365,8 +437,8 @@
     "subtitle": "关于我们价格的常见问题。",
     "qa": [
       [
-        "什么是 Converters.pro？",
-        "Converters.pro 是一个由 AI 驱动的平台，让您能够快速、轻松地创建独特而专业的营销视频，为每个场合量身定制。"
+        "什么是 geministorybook.info？",
+        "geministorybook.info 是一个由 AI 驱动的故事平台，让您能够快速、轻松地创建独特而个性化的双子座故事，探索您的双重性格。"
       ],
       [
         "点数系统是如何运作的？",
@@ -396,7 +468,7 @@
   },
   "BlogPage": {
     "blog": "博客",
-    "description": "Converters.pro 的最新新闻和更新",
+    "description": "geministorybook.info 的最新新闻和更新",
     "categories": "分类",
     "all": "全部",
     "news": "新闻",

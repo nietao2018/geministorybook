@@ -4,24 +4,24 @@ import { env } from "@/env.mjs";
 const site_url = env.NEXT_PUBLIC_APP_URL;
 
 export const siteConfig: SiteConfig = {
-  title: "AI Marketing Video Generator | Converters.pro",
-  name: "Converters.pro",
+  title: "Gemini Storybook | geministorybook.info",
+  name: "geministorybook.info",
   description: 
-    "Create stunning marketing videos with Converters.pro. Our AI-powered video generator helps you craft engaging social media content, product demos, and brand videos in minutes. Transform your marketing with professional, customizable video content.",
+    "Explore the mystical world of Gemini with geministorybook.info. Our AI-powered platform helps you create personalized zodiac stories that reflect your unique Gemini traits. Discover your stellar legend through the art of storytelling.",
   url: site_url,
   ogImage: `${site_url}/_static/og.jpg`,
   links: {
     twitter: "https://twitter.com/ullr_ai",
-    github: "https://github.com/ullrai/HeadShots.fun",
+    github: "https://github.com/ullrai/geministorybook.info",
     discord: "https://discord.gg/8SpXRTBRfD"
   },
-  mailSupport: "support@headshots.fun",
+  mailSupport: "support@geministorybook.info",
   structuredData: {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "Converters.pro",
+    "name": "geministorybook.info",
     "url": site_url,
-    "description": "Create stunning marketing videos with Converters.pro. Our AI-powered video generator helps you craft engaging social media content, product demos, and brand videos in minutes. Transform your marketing with professional, customizable video content.",
+    "description": "Explore the mystical world of Gemini with geministorybook.info. Our AI-powered platform helps you create personalized zodiac stories that reflect your unique Gemini traits. Discover your stellar legend through the art of storytelling.",
     "potentialAction": {
       "@type": "SearchAction",
       "target": `${site_url}/search?q={search_term_string}`,
@@ -29,18 +29,18 @@ export const siteConfig: SiteConfig = {
     }
   },
   keywords: [
-    "AI video generator",
-    "marketing videos",
-    "video marketing",
-    "AI marketing",
-    "social media videos",
-    "brand videos",
-    "product demos",
-    "video creation tool",
-    "AI video editing",
-    "promotional videos",
-    "content marketing",
-    "digital marketing"
+    "AI storytelling",
+    "Gemini zodiac",
+    "personalized stories",
+    "astrology narratives",
+    "dual personality exploration",
+    "zodiac storytelling",
+    "AI story generator",
+    "Gemini traits",
+    "celestial stories",
+    "astrology AI",
+    "personality stories",
+    "Gemini characteristics"
   ],
   authors: [
     {
@@ -61,23 +61,6 @@ export const footerLinks: SidebarNavItem[] = [
       { title: "Terms", href: "/terms" },
       { title: "Privacy", href: "/privacy" },
       { title: "Refund", href: "/refund" },
-    ],
-  },
-  {
-    title: "Link",
-    items: [
-      { title: "image-restoration", href: `${site_url}/image-restoration` },
-      { title: "clothes-try-on", href: `${site_url}/try-on-clothing` },
-      { title: "photo-real-style", href: `${site_url}/photo-real-style` },
-      { title: "remove-bg", href: `${site_url}/remove-bg` },
-    ],
-  },
-  {
-    title: "Resources",
-    items: [
-      { title: "Pricing", href: "/pricing" },
-      { title: "Styles", href: "/generator-styles" },
-      { title: "Blog", href: "/blog" },
     ],
   },
 ];

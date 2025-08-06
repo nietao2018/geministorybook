@@ -6,12 +6,12 @@ export const BLOG_CATEGORIES: {
   {
     title: "news",
     slug: "news",
-    description: "Updates and announcements from Converters.pro",
+    description: "Updates and announcements from geministorybook.info",
   },
   {
     title: "education",
     slug: "education",
-    description: "Educational content about Converters.pro",
+    description: "Educational content about geministorybook.info",
   },
 ];
 
