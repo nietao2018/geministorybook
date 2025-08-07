@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     description: "Create your personal gemini storybook with AI-powered zodiac storytelling.",
   },
   alternates: {
-    canonical: "https://geministorybook.life",
+    canonical: "https://www.geministorybook.life/",
   },
 };
 

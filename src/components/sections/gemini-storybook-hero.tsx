@@ -47,13 +47,30 @@ export default function GeminiStorybookHero() {
         </div>
 
         {/* Subtitle */}
-        <p className="mb-12 max-w-4xl text-xl leading-relaxed text-gray-300 sm:text-2xl">
+        <p className="mb-8 max-w-4xl text-xl leading-relaxed text-gray-300 sm:text-2xl">
           {t('subtitle')}
           <br />
           <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
             {t('description')}
           </span>
         </p>
+
+        {/* Gemini Video */}
+        <div className="mb-12 max-w-4xl">
+          <div className="relative overflow-hidden rounded-2xl border border-gray-700/50 bg-gray-800/30 p-2 backdrop-blur-sm">
+            <video
+              className="w-full rounded-xl"
+              autoPlay
+              loop
+              muted
+              playsInline
+              controls
+            >
+              <source src="https://storage.googleapis.com/gweb-gemini-cdn/gemini/uploads/8b59c7bdaf1fb675eb5f52b5c588aed872952a76.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
 
         {/* Feature highlights */}
         <div className="mb-12 grid grid-cols-1 gap-4 text-center sm:grid-cols-3">
