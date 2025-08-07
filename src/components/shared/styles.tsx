@@ -282,4 +282,4 @@ export const styles = [
     },
 ];
 
-export const domainPath = "https://cdn.geministorybook.info/images";
+export const domainPath = "https://cdn.geministorybook.life/images";

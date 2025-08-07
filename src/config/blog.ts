@@ -6,12 +6,12 @@ export const BLOG_CATEGORIES: {
   {
     title: "news",
     slug: "news",
-    description: "Updates and announcements from geministorybook.info",
+    description: "Updates and announcements from geministorybook.life",
   },
   {
     title: "education",
     slug: "education",
-    description: "Educational content about geministorybook.info",
+    description: "Educational content about geministorybook.life",
   },
 ];
 

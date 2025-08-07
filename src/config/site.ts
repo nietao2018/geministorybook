@@ -4,22 +4,22 @@ import { env } from "@/env.mjs";
 const site_url = env.NEXT_PUBLIC_APP_URL;
 
 export const siteConfig: SiteConfig = {
-  title: "Gemini Storybook - AI-Powered Zodiac Stories | geministorybook.info",
-  name: "geministorybook.info",
+  title: "Gemini Storybook - AI-Powered Zodiac Stories | geministorybook.life",
+  name: "geministorybook.life",
   description: 
     "Gemini Storybook - Create personalized AI-generated stories that explore your unique Gemini traits and dual nature. Our gemini storybook platform helps you discover your stellar legend through zodiac storytelling and astrology narratives.",
   url: site_url,
   ogImage: `${site_url}/_static/og.jpg`,
   links: {
     twitter: "https://twitter.com/ullr_ai",
-    github: "https://github.com/ullrai/geministorybook.info",
+    github: "https://github.com/ullrai/geministorybook.life",
     discord: "https://discord.gg/8SpXRTBRfD"
   },
-  mailSupport: "support@geministorybook.info",
+  mailSupport: "support@geministorybook.life",
   structuredData: {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "geministorybook.info",
+    "name": "geministorybook.life",
     "url": site_url,
     "description": "Gemini Storybook - Create personalized AI-generated stories that explore your unique Gemini traits and dual nature. Our gemini storybook platform helps you discover your stellar legend through zodiac storytelling and astrology narratives.",
     "potentialAction": {

@@ -17,7 +17,7 @@ export const sidebarLinks: SidebarNavItem[] = [
       { href: "/dashboard/settings", icon: "settings", title: "settings" },
       { href: "/", icon: "home", title: "homepage" },
       {
-        href: "mailto:support@geministorybook.info",
+        href: "mailto:support@geministorybook.life",
         icon: "mail",
         title: "mail_support",
         target: "_blank",

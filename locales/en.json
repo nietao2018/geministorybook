@@ -8,7 +8,7 @@
     "sign_in_with_linkedin": "Sign In with LinkedIn",
     "back": "Back",
     "welcome_back": "Welcome back",
-    "use_email_to_sign_in": "Use email to sign in to your geministorybook.info account",
+    "use_email_to_sign_in": "Use email to sign in to your geministorybook.life account",
     "don't_have_an_account": "Don't have an account?",
     "sign_up": "Sign Up",
     "email": "Email",
@@ -55,7 +55,7 @@
       "photo-real-style": "Photo-Real-Style",
       "remove-bg": "Remove-BG",
       "PixMiller": "PixMiller",
-      "HeadShots fun": "geministorybook.info",
+      "HeadShots fun": "geministorybook.life",
       "Ullr AI Lab": "Ullr AI Lab",
       "Pricing": "Pricing",
       "Styles": "Styles",
@@ -68,8 +68,8 @@
   "HeroLanding": {
     "make-photo-successful": "Make Your Photo Successful First!",
     "fun_pro_for_every_occasion": "AI-powered zodiac storytelling at",
-    "headshots_fun": "geministorybook.info",
-    "get_unique_portraits": "Create unique and personalized Gemini stories in just <bold>minutes</bold> using advanced AI at geministorybook.info. Discover the magic of <bold>personalized</bold> zodiac storytelling.",
+    "headshots_fun": "geministorybook.life",
+    "get_unique_portraits": "Create unique and personalized Gemini stories in just <bold>minutes</bold> using advanced AI at geministorybook.life. Discover the magic of <bold>personalized</bold> zodiac storytelling.",
     "get_your_headshots": "Get marketing  videos"
   },
   "GeminiStorybook": {
@@ -149,19 +149,19 @@
     "title": "What our clients are sharing.",
     "subtitle": "Discover the glowing feedback from our delighted customers worldwide.",
     "reviews": {
-      "1": "My gemini storybook from geministorybook.info has revolutionized how I connect with my Gemini traits. The AI-generated gemini storybook content is deeply personal and incredibly insightful.",
-      "2": "The depth and quality of my gemini storybook from geministorybook.info is remarkable. I can explore my Gemini nature through personalized gemini storybook narratives in minutes.",
-      "3": "My personalized gemini storybook from geministorybook.info has transformed how I understand my dual nature. The AI-generated gemini storybook perfectly captures Gemini complexity.",
-      "4": "As a Gemini seeking self-discovery, my gemini storybook from geministorybook.info has been a game-changer. The personalized gemini storybook helps me embrace both personality sides.",
-      "5": "The versatility of my gemini storybook from geministorybook.info is impressive. Whether exploring relationships or growth, my gemini storybook consistently resonates with my Gemini soul.",
-      "6": "My understanding of myself has deepened since creating my gemini storybook with geministorybook.info. The AI gemini storybook helps me navigate Gemini complexity beautifully.",
-      "7": "The insights I've gained from my gemini storybook at geministorybook.info are outstanding. My personalized gemini storybook reveals Gemini aspects I never appreciated.",
-      "8": "What impresses me most about my gemini storybook from geministorybook.info is how it captures Gemini essence while creating unique gemini storybook narratives."
+      "1": "My gemini storybook from geministorybook.life has revolutionized how I connect with my Gemini traits. The AI-generated gemini storybook content is deeply personal and incredibly insightful.",
+      "2": "The depth and quality of my gemini storybook from geministorybook.life is remarkable. I can explore my Gemini nature through personalized gemini storybook narratives in minutes.",
+      "3": "My personalized gemini storybook from geministorybook.life has transformed how I understand my dual nature. The AI-generated gemini storybook perfectly captures Gemini complexity.",
+      "4": "As a Gemini seeking self-discovery, my gemini storybook from geministorybook.life has been a game-changer. The personalized gemini storybook helps me embrace both personality sides.",
+      "5": "The versatility of my gemini storybook from geministorybook.life is impressive. Whether exploring relationships or growth, my gemini storybook consistently resonates with my Gemini soul.",
+      "6": "My understanding of myself has deepened since creating my gemini storybook with geministorybook.life. The AI gemini storybook helps me navigate Gemini complexity beautifully.",
+      "7": "The insights I've gained from my gemini storybook at geministorybook.life are outstanding. My personalized gemini storybook reveals Gemini aspects I never appreciated.",
+      "8": "What impresses me most about my gemini storybook from geministorybook.life is how it captures Gemini essence while creating unique gemini storybook narratives."
     }
   },
   "InfoLanding": {
     "title": "Smart Gemini Storybook Creation",
-    "description": "Create your ultimate gemini storybook with geministorybook.info. Transform your Gemini traits into engaging AI-generated stories that perfectly represent your unique duality through personalized gemini storybook creation.",
+    "description": "Create your ultimate gemini storybook with geministorybook.life. Transform your Gemini traits into engaging AI-generated stories that perfectly represent your unique duality through personalized gemini storybook creation.",
     "list": {
       "title": {
         "1": "Rapid Gemini Storybook Creation",
@@ -220,7 +220,7 @@
     "instantAIMagicDescription": "Our advanced AI transforms your content into professional marketing videos in seconds.",
     "quickAndEasyProcess": "Quick & Easy Process",
     "createFunAndProHeadshotsIn3SimpleSteps": "Create Professional Marketing Videos in 3 Simple Steps",
-    "experienceTheFastestAITechnologyAtHeadShotsFunForStunningPersonalizedHeadshotsPerfectForEveryOccasion": "Experience advanced AI storytelling technology at geministorybook.info for stunning, personalized Gemini stories perfect for every moment of self-discovery."
+    "experienceTheFastestAITechnologyAtHeadShotsFunForStunningPersonalizedHeadshotsPerfectForEveryOccasion": "Experience advanced AI storytelling technology at geministorybook.life for stunning, personalized Gemini stories perfect for every moment of self-discovery."
   },
   "CTA": {
     "title": "Transform Your Marketing!",
@@ -228,7 +228,7 @@
     "button": "Get Started",
     "cool_button": "Create Your Marketing Video Now!",
     "cool_title": "Instant Professional Marketing Videos with AI",
-    "cool_description": "Experience geministorybook.info! Create compelling Gemini stories in minutes, no writing experience needed."
+    "cool_description": "Experience geministorybook.life! Create compelling Gemini stories in minutes, no writing experience needed."
   },
   "BentoGrid": {
     "customizable_prompts": "Customizable Prompts",
@@ -437,8 +437,8 @@
     "subtitle": "Frequently asked questions about our pricing.",
     "qa": [
       [
-        "What is a gemini storybook and how does geministorybook.info work?",
-        "A gemini storybook is a personalized collection of AI-generated stories exploring Gemini traits. geministorybook.info helps you create your own gemini storybook with zodiac stories that reflect your dual nature."
+        "What is a gemini storybook and how does geministorybook.life work?",
+        "A gemini storybook is a personalized collection of AI-generated stories exploring Gemini traits. geministorybook.life helps you create your own gemini storybook with zodiac stories that reflect your dual nature."
       ],
       [
         "How does the credit system work?",
@@ -468,7 +468,7 @@
   },
   "BlogPage": {
     "blog": "Blog",
-    "description": "Latest news and updates from geministorybook.info",
+    "description": "Latest news and updates from geministorybook.life",
     "categories": "Categories",
     "all": "All",
     "news": "News",

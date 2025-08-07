@@ -8,7 +8,7 @@
     "sign_in_with_linkedin": "使用 LinkedIn 账号登录",
     "back": "返回",
     "welcome_back": "欢迎回来",
-    "use_email_to_sign_in": "使用邮箱登录您的 geministorybook.info 账号",
+    "use_email_to_sign_in": "使用邮箱登录您的 geministorybook.life 账号",
     "don't_have_an_account": "还没有账号？",
     "sign_up": "注册",
     "email": "电子邮件",
@@ -55,7 +55,7 @@
       "photo-real-style": "动漫转真实",
       "remove-bg": "背景移除",
       "PixMiller": "PixMiller",
-      "HeadShots fun": "geministorybook.info",
+      "HeadShots fun": "geministorybook.life",
       "Ullr AI Lab": "Ullr AI Lab",
       "Pricing": "定价",
       "Styles": "风格",
@@ -67,8 +67,8 @@
   },
   "HeroLanding": {
     "make-photo-successful": "让您的视频营销成功！",
-    "fun_pro_for_every_occasion": "在 geministorybook.info 体验AI双子座故事创作",
-    "headshots_fun": "geministorybook.info",
+    "fun_pro_for_every_occasion": "在 geministorybook.life 体验AI双子座故事创作",
+    "headshots_fun": "geministorybook.life",
     "get_unique_portraits": "仅需<bold>几分钟</bold>即可获得独特的个性化双子座故事。发现<bold>专属于你</bold>的星座传说魅力。",
     "get_your_headshots": "获取营销视频"
   },
@@ -149,7 +149,7 @@
     "title": "我们的客户正在分享推荐",
     "subtitle": "发现来自全球满意客户的热情反馈。",
     "reviews": {
-      "1": "我的双子座故事书从geministorybook.info完全改变了我的自我探索过程。AI双子座故事书创作工具高效有趣，让探索双子座特质既深刻又愉快。",
+      "1": "我的双子座故事书从geministorybook.life完全改变了我的自我探索过程。AI双子座故事书创作工具高效有趣，让探索双子座特质既深刻又愉快。",
       "2": "我的双子座故事书让创建个性化故事变得超级简单，通过双子座故事书帮助我更好地理解自己的双重性格。",
       "3": "我的个性化双子座故事书通过完美反映双子座特质的故事内容，显著提升了我的自我认知和双子座故事书体验。",
       "4": "通过双子座故事书探索我的双子座天性从未如此简单。我的双子座故事书在轻松有趣的过程中提供了深刻的自我洞察。",
@@ -161,7 +161,7 @@
   },
   "InfoLanding": {
     "title": "激发您的创造力",
-    "description": "通过geministorybook.info 释放您双子座的乐趣和潜力。将简单的体验转变为反映真实双重性格的迷人 AI 故事。",
+    "description": "通过geministorybook.life 释放您双子座的乐趣和潜力。将简单的体验转变为反映真实双重性格的迷人 AI 故事。",
     "list": {
       "title": {
         "1": "轻松创作",
@@ -220,7 +220,7 @@
     "instantAIMagicDescription": "先进 AI 技术，数秒内生成专业营销视频，随时展现品牌魅力。",
     "quickAndEasyProcess": "三步轻松完成",
     "createFunAndProHeadshotsIn3SimpleSteps": "三步轻松创建专业营销视频",
-    "experienceTheFastestAITechnologyAtHeadShotsFunForStunningPersonalizedHeadshotsPerfectForEveryOccasion": "体验 geministorybook.info 超快的 AI 技术，打造适合各种情境的个性化双子座故事。"
+    "experienceTheFastestAITechnologyAtHeadShotsFunForStunningPersonalizedHeadshotsPerfectForEveryOccasion": "体验 geministorybook.life 超快的 AI 技术，打造适合各种情境的个性化双子座故事。"
   },
   "CTA": {
     "title": "让营销更出彩！",
@@ -228,7 +228,7 @@
     "button": "立即体验",
     "cool_button": "立即创作您的营销视频！",
     "cool_title": "AI 智能，瞬间为您创造专业营销视频",
-    "cool_description": "几秒钟内创建令人惊叹的个性化双子座故事，无需专业心理咨询。体验 geministorybook.info！"
+    "cool_description": "几秒钟内创建令人惊叹的个性化双子座故事，无需专业心理咨询。体验 geministorybook.life！"
   },
   "BentoGrid": {
     "customizable_prompts": "自定义提示",
@@ -437,8 +437,8 @@
     "subtitle": "关于我们价格的常见问题。",
     "qa": [
       [
-        "什么是双子座故事书？geministorybook.info如何工作？",
-        "双子座故事书是个性化的AI故事集合，探索双子座特质。geministorybook.info帮助您创建专属的双子座故事书，通过星座故事反映您的双重性格。"
+        "什么是双子座故事书？geministorybook.life如何工作？",
+        "双子座故事书是个性化的AI故事集合，探索双子座特质。geministorybook.life帮助您创建专属的双子座故事书，通过星座故事反映您的双重性格。"
       ],
       [
         "点数系统是如何运作的？",
@@ -468,7 +468,7 @@
   },
   "BlogPage": {
     "blog": "博客",
-    "description": "geministorybook.info 的最新新闻和更新",
+    "description": "geministorybook.life 的最新新闻和更新",
     "categories": "分类",
     "all": "全部",
     "news": "新闻",
