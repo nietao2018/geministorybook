@@ -1,6 +1,8 @@
 import { cn } from "@/lib/utils";
 import { Icons } from "@/components/shared/icons";
 import { useTranslations } from 'next-intl';
+import Link from "next/link";
+import Image from "next/image";
 
 export default function GeminiShowcase() {
   const t = useTranslations('GeminiStorybook');
@@ -12,7 +14,9 @@ export default function GeminiShowcase() {
       mood: t('showcase.story1_mood'),
       color: "blue",
       gradient: "from-blue-500/20 to-cyan-500/20",
-      border: "border-blue-500/30"
+      border: "border-blue-500/30",
+      image: "https://pub-db17a2349e164868983605b173fbd7cd.r2.dev/story1.png",
+      link: "https://gemini.google.com/share/ba2ca1d1ea16"
     },
     {
       title: t('showcase.story2_title'),
@@ -20,7 +24,9 @@ export default function GeminiShowcase() {
       mood: t('showcase.story2_mood'),
       color: "purple", 
       gradient: "from-purple-500/20 to-indigo-500/20",
-      border: "border-purple-500/30"
+      border: "border-purple-500/30",
+      image: "https://pub-db17a2349e164868983605b173fbd7cd.r2.dev/story2.png",
+      link: "https://gemini.google.com/share/c29516e1956f"
     },
     {
       title: t('showcase.story3_title'),
@@ -28,7 +34,39 @@ export default function GeminiShowcase() {
       mood: t('showcase.story3_mood'),
       color: "cyan",
       gradient: "from-cyan-500/20 to-teal-500/20", 
-      border: "border-cyan-500/30"
+      border: "border-cyan-500/30",
+      image: "https://pub-db17a2349e164868983605b173fbd7cd.r2.dev/story3.png",
+      link: "https://gemini.google.com/share/d50991541f20"
+    },
+    {
+      title: t('showcase.story4_title'),
+      excerpt: t('showcase.story4_excerpt'),
+      mood: t('showcase.story4_mood'),
+      color: "emerald",
+      gradient: "from-emerald-500/20 to-green-500/20",
+      border: "border-emerald-500/30",
+      image: "https://pub-db17a2349e164868983605b173fbd7cd.r2.dev/story4.png",
+      link: "https://gemini.google.com/share/4ab78819ca20"
+    },
+    {
+      title: t('showcase.story5_title'),
+      excerpt: t('showcase.story5_excerpt'),
+      mood: t('showcase.story5_mood'),
+      color: "rose",
+      gradient: "from-rose-500/20 to-pink-500/20",
+      border: "border-rose-500/30",
+      image: "https://pub-db17a2349e164868983605b173fbd7cd.r2.dev/story5.png",
+      link: "https://gemini.google.com/share/15d96466c9ad"
+    },
+    {
+      title: t('showcase.story6_title'),
+      excerpt: t('showcase.story6_excerpt'),
+      mood: t('showcase.story6_mood'),
+      color: "amber",
+      gradient: "from-amber-500/20 to-orange-500/20",
+      border: "border-amber-500/30",
+      image: "https://pub-db17a2349e164868983605b173fbd7cd.r2.dev/story6.png",
+      link: "https://gemini.google.com/share/5868ef9fdc47"
     }
   ];
 
@@ -65,54 +103,71 @@ export default function GeminiShowcase() {
         </div>
 
         {/* Story Examples */}
-        <div className="mb-20 grid grid-cols-1 gap-8 lg:grid-cols-3">
+        <div className="mb-20 grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
           {storyExamples.map((story, index) => (
-            <div
+            <Link
               key={index}
+              href={story.link}
               className={cn(
-                "group relative overflow-hidden rounded-2xl border bg-gray-800/40 p-6 backdrop-blur-sm transition-all duration-500 hover:-translate-y-3 hover:bg-gray-800/60",
+                "group relative block cursor-pointer overflow-hidden rounded-3xl border bg-gray-800/40 backdrop-blur-sm transition-all duration-500 hover:-translate-y-4 hover:bg-gray-800/60 hover:shadow-2xl",
                 story.border
               )}
             >
-              {/* Gradient background */}
-              <div className={cn(
-                "absolute inset-0 rounded-2xl bg-gradient-to-br opacity-0 transition-opacity duration-500 group-hover:opacity-100",
-                story.gradient
-              )} />
-              
-              <div className="relative z-10">
+              {/* Story Image */}
+              <div className="relative h-48 overflow-hidden">
+                <Image
+                  src={story.image}
+                  alt={story.title}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                {/* Image overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/20 to-transparent" />
+                
                 {/* Mood tag */}
                 <div className={cn(
-                  "mb-4 inline-block rounded-full px-3 py-1 text-sm font-medium",
-                  story.color === "blue" && "bg-blue-500/20 text-blue-300",
-                  story.color === "purple" && "bg-purple-500/20 text-purple-300", 
-                  story.color === "cyan" && "bg-cyan-500/20 text-cyan-300"
+                  "absolute left-4 top-4 inline-block rounded-full px-4 py-2 text-sm font-semibold backdrop-blur-sm",
+                  story.color === "blue" && "border border-blue-400/30 bg-blue-500/30 text-blue-200",
+                  story.color === "purple" && "border border-purple-400/30 bg-purple-500/30 text-purple-200", 
+                  story.color === "cyan" && "border border-cyan-400/30 bg-cyan-500/30 text-cyan-200",
+                  story.color === "emerald" && "border border-emerald-400/30 bg-emerald-500/30 text-emerald-200",
+                  story.color === "rose" && "border border-rose-400/30 bg-rose-500/30 text-rose-200",
+                  story.color === "amber" && "border border-amber-400/30 bg-amber-500/30 text-amber-200"
                 )}>
                   {story.mood}
                 </div>
-                
-                {/* Title */}
-                <h3 className="mb-4 text-xl font-semibold text-white">
-                  {story.title}
-                </h3>
-                
-                {/* Excerpt */}
-                <p className="mb-6 leading-relaxed text-gray-300">
-                  {story.excerpt}
-                </p>
-                
+
+                {/* Gemini symbol */}
+                <div className="absolute right-4 top-4">
+                  <div className="text-3xl opacity-60 transition-opacity duration-300 group-hover:opacity-100">♊</div>
+                </div>
+              </div>
+
+              {/* Gradient background */}
+              <div className={cn(
+                "absolute inset-0 rounded-3xl bg-gradient-to-br opacity-0 transition-opacity duration-500 group-hover:opacity-100",
+                story.gradient
+              )} />
+              
+              <div className="relative z-10 p-6">
                 {/* Read more */}
-                <button className="group/btn flex items-center gap-2 text-sm font-medium text-cyan-400 transition-colors hover:text-cyan-300">
+                <div className="flex items-center gap-2 text-sm font-medium text-cyan-400 transition-colors group-hover:text-cyan-300">
                   {t('showcase.read_full_story')}
-                  <Icons.arrowRight className="size-4 transition-transform group-hover/btn:translate-x-1" />
-                </button>
+                  <Icons.arrowRight className="size-4 transition-transform group-hover:translate-x-2" />
+                </div>
               </div>
               
-              {/* Decorative elements */}
-              <div className="absolute right-4 top-4">
-                <div className="text-2xl opacity-40">♊</div>
-              </div>
-            </div>
+              {/* Hover glow effect */}
+              <div className={cn(
+                "absolute -inset-1 -z-10 rounded-3xl opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100",
+                story.color === "blue" && "bg-gradient-to-r from-blue-500/20 to-cyan-500/20",
+                story.color === "purple" && "bg-gradient-to-r from-purple-500/20 to-indigo-500/20", 
+                story.color === "cyan" && "bg-gradient-to-r from-cyan-500/20 to-teal-500/20",
+                story.color === "emerald" && "bg-gradient-to-r from-emerald-500/20 to-green-500/20",
+                story.color === "rose" && "bg-gradient-to-r from-rose-500/20 to-pink-500/20",
+                story.color === "amber" && "bg-gradient-to-r from-amber-500/20 to-orange-500/20"
+              )} />
+            </Link>
           ))}
         </div>
 

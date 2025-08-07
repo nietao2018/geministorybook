@@ -26,9 +26,9 @@ export default function GeminiStorybookHero() {
       <div className="container relative flex min-h-screen flex-col items-center justify-center px-4 text-center">
         {/* Gemini Symbol */}
         <div className="relative mb-8">
-          <div className="bg-gradient-to-r from-blue-400 via-cyan-300 to-purple-400 bg-clip-text text-8xl font-bold text-transparent">
+          {/* <div className="bg-gradient-to-r from-blue-400 via-cyan-300 to-purple-400 bg-clip-text text-8xl font-bold text-transparent">
             ♊
-          </div>
+          </div> */}
           <div className="absolute -inset-2 animate-pulse rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 blur-lg" />
         </div>
 
@@ -37,11 +37,8 @@ export default function GeminiStorybookHero() {
           <h1 className="text-6xl font-bold tracking-tight text-white sm:text-7xl md:text-8xl lg:text-9xl">
             <span className="block">
               <span className="bg-gradient-to-r from-blue-400 via-cyan-300 to-purple-400 bg-clip-text text-transparent">
-                Gemini
+                Gemini Storybook
               </span>
-            </span>
-            <span className="block text-4xl font-light text-gray-200 sm:text-5xl md:text-6xl lg:text-7xl">
-              Storybook
             </span>
           </h1>
         </div>
