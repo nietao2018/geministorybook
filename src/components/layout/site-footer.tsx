@@ -31,7 +31,7 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
             </ul>
           </div>
         ))}
-        <div className="col-span-full flex flex-col items-end sm:col-span-1 md:col-span-2">
+        <div className="col-span-full flex flex-col items-end justify-end text-right sm:col-span-1 md:col-span-2">
           <Link href="/" className="flex items-center space-x-1.5">
             <Icons.logo className="size-6 lg:size-10" />
             <span className="font-urban text-lg font-bold lg:text-3xl">

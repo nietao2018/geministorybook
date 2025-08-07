@@ -4,10 +4,10 @@ import { env } from "@/env.mjs";
 const site_url = env.NEXT_PUBLIC_APP_URL;
 
 export const siteConfig: SiteConfig = {
-  title: "Gemini Storybook | geministorybook.info",
+  title: "Gemini Storybook - AI-Powered Zodiac Stories | geministorybook.info",
   name: "geministorybook.info",
   description: 
-    "Explore the mystical world of Gemini with geministorybook.info. Our AI-powered platform helps you create personalized zodiac stories that reflect your unique Gemini traits. Discover your stellar legend through the art of storytelling.",
+    "Gemini Storybook - Create personalized AI-generated stories that explore your unique Gemini traits and dual nature. Our gemini storybook platform helps you discover your stellar legend through zodiac storytelling and astrology narratives.",
   url: site_url,
   ogImage: `${site_url}/_static/og.jpg`,
   links: {
@@ -21,7 +21,7 @@ export const siteConfig: SiteConfig = {
     "@type": "WebSite",
     "name": "geministorybook.info",
     "url": site_url,
-    "description": "Explore the mystical world of Gemini with geministorybook.info. Our AI-powered platform helps you create personalized zodiac stories that reflect your unique Gemini traits. Discover your stellar legend through the art of storytelling.",
+    "description": "Gemini Storybook - Create personalized AI-generated stories that explore your unique Gemini traits and dual nature. Our gemini storybook platform helps you discover your stellar legend through zodiac storytelling and astrology narratives.",
     "potentialAction": {
       "@type": "SearchAction",
       "target": `${site_url}/search?q={search_term_string}`,
@@ -29,18 +29,21 @@ export const siteConfig: SiteConfig = {
     }
   },
   keywords: [
+    "gemini storybook",
+    "Gemini Storybook",
+    "gemini storybook AI",
+    "AI gemini storybook",
+    "gemini zodiac stories",
+    "gemini story generator",
+    "gemini personality stories",
     "AI storytelling",
-    "Gemini zodiac",
-    "personalized stories",
+    "zodiac storytelling",
     "astrology narratives",
     "dual personality exploration",
-    "zodiac storytelling",
-    "AI story generator",
     "Gemini traits",
-    "celestial stories",
-    "astrology AI",
-    "personality stories",
-    "Gemini characteristics"
+    "personalized zodiac stories",
+    "celestial storytelling",
+    "astrology AI stories"
   ],
   authors: [
     {
